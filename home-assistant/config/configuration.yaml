@@ -18,4 +18,4 @@ ecovacs:
   continent: na
 
 pi_hole:
-  - host: IP_ADDRESS
+  - host: !secret pihole_ip_addr

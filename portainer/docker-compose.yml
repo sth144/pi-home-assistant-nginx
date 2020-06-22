@@ -1,0 +1,14 @@
+version: "2.0"
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    volumes:
+      - /home/pi/Volumes/portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9000:9000
+    network_mode: "host"
+    environment:
+      - TZ=America/Chicago

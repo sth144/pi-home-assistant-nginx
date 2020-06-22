@@ -1,19 +1,19 @@
 version: "2.0"
 services:
-        home-assistant:
-                image: homeassistant/raspberrypi3-homeassistant:stable
-                container_name: home-assistant
-                restart: always
-                volumes:
-                        - /home/pi/Projects/home-assistant/config:/config
-                ports:
-                        - 80:80
-                        - 443:443
-                        - 8123:8123
-                network_mode: "host"
-                environment:
-                        - TZ=America/Chicago
-                # NOTE: could these device files change?
-                devices: 
-                        - /dev/ttyUSB0:/dev/ttyUSB0
-                        - /dev/ttyUSB1:/dev/ttyUSB1
+  home-assistant:
+    image: homeassistant/raspberrypi3-homeassistant:stable
+    container_name: home-assistant
+    restart: always
+    volumes:
+      - /home/pi/Projects/home-assistant/config:/config
+    ports:
+      - 80:80
+      - 443:443
+      - 8123:8123
+    network_mode: "host"
+    environment:
+      - TZ=America/Chicago
+    # NOTE: could these device files change?
+    devices: 
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyUSB1:/dev/ttyUSB1
