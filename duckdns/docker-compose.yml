@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  duckdns:
+    image: linuxserver/duckdns
+    container_name: duckdns
+#    secrets:
+#      - duckdns_token
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - SUBDOMAINS=sthinds144
+      - TOKEN=${DUCKDNS_TOKEN}
+      - LOG_FILE=true
+    volumes:
+      - /home/picocluster/Volumes/duckdns-config:/config
+    restart: unless-stopped
+#secrets:
+#  duckdns_token: 
+#    file: ./.token

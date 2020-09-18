@@ -4,3 +4,6 @@ home-assistant/config/**/*
 !home-assistant/config/groups.yaml
 !home-assistant/config/scenes.yaml
 !home-assistant/config/scripts.yaml
+*.ovpn
+*.token
+*.env
