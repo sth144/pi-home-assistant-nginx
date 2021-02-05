@@ -11,4 +11,4 @@ services:
     network_mode: "host"
     restart: always
     volumes:
-      - /home/pi/Volumes/openvpn-etc/:/etc/openvpn
+      - /home/pi/Volumes/ovpn_data_raspi/:/etc/openvpn
