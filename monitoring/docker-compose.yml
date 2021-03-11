@@ -5,6 +5,7 @@ services:
     restart: always
     user: "$UID:$GID"
     container_name: prometheus
+    network_mode: "host"
     ports:
       - 9090:9090
     volumes:
@@ -17,6 +18,7 @@ services:
     container_name: grafana
     depends_on:
       - prometheus
+    network_mode: "host"
     ports:
       - "3000:3000"
     volumes:

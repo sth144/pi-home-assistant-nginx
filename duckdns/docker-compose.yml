@@ -13,7 +13,7 @@ services:
       - TOKEN=${DUCKDNS_TOKEN}
       - LOG_FILE=true
     volumes:
-      - /home/picocluster/Volumes/duckdns-config:/config
+      - /home/pi/Volumes/duckdns-config:/config
     restart: unless-stopped
 #secrets:
 #  duckdns_token: 
