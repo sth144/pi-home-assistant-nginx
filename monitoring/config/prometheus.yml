@@ -30,7 +30,7 @@ scrape_configs:
       - targets: ["pc2:9100"]
   - job_name: "node_exporter_openmediavault"
     static_configs:
-      - targets: ["openmediavault.local:9100"]
+      - targets: ["openmediavault:9100"]
   - job_name: "node_exporter_desktop"
     static_configs:
       - targets: ["sthinds.local:9100"]

@@ -8,9 +8,50 @@ services:
     network_mode: "host"
     ports:
       - 9090:9090
+    command: --web.enable-admin-api --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
       - /home/pi/Volumes/prometheus:/prometheus
+  telegraf:
+    image: telegraf:1.16
+    container_name: telegraf
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    # links:
+    #   - influxdb
+    depends_on:
+      - influxdb
+    ports:
+      - 8092:8092/udp
+      - 8094:8094
+      - 8125:8125/udp
+    network_mode: "host"
+  chronograf:
+    image: chronograf:latest
+    ports: 
+      - '127.0.0.1:8888:8888'
+    volumes:
+      - /home/pi/Volumes/chronograf:/var/lib/chronograf
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUXDB_URL=http://127.0.0.1:8086
+      - INFLUXDB_USERNAME=admin
+      - INFLUXDB_PASSWORD=password
+  influxdb:
+    image: influxdb:1.8.4
+    ports:
+      - 8086:8086
+    volumes:
+      - /home/pi/Volumes/influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=db0
+      # TODO: hide these
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password
+    network_mode: "host"
   grafana:
     image: grafana/grafana:latest
     restart: always
