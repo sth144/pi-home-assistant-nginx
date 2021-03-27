@@ -13,3 +13,5 @@ docker run -v $HOME/Volumes/$OVPN_DATA:/etc/openvpn \
 # generate client config with embedded certificates
 docker run -v $HOME/Volumes/$OVPN_DATA:/etc/openvpn \
     --rm mjenz/rpi-openvpn ovpn_getclient $CLIENT_NAME > $CLIENT_NAME.ovpn
+
+mv $CLIENT_NAME.ovpn certs/
