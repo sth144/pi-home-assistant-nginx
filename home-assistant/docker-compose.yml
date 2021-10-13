@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - /home/pi/Projects/home-assistant/config:/config
+      - /etc/hosts:/etc/hosts
     ports:
       - 80:80
       - 443:443
@@ -17,3 +18,5 @@ services:
     devices: 
       - /dev/ttyUSB0:/dev/ttyUSB0
       - /dev/ttyUSB1:/dev/ttyUSB1
+    # TODO: figure out how to run as not-privileged: https://community.home-assistant.io/t/migration-to-2021-7-fails-fatal-python-error-init-interp-main-cant-initialize-time/320648/3
+    privileged: true

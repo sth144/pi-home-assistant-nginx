@@ -2,8 +2,7 @@
 
 export OVPN_DATA="ovpn_data_raspi"
 
-# TODO: command line arg?
-export CLIENT_NAME="Sean_iOS"
+export CLIENT_NAME=$1
 
 # add client with client name
 docker run -v $HOME/Volumes/$OVPN_DATA:/etc/openvpn \

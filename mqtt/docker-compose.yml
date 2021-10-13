@@ -1,0 +1,26 @@
+version: "2.0"
+services:
+  mqtt:
+    image: mjenz/rpi-mosquitto
+    container_name: mqtt
+    restart: always
+    volumes:
+      - ./config:/mqtt/config:ro
+      - /home/pi/Volumes/mqtt/data:/mqtt/data
+      - /home/pi/Volumes/mqtt/log:/mqtt/log
+    network_mode: "host"
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt:1.10.1
+    volumes:
+      - /home/pi/Volumes/mqtt/zigbee:/app/data
+      - /run/udev:/run/udev:ro
+      - /dev/ttyUSB1:/dev/ttyACM0
+    # ports:
+    #   - '7080:8080'
+    restart: always
+    network_mode: host
+    privileged: true
+    environment:
+      - TZ=America/New_York
+

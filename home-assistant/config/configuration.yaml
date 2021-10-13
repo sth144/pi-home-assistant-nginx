@@ -11,6 +11,10 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: 127.0.0.1
+
 ecovacs:
   username: !secret email
   password: !secret deebot_password
@@ -19,3 +23,11 @@ ecovacs:
 
 pi_hole:
   - host: !secret pihole_ip_addr
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  # "Project ID" in the Device Access Console
+  project_id: !secret nest_project_id
+  # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
+  subscriber_id: !secret nest_subscriber_id
