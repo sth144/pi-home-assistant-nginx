@@ -7,7 +7,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /etc/hosts:/etc/hosts
-      # - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/letsencrypt:/etc/letsencrypt
       # - /home/pi/Volumes/nginx-etc:/etc/nginx
       # - /home/pi/Volumes/certbot-www:/var/www/certbot
       # - /home/pi/Volumes/nginx-var:/var
