@@ -31,3 +31,17 @@ nest:
   project_id: !secret nest_project_id
   # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
   subscriber_id: !secret nest_subscriber_id
+
+sensor:
+  - platform: google_wifi
+    name: "Google WiFi"
+    host: 192.168.1.1
+device_tracker:
+  - platform: netgear
+    host: 192.168.1.2
+    port: 80
+    username: !secret netgear_username
+    password: !secret netgear_password
+    accesspoints:
+      - netgear
+    

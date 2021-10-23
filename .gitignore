@@ -1,4 +1,5 @@
 home-assistant/config/secrets.yaml
+home-assistant/config/custom_components
 home-assistant/config/.*
 home-assistant/config/*.log*
 home-assistant/config/*.db*
