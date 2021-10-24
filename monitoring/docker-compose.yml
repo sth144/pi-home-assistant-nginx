@@ -31,3 +31,15 @@ services:
     command: -config.file=/etc/promtail/promtail.yaml
     network_mode: host
     privileged: true
+  pushgateway:
+    image: prom/pushgateway:v1.0.1
+    restart: always
+    command:
+      - --persistence.file=/data/pushgateway.data
+      - --persistence.interval=1h
+    expose:
+      - 9091
+    ports:
+      - 9091:9091
+    volumes: 
+      - /home/pi/Volumes/pushgateway:/data
