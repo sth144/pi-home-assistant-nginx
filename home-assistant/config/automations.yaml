@@ -31,8 +31,8 @@
   condition: []
   action:
   - type: toggle
-    device_id: e52fa5b9cddd00876651a33f1e4d641f
-    entity_id: switch.ewelink_sa_003_zigbee_on_off
+    device_id: c62836e61b52ccc9bab970cbec757d48
+    entity_id: switch.eb9f88cafdc227b60ausoh
     domain: switch
   mode: single
 - id: '1631321849219'
@@ -41,7 +41,7 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: '1:00'
+    offset: '1:30'
   condition: []
   action:
   - type: turn_on
@@ -130,31 +130,30 @@
   condition: []
   action:
   - type: turn_on
-    device_id: e52fa5b9cddd00876651a33f1e4d641f
-    entity_id: switch.ewelink_sa_003_zigbee_on_off
+    device_id: c62836e61b52ccc9bab970cbec757d48
+    entity_id: switch.eb9f88cafdc227b60ausoh
     domain: switch
   mode: single
 - id: '1633481363918'
   alias: Turn off Living Room Lights 4 Hours aftet Sunset
   description: ''
   trigger:
-  - platform: sun
-    event: sunset
-    offset: 04:00
+  - platform: time
+    at: '23:00:00'
   condition: []
   action:
   - type: turn_off
-    device_id: e52fa5b9cddd00876651a33f1e4d641f
-    entity_id: switch.ewelink_sa_003_zigbee_on_off
+    device_id: c62836e61b52ccc9bab970cbec757d48
+    entity_id: switch.eb9f88cafdc227b60ausoh
     domain: switch
   mode: single
 - id: '1633738838537'
-  alias: Turn on Backyard Lights an hour after sunset
+  alias: Turn on Backyard Lights after sunset
   description: ''
   trigger:
   - platform: sun
     event: sunset
-    offset: '1:00'
+    offset: '2:00'
   condition: []
   action:
   - type: turn_on
