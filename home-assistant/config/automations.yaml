@@ -1,5 +1,5 @@
 - id: '1631075410449'
-  alias: Toggle Office String Lights
+  alias: switch-toggle-office-string-lights
   description: ''
   trigger:
   - device_id: 5ce89c45457b99a84eb2896c8d595f45
@@ -20,7 +20,7 @@
     domain: switch
   mode: single
 - id: '1631076079215'
-  alias: Toggle Living Room String Lights
+  alias: switch-toggle-living-room-string-lights
   description: ''
   trigger:
   - device_id: 5ce89c45457b99a84eb2896c8d595f45
@@ -36,7 +36,7 @@
     domain: switch
   mode: single
 - id: '1631321849219'
-  alias: Turn on Front Porch Lights at Sunset
+  alias: sunset-turnon-front-porch-string-lights
   description: ''
   trigger:
   - platform: sun
@@ -50,7 +50,7 @@
     domain: switch
   mode: single
 - id: '1631321965638'
-  alias: Turn off Front Porch Lights 4 Hours After Sunset
+  alias: sunset-plus4hr-turnoff-front-porch-string-lights
   description: ''
   trigger:
   - platform: sun
@@ -64,15 +64,10 @@
     domain: switch
   mode: single
 - id: '1632251772271'
-  alias: Toggle Office Lights
+  alias: button0-toggle-office-lights
   description: ''
   trigger:
   - device_id: 9207a1c4c264befd7e62c32fee0e3155
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: remote_button_short_press
-  - device_id: 719637889f2498a3d70a1f7ea7f746e0
     domain: zha
     platform: device
     type: remote_button_short_press
@@ -89,7 +84,7 @@
     domain: switch
   mode: single
 - id: '1633229888079'
-  alias: Toggle Front Porch String Lights
+  alias: switch-toggle-front-porch-string-lights
   description: ''
   trigger:
   - device_id: 5ce89c45457b99a84eb2896c8d595f45
@@ -105,7 +100,7 @@
     domain: switch
   mode: single
 - id: '1633278418263'
-  alias: Toggle Backyard String Lights
+  alias: switch-toggle-backyard-string-lights
   description: ''
   trigger:
   - device_id: 5ce89c45457b99a84eb2896c8d595f45
@@ -121,7 +116,7 @@
     domain: switch
   mode: single
 - id: '1633481274356'
-  alias: Turn on Living Room Lights at Sunset
+  alias: sunset-turnon-living-room-string-lights
   description: ''
   trigger:
   - platform: sun
@@ -135,7 +130,7 @@
     domain: switch
   mode: single
 - id: '1633481363918'
-  alias: Turn off Living Room Lights 4 Hours aftet Sunset
+  alias: sunset-plus4hr-turnoff-living-room-string-lights
   description: ''
   trigger:
   - platform: time
@@ -148,7 +143,7 @@
     domain: switch
   mode: single
 - id: '1633738838537'
-  alias: Turn on Backyard Lights after sunset
+  alias: sunset-turnon-backyard-string-lights
   description: ''
   trigger:
   - platform: sun
@@ -162,7 +157,7 @@
     domain: switch
   mode: single
 - id: '1633738917611'
-  alias: Turn off Backyard Lights 4 hours after sunset
+  alias: sunset-plus4hr-turnoff-backyard-string-lights
   description: ''
   trigger:
   - platform: sun
@@ -189,5 +184,21 @@
   - type: toggle
     device_id: 1baf2d052ed2bb5e127c2969f0408d77
     entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+    domain: switch
+  mode: single
+- id: '1639939566463'
+  alias: button1-toggle-bedroom-string-lights
+  description: ''
+  trigger:
+  - device_id: 719637889f2498a3d70a1f7ea7f746e0
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition: []
+  action:
+  - type: toggle
+    device_id: e52fa5b9cddd00876651a33f1e4d641f
+    entity_id: switch.ewelink_sa_003_zigbee_837dce22_on_off
     domain: switch
   mode: single

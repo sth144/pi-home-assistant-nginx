@@ -1,5 +1,6 @@
 home-assistant/config/secrets.yaml
 home-assistant/config/custom_components
+home-assistant/config/known_devices.yaml
 home-assistant/config/.*
 home-assistant/config/*.log*
 home-assistant/config/*.db*
@@ -15,3 +16,5 @@ home-assistant/config/*.txt
 *.ovpn
 *.token
 *.env
+
+wireshark/config/*

@@ -1,0 +1,11 @@
+---
+version: "2"
+services:
+  homer:
+    image: b4bz/homer
+    container_name: homer
+    volumes:
+      - ./config:/www/assets
+    ports:
+      - 8092:8080
+    restart: unless-stopped
