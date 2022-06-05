@@ -84,5 +84,5 @@ services:
         url: "#"
       - name: "A third"
         logo: "assets/tools/sample2.png"
-        subtitle: "Yet another"
+        subtitle: "Yet another from iPhone"
         tag: "app"

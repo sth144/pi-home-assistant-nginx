@@ -22,7 +22,7 @@ ecovacs:
   continent: na
 
 pi_hole:
-  - host: !secret pihole_ip_addr
+  - host: !secret pihole_host
 
 nest:
   client_id: !secret nest_client_id
@@ -32,10 +32,26 @@ nest:
   # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
   subscriber_id: !secret nest_subscriber_id
 
+# ring
+camera:
+  - platform: ring
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
 sensor:
   - platform: google_wifi
     name: "Google WiFi"
     host: 192.168.1.1
+  - platform: ring
+  - platform: template
+    sensors:
+      outdoor_temperature_f:
+        friendly_name: "Outdoor Temperature F"
+        unit_of_measurement: '°F'
+        value_template: "{{ state_attr('weather.home', 'temperature') }}"
+
+
 device_tracker:
   - platform: netgear
     host: 192.168.1.2

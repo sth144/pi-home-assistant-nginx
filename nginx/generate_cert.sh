@@ -1,3 +1,4 @@
 #!/bin/bash
 
-letsencrypt certonly --standalone -d sthinds144.duckdns.org -d www.sthinds144.duckdns.org
+letsencrypt certonly --standalone -d *.sth144.duckdns.org
+
