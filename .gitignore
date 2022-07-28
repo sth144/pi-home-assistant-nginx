@@ -8,6 +8,7 @@ home-assistant/config/*.sqlite*
 home-assistant/config/*.xml
 home-assistant/config/*.txt
 home-assistant/config/downloads
+home-assistant/tokens
 
 !home-assistant/config/automations.yaml
 !home-assistant/config/configuration.yaml
