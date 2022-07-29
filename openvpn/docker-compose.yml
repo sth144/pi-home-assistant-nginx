@@ -5,9 +5,9 @@ services:
       - NET_ADMIN
     image: mjenz/rpi-openvpn
     container_name: openvpn
-    ports:
-      - 1194:1194/udp
-      - 943:943/tcp
+      #ports:
+      #- 1194:1194/udp
+      #- 943:943/tcp
     network_mode: "host"
     restart: always
     volumes:

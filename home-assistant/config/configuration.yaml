@@ -39,6 +39,11 @@ ring:
   username: !secret ring_username
   password: !secret ring_password
 
+camera:
+  - platform: ffmpeg
+    name: wyze_v3
+    input: rtsp://192.168.1.243:8554/living-room-cam
+
 sensor:
   - platform: google_wifi
     name: "Google WiFi"

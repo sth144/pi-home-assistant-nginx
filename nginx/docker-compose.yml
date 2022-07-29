@@ -11,9 +11,9 @@ services:
       - /etc/hosts:/etc/hosts
       - /home/pi/Volumes/letsencrypt:/etc/letsencrypt
       - /home/pi/Volumes/certbot:/var/www/certbot
-    ports:
-      - 80:80
-      - 443:443
+        # ports:
+        # - 80:80
+        # - 443:443
     network_mode: "host"
   certbot:
     image: certbot/certbot:arm32v6-latest

@@ -7,10 +7,6 @@ services:
     volumes:
       - /home/pi/Projects/home-assistant/config:/config
       - /etc/hosts:/etc/hosts
-    ports:
-      #- 80:80
-      - 443:443
-      - 8123:8123
     network_mode: "host"
     environment:
       - TZ=America/Chicago
@@ -20,3 +16,16 @@ services:
       - /dev/ttyUSB1:/dev/ttyUSB1
     # TODO: figure out how to run as not-privileged: https://community.home-assistant.io/t/migration-to-2021-7-fails-fatal-python-error-init-interp-main-cant-initialize-time/320648/3
     privileged: true
+  wyze-bridge:
+    container_name: wyze-bridge
+    restart: unless-stopped
+    image: mrlt8/wyze-bridge:latest
+    ports:
+      - 1935:1935 # RTMP
+      - 8554:8554 # RTSP
+      - 8888:8888 # HLS
+    volumes:
+      - ./tokens:/tokens/
+    environment:
+      - WYZE_EMAIL=${WYZE_EMAIL}
+      - WYZE_PASSWORD=${WYZE_PASSWORD}

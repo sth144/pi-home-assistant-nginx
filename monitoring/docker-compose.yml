@@ -7,15 +7,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    ports:
-      - 8092:8092/udp
-      - 8094:8094
-      - 8125:8125/udp
+        #ports:
+        #- 8092:8092/udp
+        #- 8094:8094
+        #- 8125:8125/udp
     network_mode: "host"
   chronograf:
     image: chronograf:latest
     ports: 
-      - '127.0.0.1:8888:8888'
+      - '127.0.0.1:8890:8888'
     volumes:
       - /home/pi/Volumes/chronograf:/var/lib/chronograf
     environment:
@@ -28,6 +28,7 @@ services:
     volumes:
       - /etc/promtail/:/etc/promtail
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /etc/hosts:/etc/hosts
     command: -config.file=/etc/promtail/promtail.yaml
     network_mode: host
     privileged: true
