@@ -2,7 +2,7 @@
 # Homepage configuration
 # See https://fontawesome.com/icons for icons options
 
-title: "Demo dashboard"
+title: "LAN Services Dashboard"
 subtitle: "Homer"
 logo: "logo.png"
 # icon: "fas fa-skull-crossbones" # Optional icon
@@ -40,49 +40,75 @@ colors:
     link: "#3273dc"
     link-hover: "#ffdd57"
 
-# Optional message
-message:
-  #url: https://b4bz.io
-  style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
-  title: "Demo !"
-  icon: "fa fa-grin"
-  content: "This is a dummy homepage demon. <br /> Find more information on <a href='https://github.com/bastienwirtz/homer'>github.com/bastienwirtz/homer</a>"
-
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
 links:
-  - name: "Contribute"
-    icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
-    target: "_blank" # optional html a tag target attribute
   - name: "Wiki"
     icon: "fas fa-book"
     url: "https://www.wikipedia.org/"
-  # this will link to a second homer page that will load config from additionnal-page.yml and keep default config values as in config.yml file
-  # see url field and assets/additionnal-page.yml.dist used in this example:
-  - name: "another page!"
-    icon: "fas fa-file-alt"
-    url: "#additionnal-page" 
+  - name: "Toby"
+    icon: "fas fa-book"
+    url: "https://www.wikipedia.org/"
+
+# TODO: use external WAN endpoints where possible?
 
 # Services
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Applications"
-    icon: "fas fa-cloud"
+  - name: "Network"
+    icon: "fas fa-network-wired"
     items:
-      - name: "Awesome app"
-        logo: "assets/tools/sample.png"
-        subtitle: "Bookmark example"
+      - name: "Pi-hole"
+        logo: "assets/tools/pi-hole.png"
+        subtitle: "DNS & Ad-blocker"
         tag: "app"
-        url: "https://www.reddit.com/r/selfhosted/"
+        url: "https://pi.hole/admin/"
         target: "_blank" # optional html a tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
+      - name: "Portainer"
+        logo: "assets/tools/portainer.png"
+        subtitle: "Container management"
         tag: "app"
-        url: "#"
-      - name: "A third"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Yet another from iPhone"
+        url: "http://portainer"
+      - name: "Kubernetes Dashboard"
+        logo: "assets/tools/k8s.png"
+        subtitle: "Cluster management"
         tag: "app"
+        url: "https://pc0"
+  - name: "Monitoring"
+    icon: "fas fa-desktop"
+    items:
+      - name: "Grafana"
+        logo: "assets/tools/grafana.png"
+        subtitle: "Monitoring"
+        tag: "app"
+        url: "http://grafana"
+      - name: "Prometheus"
+        logo: "assets/tools/prometheus.png"
+        subtitle: "Monitoring"
+        tag: "app"
+        url: "http://prometheus"
+  - name: "Database"
+    icon: "fas fa-database"
+    items:
+      - name: "RedisInsight"
+        logo: "assets/tools/redis.png"
+        subtitle: "Database"
+        url: "http://192.168.1.245:8002"
+  - name: "Devices"
+    icon: "fas fa-print"
+    items:
+      - name: "Canon TS302"
+        logo: "assets/tools/canon.png"
+        subtitle: "Printer"
+        url: "http://canon.local/rui/index.html"
+  - name: "NAS"
+    icon: "fas fa-box"
+    items:
+      - name: "Openmediavault"
+        logo: "assets/tools/openmediavault.png"
+        subtitle: "NAS"
+        url: "http://openmediavault.local"
+  - name: "Media"
+  
+
