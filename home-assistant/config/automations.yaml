@@ -111,8 +111,8 @@
   condition: []
   action:
   - type: toggle
-    device_id: 58ef53f173cdefd7bf3454144fbf275f
-    entity_id: switch.ebb633cd9e5de587142f82
+    device_id: cd5a43708cf0ce48d37ff9a1307edd10
+    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
     domain: switch
   mode: single
 - id: '1633481274356'
@@ -152,8 +152,8 @@
   condition: []
   action:
   - type: turn_on
-    device_id: 58ef53f173cdefd7bf3454144fbf275f
-    entity_id: switch.ebb633cd9e5de587142f82
+    device_id: cd5a43708cf0ce48d37ff9a1307edd10
+    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
     domain: switch
   mode: single
 - id: '1633738917611'
@@ -166,8 +166,8 @@
   condition: []
   action:
   - type: turn_off
-    device_id: 58ef53f173cdefd7bf3454144fbf275f
-    entity_id: switch.ebb633cd9e5de587142f82
+    device_id: cd5a43708cf0ce48d37ff9a1307edd10
+    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
     domain: switch
   mode: single
 - id: '1633924922517'

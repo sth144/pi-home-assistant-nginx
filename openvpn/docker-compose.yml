@@ -5,10 +5,8 @@ services:
       - NET_ADMIN
     image: mjenz/rpi-openvpn
     container_name: openvpn
-      #ports:
-      #- 1194:1194/udp
-      #- 943:943/tcp
-    network_mode: "host"
-    restart: always
+    ports:
+      - "1194:1194/udp"
+    restart: unless-stopped
     volumes:
-      - /home/pi/Volumes/ovpn_data_raspi/:/etc/openvpn
+      - ./conf:/etc/openvpn
