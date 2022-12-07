@@ -40,3 +40,13 @@
     switch.ewelink_sa_003_zigbee_on_off:
       friendly_name: Smart Plug 0 on_off
       state: 'off'
+- id: '1665796467497'
+  name: Backyard Lights On
+  entities:
+    switch.ewelink_sa_003_zigbee_837dce22_on_off:
+      friendly_name: eWeLink SA-003-Zigbee 837dce22 on_off
+      state: 'on'
+  icon: mdi:globe-light
+  metadata:
+    switch.ewelink_sa_003_zigbee_837dce22_on_off:
+      entity_only: true

@@ -1,204 +1,204 @@
-- id: '1631075410449'
+- id: "1631075410449"
   alias: switch-toggle-office-string-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 5ce89c45457b99a84eb2896c8d595f45
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: button_2
-  - platform: device
-    type: turned_on
-    device_id: ee36799d2ff31abb9a68f08334a0c53f
-    entity_id: switch.tz3000_xabckq1v_ts004f_6a766bfe_on_off
-    domain: switch
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_2
+    - platform: device
+      type: turned_on
+      device_id: ee36799d2ff31abb9a68f08334a0c53f
+      entity_id: switch.tz3000_xabckq1v_ts004f_6a766bfe_on_off
+      domain: switch
   condition: []
   action:
-  - type: toggle
-    device_id: 1baf2d052ed2bb5e127c2969f0408d77
-    entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-    domain: switch
+    - type: toggle
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      domain: switch
   mode: single
-- id: '1631076079215'
+- id: "1631076079215"
   alias: switch-toggle-living-room-string-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 5ce89c45457b99a84eb2896c8d595f45
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: button_4
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_4
   condition: []
   action:
-  - type: toggle
-    device_id: c62836e61b52ccc9bab970cbec757d48
-    entity_id: switch.eb9f88cafdc227b60ausoh
-    domain: switch
+    - type: toggle
+      device_id: c62836e61b52ccc9bab970cbec757d48
+      entity_id: switch.eb9f88cafdc227b60ausoh
+      domain: switch
   mode: single
-- id: '1631321849219'
+- id: "1631321849219"
   alias: sunset-turnon-front-porch-string-lights
-  description: ''
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '1:30'
+    - platform: sun
+      event: sunset
+      offset: "1:30"
   condition: []
   action:
-  - type: turn_on
-    device_id: a5400ac0b2bd9a5e622e22c8514e6400
-    entity_id: switch.ebaf14ce1e9dad603d4p5e
-    domain: switch
+    - type: turn_on
+      device_id: 847567b6da57db1428f98e92bfadb1e1
+      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      domain: switch
   mode: single
-- id: '1631321965638'
-  alias: sunset-plus4hr-turnoff-front-porch-string-lights
-  description: ''
+- id: "1631321965638"
+  alias: sunset-plus6hr-turnoff-front-porch-string-lights
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: 04:00:00
+    - platform: sun
+      event: sunset
+      offset: 06:00:00
   condition: []
   action:
-  - type: turn_off
-    device_id: a5400ac0b2bd9a5e622e22c8514e6400
-    entity_id: switch.ebaf14ce1e9dad603d4p5e
-    domain: switch
+    - type: turn_off
+      device_id: 847567b6da57db1428f98e92bfadb1e1
+      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      domain: switch
   mode: single
-- id: '1632251772271'
+- id: "1632251772271"
   alias: button0-toggle-office-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 9207a1c4c264befd7e62c32fee0e3155
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: remote_button_short_press
+    - device_id: 9207a1c4c264befd7e62c32fee0e3155
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: remote_button_short_press
   condition: []
   action:
-  - type: toggle
-    device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
-    entity_id: light.hue_white_lamp_2
-    domain: light
-  - type: toggle
-    device_id: 1baf2d052ed2bb5e127c2969f0408d77
-    entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-    domain: switch
+    - type: toggle
+      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
+      entity_id: light.hue_white_lamp_2
+      domain: light
+    - type: toggle
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      domain: switch
   mode: single
-- id: '1633229888079'
+- id: "1633229888079"
   alias: switch-toggle-front-porch-string-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 5ce89c45457b99a84eb2896c8d595f45
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: button_3
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_3
   condition: []
   action:
-  - type: toggle
-    device_id: a5400ac0b2bd9a5e622e22c8514e6400
-    entity_id: switch.ebaf14ce1e9dad603d4p5e
-    domain: switch
+    - type: toggle
+      device_id: a5400ac0b2bd9a5e622e22c8514e6400
+      entity_id: switch.ebaf14ce1e9dad603d4p5e
+      domain: switch
   mode: single
-- id: '1633278418263'
+- id: "1633278418263"
   alias: switch-toggle-backyard-string-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 5ce89c45457b99a84eb2896c8d595f45
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: button_1
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_1
   condition: []
   action:
-  - type: toggle
-    device_id: cd5a43708cf0ce48d37ff9a1307edd10
-    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
-    domain: switch
+    - type: toggle
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
   mode: single
-- id: '1633481274356'
+- id: "1633481274356"
   alias: sunset-turnon-living-room-string-lights
-  description: ''
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '1:00'
+    - platform: sun
+      event: sunset
+      offset: "1:00"
   condition: []
   action:
-  - type: turn_on
-    device_id: c62836e61b52ccc9bab970cbec757d48
-    entity_id: switch.eb9f88cafdc227b60ausoh
-    domain: switch
+    - type: turn_on
+      device_id: c62836e61b52ccc9bab970cbec757d48
+      entity_id: switch.eb9f88cafdc227b60ausoh
+      domain: switch
   mode: single
-- id: '1633481363918'
+- id: "1633481363918"
   alias: sunset-plus4hr-turnoff-living-room-string-lights
-  description: ''
+  description: ""
   trigger:
-  - platform: time
-    at: '23:00:00'
+    - platform: time
+      at: "23:00:00"
   condition: []
   action:
-  - type: turn_off
-    device_id: c62836e61b52ccc9bab970cbec757d48
-    entity_id: switch.eb9f88cafdc227b60ausoh
-    domain: switch
+    - type: turn_off
+      device_id: c62836e61b52ccc9bab970cbec757d48
+      entity_id: switch.eb9f88cafdc227b60ausoh
+      domain: switch
   mode: single
-- id: '1633738838537'
+- id: "1633738838537"
   alias: sunset-turnon-backyard-string-lights
-  description: ''
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '2:00'
+    - platform: sun
+      event: sunset
+      offset: "2:00"
   condition: []
   action:
-  - type: turn_on
-    device_id: cd5a43708cf0ce48d37ff9a1307edd10
-    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
-    domain: switch
+    - type: turn_on
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
   mode: single
-- id: '1633738917611'
-  alias: sunset-plus4hr-turnoff-backyard-string-lights
-  description: ''
+- id: "1633738917611"
+  alias: sunset-plus6hr-turnoff-backyard-string-lights
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '4:00'
+    - platform: sun
+      event: sunset
+      offset: "6:00"
   condition: []
   action:
-  - type: turn_off
-    device_id: cd5a43708cf0ce48d37ff9a1307edd10
-    entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
-    domain: switch
+    - type: turn_off
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
   mode: single
-- id: '1633924922517'
+- id: "1633924922517"
   alias: Test
-  description: ''
+  description: ""
   trigger:
-  - device_id: 719637889f2498a3d70a1f7ea7f746e0
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: remote_button_short_press
+    - device_id: 719637889f2498a3d70a1f7ea7f746e0
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: remote_button_short_press
   condition: []
   action:
-  - type: toggle
-    device_id: 1baf2d052ed2bb5e127c2969f0408d77
-    entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-    domain: switch
+    - type: toggle
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      domain: switch
   mode: single
-- id: '1639939566463'
+- id: "1639939566463"
   alias: button1-toggle-bedroom-string-lights
-  description: ''
+  description: ""
   trigger:
-  - device_id: 719637889f2498a3d70a1f7ea7f746e0
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: remote_button_short_press
+    - device_id: 719637889f2498a3d70a1f7ea7f746e0
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: remote_button_short_press
   condition: []
   action:
-  - type: toggle
-    device_id: e52fa5b9cddd00876651a33f1e4d641f
-    entity_id: switch.ewelink_sa_003_zigbee_837dce22_on_off
-    domain: switch
+    - type: toggle
+      device_id: e52fa5b9cddd00876651a33f1e4d641f
+      entity_id: switch.ewelink_sa_003_zigbee_837dce22_on_off
+      domain: switch
   mode: single

@@ -2,6 +2,19 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+
+lovelace:
+  mode: yaml
+  # mode: storage
+  # Add yaml dashboards
+  # dashboards:
+    # lovelace-yaml:
+    # storage-dashboard:
+      # mode: storage
+      # title: Storage
+      # icon: mdi:script
+      # show_in_sidebar: true
+
 # Text to speech
 tts:
   - platform: google_translate

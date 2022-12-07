@@ -18,7 +18,10 @@ home-assistant/tokens
 *.ovpn
 *.token
 *.env
+*.env.*
 
 openvpn/conf
 
 wireshark/config/*
+wireguard/config*
+
