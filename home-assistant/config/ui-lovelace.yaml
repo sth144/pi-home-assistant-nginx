@@ -1,153 +1,209 @@
 title: Home
 views:
-  - badges:
-      - entity: binary_sensor.updater
+  - panel: true
+    badges:
       - entity: person.sean
+      - entity: person.amy
       - entity: sun.sun
     cards:
-      - entity: weather.home
-        type: weather-forecast
-      - type: picture-entity
-        entity: camera.front_door
-      - entity: light.hue_white_lamp_2
-        type: light
-      - type: entities
-        entities:
-          - entity: scene.living_room_lights_on
-          - entity: light.hue_white_lamp_1
-            name: Philips Hue - Living Room
-          - entity: scene.office_lights_on
-          - entity: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-            name: Smart Plug - Office Lights
-          - entity: light.hue_white_lamp_2
-            name: Philips Hue - Office
-          - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
-            name: Bedroom String Lights
-          - entity: switch.ewelink_sa_003_zigbee_c4646d22_on_off
-            name: Christmas Lights
-      - camera_view: auto
-        type: picture-glance
-        title: Living Room
-        image: https://demo.home-assistant.io/stub_config/kitchen.png
-        entities:
-          - entity: camera.wyze_v3
-        camera_image: camera.wyze_v3
-      - type: entities
-        entities:
-          - binary_sensor.pi_hole
-          - sensor.pi_hole_ads_blocked_today
-          - sensor.pi_hole_dns_queries_cached
-          - sensor.pi_hole_ads_percentage_blocked_today
-          - sensor.pi_hole_seen_clients
-          - sensor.pi_hole_domains_blocked
-          - sensor.pi_hole_dns_unique_domains
-          - sensor.pi_hole_dns_unique_clients
-          - sensor.pi_hole_dns_queries_today
-          - sensor.pi_hole_dns_queries_forwarded
-      - entity: light.hue_white_lamp_1
-        type: light
-      - type: entities
-        entities:
-          - entity: vacuum.deborah
-          - entity: vacuum.darthy
-      - type: media-control
-        entity: media_player.shield
-      - type: media-control
-        entity: media_player.plex_plex_web_chrome
-      - type: entities
-        entities:
-          - sensor.plex_openmediavault
-      - type: gauge
-        entity: sensor.canon_ts300_series_color
-        min: 0
-        max: 100
-      - entities:
-          - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
-        type: entities
-      - type: entities
-        entities:
-          - device_tracker.sean_hindss_iphone_3
-          - sensor.sean_hindss_iphone_bssid_2
-          - sensor.sean_hindss_iphone_connection_type_2
-          - sensor.sean_hindss_iphone_geocoded_location_2
-          - sensor.sean_hindss_iphone_last_update_trigger_2
-          - sensor.sean_hindss_iphone_sim_1_2
-          - sensor.sean_hindss_iphone_sim_2
-          - sensor.sean_hindss_iphone_ssid_2
-          - sensor.sean_hindss_iphone_storage_2
-      - type: entities
-        entities:
-          - entity: sensor.lumi_lumi_sensor_switch_505d9b07_power
-          - entity: sensor.lumi_lumi_sensor_switch_power
-          - entity: sensor.tz3000_vp6clf9d_ts0044_power
-      - type: entities
-        entities:
-          - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
-      - type: history-graph
-        entities:
-          - entity: sensor.hallway_temperature
-          - entity: sensor.outdoor_temperature_f
-            name: Outdoor Temperature
-          - entity: sensor.hallway_humidity
-        hours_to_show: 24
-        refresh_interval: 0
-      - type: thermostat
-        entity: climate.hallway
-      - type: gauge
-        entity: sensor.canon_ts300_series_black
-        min: 0
-        max: 100
-      - type: entities
-        entities:
-          - sensor.google_wifi_current_version
-          - sensor.google_wifi_last_restart
-          - sensor.google_wifi_local_ip
-          - sensor.google_wifi_new_version
-          - sensor.google_wifi_status
-          - sensor.google_wifi_uptime
-          - sensor.local_ip
-      - type: entities
-        entities:
-          - binary_sensor.front_door_ding
-          - sensor.front_door_last_activity
-          - sensor.front_door_last_ding
-          - sensor.front_door_last_motion
-          - binary_sensor.front_door_motion
-          - sensor.front_door_volume
-      - type: entities
-        entities:
-          - sensor.canon_ts300_series
-          - sensor.canon_ts300_series_black
-          - sensor.canon_ts300_series_color
-      - entities:
-          - entity: sensor.r6220_gateway_kib_s_received
-          - entity: sensor.r6220_gateway_kib_s_sent
-        hours_to_show: 24
-        refresh_interval: 0
-        title: NetGear Router Traffic
-        type: history-graph
-      - type: entities
-        entities:
-          - entity: sensor.hallway_humidity
-          - entity: sensor.hallway_temperature
-      - type: entities
-        entities:
-          - sensor.onhub_b_received_2
-          - sensor.onhub_b_sent_2
-          - sensor.onhub_kib_s_received_2
-          - sensor.onhub_kib_s_sent_2
-          - sensor.onhub_packets_received_2
-          - sensor.onhub_packets_sent_2
-          - sensor.onhub_packets_s_received_2
-          - sensor.onhub_packets_s_sent_2
-      - type: history-graph
-        entities:
-          - entity: sensor.onhub_packets_s_received_2
-          - entity: sensor.onhub_packets_s_sent_2
-      - type: history-graph
-        entities:
-          - entity: sensor.google_wifi_status
-          - entity: binary_sensor.pi_hole
-    path: default_view
-    title: Home
-
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: picture-entity
+                entity: camera.front_door
+              - camera_view: auto
+                type: picture-glance
+                title: Living Room
+                image: https://demo.home-assistant.io/stub_config/kitchen.png
+                entities:
+                  - entity: camera.wyze_v3
+                camera_image: camera.wyze_v3
+              - type: picture-entity
+                entity: camera.wyze_v3_garage_cam
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - fan.levoit_smart_true_hepa_air_purifier
+                  - sensor.levoit_smart_true_hepa_air_purifier_filter_life
+                  - sensor.levoit_smart_true_hepa_air_purifier_pm2_5
+                  - sensor.levoit_smart_true_hepa_air_purifier_air_quality
+              - entity: weather.home
+                type: weather-forecast
+              - type: map
+                entities:
+                  - entity: device_tracker.sean_hindss_iphone_4
+                  - entity: person.amy
+          - type: horizontal-stack
+            cards:
+              - type: thermostat
+                entity: climate.hallway
+              - type: gauge
+                entity: sensor.canon_ts300_series_black
+                min: 0
+                max: 100
+              - type: gauge
+                entity: sensor.canon_ts300_series_color
+                min: 0
+                max: 100
+              - type: entities
+                entities:
+                  - sensor.google_wifi_current_version
+                  - sensor.google_wifi_last_restart
+                  - sensor.google_wifi_local_ip
+                  - sensor.google_wifi_new_version
+                  - sensor.google_wifi_status
+                  - sensor.google_wifi_uptime
+                  - sensor.local_ip
+          - type: horizontal-stack
+            cards:
+              - entity: light.hue_white_lamp_2
+                type: light
+              - type: entities
+                entities:
+                  - entity: scene.living_room_lights_on
+                  - entity: light.hue_white_lamp_1
+                    name: Philips Hue - Living Room
+                  - entity: scene.office_lights_on
+                  - entity: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+                    name: Smart Plug - Office Lights
+                  - entity: light.hue_white_lamp_2
+                    name: Philips Hue - Office
+                  - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
+                    name: Bedroom String Lights
+                  - entity: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+                    name: Christmas Lights
+              - type: humidifier
+                entity: humidifier.midea_dehumidifier_147334558156779
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+                    name: Iaszone
+                  - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance
+                    name: Illuminance
+                  - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
+                    name: Occupancy
+                title: LUMI lumi.sensor_motion.aq2
+              - type: entities
+                entities:
+                  - binary_sensor.third_reality_inc_3rds17bz_iaszone
+                title: Gate Sensor
+              - type: gauge
+                entity: sensor.third_reality_inc_3rds17bz_battery
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - binary_sensor.pi_hole
+                  - sensor.pi_hole_ads_blocked_today
+                  - sensor.pi_hole_dns_queries_cached
+                  - sensor.pi_hole_ads_percentage_blocked_today
+                  - sensor.pi_hole_seen_clients
+                  - sensor.pi_hole_domains_blocked
+                  - sensor.pi_hole_dns_unique_domains
+                  - sensor.pi_hole_dns_unique_clients
+                  - sensor.pi_hole_dns_queries_today
+                  - sensor.pi_hole_dns_queries_forwarded
+              - entity: light.hue_white_lamp_1
+                type: light
+              - type: entities
+                entities:
+                  - entity: vacuum.deborah
+                  - entity: vacuum.darthy
+          - type: horizontal-stack
+            cards:
+              - type: media-control
+                entity: media_player.shield
+              - type: media-control
+                entity: media_player.plex_plex_web_chrome
+              - type: entities
+                entities:
+                  - sensor.plex_openmediavault
+          - type: horizontal-stack
+            cards:
+              - entities:
+                  - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+                type: entities
+              - type: entities
+                entities:
+                  - device_tracker.sean_hindss_iphone_3
+                  - sensor.sean_hindss_iphone_bssid_2
+                  - sensor.sean_hindss_iphone_connection_type_2
+                  - sensor.sean_hindss_iphone_geocoded_location_2
+                  - sensor.sean_hindss_iphone_last_update_trigger_2
+                  - sensor.sean_hindss_iphone_sim_1_2
+                  - sensor.sean_hindss_iphone_sim_2
+                  - sensor.sean_hindss_iphone_ssid_2
+                  - sensor.sean_hindss_iphone_storage_2
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - binary_sensor.front_door_ding
+                  - sensor.front_door_last_activity
+                  - sensor.front_door_last_ding
+                  - sensor.front_door_last_motion
+                  - binary_sensor.front_door_motion
+                  - sensor.front_door_volume
+              - type: entities
+                entities:
+                  - sensor.canon_ts300_series
+                  - sensor.canon_ts300_series_black
+                  - sensor.canon_ts300_series_color
+              - entities:
+                  - entity: sensor.r6220_gateway_kib_s_received
+                  - entity: sensor.r6220_gateway_kib_s_sent
+                hours_to_show: 24
+                refresh_interval: 0
+                title: NetGear Router Traffic
+                type: history-graph
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.lumi_lumi_sensor_switch_505d9b07_power
+                  - entity: sensor.lumi_lumi_sensor_switch_power
+                  - entity: sensor.tz3000_vp6clf9d_ts0044_power
+              - type: entities
+                entities:
+                  - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+              - type: history-graph
+                entities:
+                  - entity: sensor.hallway_temperature
+                  - entity: sensor.outdoor_temperature_f
+                    name: Outdoor Temperature
+                  - entity: sensor.hallway_humidity
+                  - entity: sensor.midea_dehumidifier_147334558156779_humidity
+                hours_to_show: 24
+                refresh_interval: 0
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.hallway_humidity
+                  - entity: sensor.hallway_temperature
+              - type: entities
+                entities:
+                  - sensor.onhub_b_received_2
+                  - sensor.onhub_b_sent_2
+                  - sensor.onhub_kib_s_received_2
+                  - sensor.onhub_kib_s_sent_2
+                  - sensor.onhub_packets_received_2
+                  - sensor.onhub_packets_sent_2
+                  - sensor.onhub_packets_s_received_2
+                  - sensor.onhub_packets_s_sent_2
+              - type: history-graph
+                entities:
+                  - entity: sensor.onhub_packets_s_received_2
+                  - entity: sensor.onhub_packets_s_sent_2
+          - type: horizontal-stack
+            cards:
+              - type: history-graph
+                entities:
+                  - entity: sensor.google_wifi_status
+                  - entity: binary_sensor.pi_hole
+            path: default_view
+            title: Home

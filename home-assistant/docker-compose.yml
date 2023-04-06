@@ -7,6 +7,7 @@ services:
     volumes:
       - /home/pi/Projects/home-assistant/config:/config
       - /etc/hosts:/etc/hosts
+      - /etc/localtime:/etc/localtime:ro
     network_mode: "host"
     environment:
       - TZ=America/Chicago
@@ -24,6 +25,7 @@ services:
       - 1935:1935 # RTMP
       - 8554:8554 # RTSP
       - 8888:8888 # HLS
+      - 5000:5000
     volumes:
       - ./tokens:/tokens/
     environment:

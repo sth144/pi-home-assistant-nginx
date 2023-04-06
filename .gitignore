@@ -9,6 +9,7 @@ home-assistant/config/*.xml
 home-assistant/config/*.txt
 home-assistant/config/downloads
 home-assistant/tokens
+home-assistant/config/core
 
 !home-assistant/config/automations.yaml
 !home-assistant/config/configuration.yaml
@@ -24,4 +25,10 @@ openvpn/conf
 
 wireshark/config/*
 wireguard/config*
+
+mqtt/config/zigbee2mqtt/log/
+
+!mqtt/config/mqtt
+mqtt/config/zigbee2mqtt
+!mqtt/config/zigbee2mqtt
 

@@ -1,26 +1,24 @@
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
-
 
 lovelace:
   mode: yaml
   # mode: storage
   # Add yaml dashboards
   # dashboards:
-    # lovelace-yaml:
-    # storage-dashboard:
-      # mode: storage
-      # title: Storage
-      # icon: mdi:script
-      # show_in_sidebar: true
+  # lovelace-yaml:
+  # storage-dashboard:
+  # mode: storage
+  # title: Storage
+  # icon: mdi:script
+  # show_in_sidebar: true
 
 # Text to speech
 tts:
   - platform: google_translate
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
@@ -48,14 +46,16 @@ nest:
 # ring
 camera:
   - platform: ring
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
-
-camera:
   - platform: ffmpeg
     name: wyze_v3
     input: rtsp://192.168.1.243:8554/living-room-cam
+  - platform: ffmpeg
+    name: wyze_v3_garage_cam
+    input: rtsp://192.168.1.65:8554/unicast
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
 
 sensor:
   - platform: google_wifi
@@ -66,9 +66,12 @@ sensor:
     sensors:
       outdoor_temperature_f:
         friendly_name: "Outdoor Temperature F"
-        unit_of_measurement: '°F'
+        unit_of_measurement: "°F"
         value_template: "{{ state_attr('weather.home', 'temperature') }}"
 
+midea_dehumidifier:
+  username: sthinds144@gmail.com
+  password: !secret midea_password
 
 device_tracker:
   - platform: netgear
@@ -78,4 +81,3 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
-    

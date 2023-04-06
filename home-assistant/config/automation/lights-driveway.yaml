@@ -1,0 +1,37 @@
+- id: "1677731437365"
+  alias: turn-on-driveway-light-when-motion-detected
+  description: ""
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 30a7032ec7a1831fbbddafca5ad6bc40
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+      domain: binary_sensor
+  condition:
+    - condition: sun
+      after: sunset
+      before: sunrise
+  action:
+    - type: turn_on
+      device_id: 5c606aafc2ab973585cb0279d5e5a742
+      entity_id: light.driveway_light
+      domain: light
+  mode: single
+  # TODO: turn off after a certain point...
+
+- id: "1677811291662"
+  alias: turn-off-driveway-light-when-not-occupied
+  description: ""
+  trigger:
+    - type: no_motion
+      platform: device
+      device_id: 30a7032ec7a1831fbbddafca5ad6bc40
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+      domain: binary_sensor
+  condition: []
+  action:
+    - type: turn_off
+      device_id: 5c606aafc2ab973585cb0279d5e5a742
+      entity_id: light.driveway_light
+      domain: light
+  mode: single

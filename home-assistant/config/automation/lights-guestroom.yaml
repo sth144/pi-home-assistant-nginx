@@ -1,0 +1,65 @@
+- id: '1680366363721'
+  alias: button4-toggle-guestroom-lights
+  description: "Toggle guestroom lights when Smart Button 4 is pressed"
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_ieee: 70:ac:08:ff:fe:26:1f:15
+        unique_id: 70:ac:08:ff:fe:26:1f:15:1:0x0008
+        device_id: d93e9a99eb7a1cc1f31002d25147027c
+        endpoint_id: 1
+        cluster_id: 8
+        command: move_to_level
+  condition: []
+  action:
+    # TODO: which of these is light vs fan...
+    #- type: toggle
+    #  device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+    #  entity_id: light.smart_switch_guest_room_light
+    #  domain: light
+    - type: toggle
+      device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+      entity_id: light.smart_switch_guest_room_light_2
+      domain: light
+    - type: toggle
+      device_id: c4ecd64ab8334f9b8845fc50a9f4db25
+      entity_id: light.hue_white_lamp_1
+      domain: light
+
+  mode: single
+
+
+
+- id: '1680368786413'
+  alias: guest-room-smart-switch-button1-turn-fan-off
+  description: 'Turn off Guest Room fan with Guest Room Smart Switch button 1'
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+    entity_id: light.smart_switch_guest_room_light
+    domain: light
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 0bc4918becee90ccc3a53630fdfc96e7
+    entity_id: switch.tz3000_nfnmi125_ts011f_switch
+    domain: switch
+  mode: single
+- id: '1680368920618'
+  alias: guest-room-smart-switch-button1-turn-fan-on
+  description: 'Turn on Guest Room fan with Guest Room Smart Switch button 1'
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+    entity_id: light.smart_switch_guest_room_light
+    domain: light
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 0bc4918becee90ccc3a53630fdfc96e7
+    entity_id: switch.tz3000_nfnmi125_ts011f_switch
+    domain: switch
+  mode: single

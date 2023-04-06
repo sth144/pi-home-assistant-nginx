@@ -1,0 +1,66 @@
+#- id: "1631075410449"
+#  alias: switch-toggle-office-string-lights
+#  description: ""
+#  trigger:
+#    - device_id: 9207a1c4c264befd7e62c32fee0e3155
+#      domain: zha
+#      platform: device
+#      type: remote_button_short_press
+#      subtype: remote_button_short_press
+#  condition: []
+#  action:
+#    - type: toggle
+#      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+#      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+#      domain: switch
+#  mode: single
+
+- id: "1632251772271"
+  alias: button0-toggle-office-lights
+  description: ""
+  trigger:
+    - device_id: 9207a1c4c264befd7e62c32fee0e3155
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: remote_button_short_press
+  condition: []
+  action:
+    - type: toggle
+      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
+      entity_id: light.hue_white_lamp_2
+      domain: light
+    - type: toggle
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      domain: switch
+  mode: single
+
+- id: "1670545620753"
+  alias: Tag Toggle Office Light is scanned
+  description: ""
+  trigger:
+    - platform: tag
+      tag_id: 2b55a522-e72d-49a5-8e86-0bd7a26bfa36
+  condition: []
+  action:
+    - type: toggle
+      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
+      entity_id: light.hue_white_lamp_2
+      domain: light
+  mode: single
+- id: "1678768493430"
+  alias: turn-off-office-lights-late-night
+  description: ""
+  trigger:
+    - platform: time
+      at: 01:00:00
+  condition: []
+  action:
+    - type: turn_off
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
+      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      domain: switch
+  mode: single
+
+

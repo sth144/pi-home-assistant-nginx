@@ -1,0 +1,16 @@
+- id: "1639939566463"
+  alias: button1-toggle-bedroom-string-lights
+  description: ""
+  trigger:
+    - device_id: 719637889f2498a3d70a1f7ea7f746e0
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: remote_button_short_press
+  condition: []
+  action:
+    - type: toggle
+      device_id: e52fa5b9cddd00876651a33f1e4d641f
+      entity_id: switch.ewelink_sa_003_zigbee_837dce22_on_off
+      domain: switch
+  mode: single

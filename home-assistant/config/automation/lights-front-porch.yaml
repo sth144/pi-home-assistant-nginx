@@ -1,0 +1,45 @@
+- id: "1631321849219"
+  alias: sunset-turnon-front-porch-string-lights
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "1:30"
+  condition: []
+  action:
+    - type: turn_on
+      device_id: 847567b6da57db1428f98e92bfadb1e1
+      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      domain: switch
+  mode: single
+- id: "1631321965638"
+  alias: sunset-plus6hr-turnoff-front-porch-string-lights
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: 06:00:00
+  condition: []
+  action:
+    - type: turn_off
+      device_id: 847567b6da57db1428f98e92bfadb1e1
+      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      domain: switch
+  mode: single
+
+- id: "1633229888079"
+  alias: switch-toggle-front-porch-string-lights
+  description: ""
+  trigger:
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_3
+  condition: []
+  action:
+    - type: toggle
+      device_id: a5400ac0b2bd9a5e622e22c8514e6400
+      entity_id: switch.ebaf14ce1e9dad603d4p5e
+      domain: switch
+  mode: single

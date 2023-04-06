@@ -1,0 +1,44 @@
+- id: "1633278418263"
+  alias: switch-toggle-backyard-string-lights
+  description: ""
+  trigger:
+    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: button_1
+  condition: []
+  action:
+    - type: toggle
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
+  mode: single
+- id: "1633738838537"
+  alias: sunset-turnon-backyard-string-lights
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "0:15"
+  condition: []
+  action:
+    - type: turn_on
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
+  mode: single
+- id: "1633738917611"
+  alias: sunset-plus5hr-turnoff-backyard-string-lights
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "5:00"
+  condition: []
+  action:
+    - type: turn_off
+      device_id: cd5a43708cf0ce48d37ff9a1307edd10
+      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      domain: switch
+  mode: single
