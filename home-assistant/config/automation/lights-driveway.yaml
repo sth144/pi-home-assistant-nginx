@@ -2,15 +2,21 @@
   alias: turn-on-driveway-light-when-motion-detected
   description: ""
   trigger:
+    # - type: occupied
+    #   platform: device
+    #   device_id: a2817b57b09fe69cf4fffdcc264c0e3e
+    #   entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy_2
+    #   domain: binary_sensor
+  
     - type: motion
       platform: device
-      device_id: 30a7032ec7a1831fbbddafca5ad6bc40
-      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+      device_id: 11fb3d2922fb58e14230c471d871a1b0
+      entity_id: binary_sensor.0x00158d000864f652_occupancy
       domain: binary_sensor
   condition:
     - condition: sun
-      after: sunset
       before: sunrise
+      after: sunset
   action:
     - type: turn_on
       device_id: 5c606aafc2ab973585cb0279d5e5a742
@@ -23,10 +29,15 @@
   alias: turn-off-driveway-light-when-not-occupied
   description: ""
   trigger:
+    # - type: not_occupied
+    #   platform: device
+    #   device_id: a2817b57b09fe69cf4fffdcc264c0e3e
+    #   entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy_2
+    #   domain: binary_sensor
     - type: no_motion
       platform: device
-      device_id: 30a7032ec7a1831fbbddafca5ad6bc40
-      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
+      device_id: 11fb3d2922fb58e14230c471d871a1b0
+      entity_id: binary_sensor.0x00158d000864f652_occupancy
       domain: binary_sensor
   condition: []
   action:

@@ -8,8 +8,8 @@
   condition: []
   action:
     - type: turn_on
-      device_id: 847567b6da57db1428f98e92bfadb1e1
-      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      device_id: 00ab74d8c93098199435d24acf15961f
+      entity_id: switch.smart_plug_9_switch_2
       domain: switch
   mode: single
 - id: "1631321965638"
@@ -22,24 +22,23 @@
   condition: []
   action:
     - type: turn_off
-      device_id: 847567b6da57db1428f98e92bfadb1e1
-      entity_id: switch.ewelink_sa_003_zigbee_c4646d22_on_off
+      device_id: 00ab74d8c93098199435d24acf15961f
+      entity_id: switch.smart_plug_9_switch_2
       domain: switch
   mode: single
 
-- id: "1633229888079"
-  alias: switch-toggle-front-porch-string-lights
+- alias: switch-toggle-front-porch-string-lights
   description: ""
   trigger:
     - device_id: 5ce89c45457b99a84eb2896c8d595f45
       domain: zha
       platform: device
       type: remote_button_short_press
-      subtype: button_3
+      subtype: button_2
   condition: []
   action:
     - type: toggle
-      device_id: a5400ac0b2bd9a5e622e22c8514e6400
-      entity_id: switch.ebaf14ce1e9dad603d4p5e
+      device_id: 00ab74d8c93098199435d24acf15961f
+      entity_id: switch.smart_plug_9_switch_2
       domain: switch
   mode: single

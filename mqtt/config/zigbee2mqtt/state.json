@@ -1,1 +1,12 @@
-{}
+{
+    "0xa4c1383205699ded": {
+        "battery_state": "high",
+        "state": "OFF",
+        "countdown": 1
+    },
+    "0x00158d000864f652": {
+        "occupancy": false,
+        "illuminance": 86,
+        "illuminance_lux": 86
+    }
+}

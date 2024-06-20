@@ -6,12 +6,13 @@ lovelace:
   # mode: storage
   # Add yaml dashboards
   # dashboards:
-  # lovelace-yaml:
-  # storage-dashboard:
-  # mode: storage
-  # title: Storage
-  # icon: mdi:script
-  # show_in_sidebar: true
+  #   lovelace-mobile: # Needs to contain a hyphen (-)
+  #     mode: yaml
+  #     filename: ui-lovelace.mobile.yaml
+  #     title: Mobile
+  #     icon: mdi:cellphone
+  #     show_in_sidebar: true
+  #     require_admin: true
 
 # Text to speech
 tts:
@@ -45,13 +46,17 @@ nest:
 
 # ring
 camera:
-  - platform: ring
   - platform: ffmpeg
     name: wyze_v3
     input: rtsp://192.168.1.243:8554/living-room-cam
   - platform: ffmpeg
     name: wyze_v3_garage_cam
-    input: rtsp://192.168.1.65:8554/unicast
+    input: rtsp://192.168.1.64:8554/video1_unicast
+  - platform: ffmpeg
+    name: wyze_v3_driveway_cam
+    input: rtsp://192.168.1.55:8554/video1_unicast
+    #- platform: ring
+    #name: camera.front_door
 
 ring:
   username: !secret ring_username
@@ -61,7 +66,6 @@ sensor:
   - platform: google_wifi
     name: "Google WiFi"
     host: 192.168.1.1
-  - platform: ring
   - platform: template
     sensors:
       outdoor_temperature_f:
@@ -81,3 +85,11 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
+
+# no longer configurable from YAML
+#mqtt:
+#  broker: 192.168.1.243
+#  port: 1883
+#  discovery: true
+#  discovery_prefix: homeassistant
+#  username: mosquitto

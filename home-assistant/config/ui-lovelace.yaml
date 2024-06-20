@@ -12,6 +12,10 @@ views:
             cards:
               - type: picture-entity
                 entity: camera.front_door
+              - type: picture-entity
+                entity: camera.wyze_v3_garage_cam
+          - type: horizontal-stack
+            cards:
               - camera_view: auto
                 type: picture-glance
                 title: Living Room
@@ -20,15 +24,39 @@ views:
                   - entity: camera.wyze_v3
                 camera_image: camera.wyze_v3
               - type: picture-entity
-                entity: camera.wyze_v3_garage_cam
+                entity: camera.wyze_v3_driveway_cam
           - type: horizontal-stack
             cards:
               - type: entities
                 entities:
-                  - fan.levoit_smart_true_hepa_air_purifier
-                  - sensor.levoit_smart_true_hepa_air_purifier_filter_life
-                  - sensor.levoit_smart_true_hepa_air_purifier_pm2_5
-                  - sensor.levoit_smart_true_hepa_air_purifier_air_quality
+                  - entity: light.hue_white_lamp_1
+                    name: Philips Hue - Guest Room
+                  - entity: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+                    name: Smart Plug - Office Lights
+                  - entity: light.hue_white_lamp_2
+                    name: Philips Hue - Office
+                  - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
+                    name: Bedroom String Lights
+                  - entity: switch.ewelink_sa_003_zigbee_76676d22_on_off
+                    name: Backyard String Lights
+                  - entity: light.smart_switch_guest_room_light_2
+                    name: Guestroom Lights
+                  - entity: switch.tz3000_nfnmi125_ts011f_switch
+                    name: Guestroom Fan
+                  - entity: switch.smart_plug_9_switch_2
+                    name: Christmas Lights
+                  - entity: light.driveway_light
+                    name: Driveway Lights
+                  - entity: light.garage_light
+                    name: Garage Lights
+              - type: entities
+                entities:
+                  - entity: number.0xa4c1383205699ded_countdown
+                    name: Countdown
+                  - switch.0xa4c1383205699ded
+                title: Hose Timer (Rain Seer)
+          - type: horizontal-stack
+            cards:
               - entity: weather.home
                 type: weather-forecast
               - type: map
@@ -39,6 +67,10 @@ views:
             cards:
               - type: thermostat
                 entity: climate.hallway
+              - type: humidifier
+                entity: humidifier.midea_dehumidifier_147334558156779
+          - type: horizontal-stack
+            cards:
               - type: gauge
                 entity: sensor.canon_ts300_series_black
                 min: 0
@@ -47,6 +79,8 @@ views:
                 entity: sensor.canon_ts300_series_color
                 min: 0
                 max: 100
+          - type: horizontal-stack
+            cards:
               - type: entities
                 entities:
                   - sensor.google_wifi_current_version
@@ -56,57 +90,36 @@ views:
                   - sensor.google_wifi_status
                   - sensor.google_wifi_uptime
                   - sensor.local_ip
-          - type: horizontal-stack
-            cards:
-              - entity: light.hue_white_lamp_2
-                type: light
               - type: entities
                 entities:
-                  - entity: scene.living_room_lights_on
-                  - entity: light.hue_white_lamp_1
-                    name: Philips Hue - Living Room
-                  - entity: scene.office_lights_on
-                  - entity: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-                    name: Smart Plug - Office Lights
-                  - entity: light.hue_white_lamp_2
-                    name: Philips Hue - Office
-                  - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
-                    name: Bedroom String Lights
-                  - entity: switch.ewelink_sa_003_zigbee_c4646d22_on_off
-                    name: Christmas Lights
-              - type: humidifier
-                entity: humidifier.midea_dehumidifier_147334558156779
+                  - binary_sensor.pi_hole_2
+                  - sensor.pi_hole_ads_blocked_today_2
+                  - sensor.pi_hole_dns_queries_cached_2
+                  - sensor.pi_hole_ads_percentage_blocked_today_2
+                  - sensor.pi_hole_seen_clients_2
+                  - sensor.pi_hole_domains_blocked_2
+                  - sensor.pi_hole_dns_unique_domains_2
+                  - sensor.pi_hole_dns_unique_clients_2
+                  - sensor.pi_hole_dns_queries_today_2
+                  - sensor.pi_hole_dns_queries_forwarded_2
           - type: horizontal-stack
             cards:
               - type: entities
                 entities:
-                  - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
-                    name: Iaszone
-                  - entity: sensor.lumi_lumi_sensor_motion_aq2_illuminance
-                    name: Illuminance
-                  - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy
-                    name: Occupancy
-                title: LUMI lumi.sensor_motion.aq2
-              - type: entities
+                  - sensor.0x00158d000864f652_battery
+                  - sensor.0x00158d000864f652_illuminance_lux
+                  - binary_sensor.0x00158d000864f652_occupancy
+                  - sensor.0x00158d000864f652_power_outage_count
+                  - sensor.0x00158d000864f652_device_temperature
+                title: Driveway Motion Sensor
+              - title: Gate Sensor
+                type: entities
                 entities:
                   - binary_sensor.third_reality_inc_3rds17bz_iaszone
-                title: Gate Sensor
-              - type: gauge
-                entity: sensor.third_reality_inc_3rds17bz_battery
+                  - sensor.third_reality_inc_3rds17bz_battery
+
           - type: horizontal-stack
             cards:
-              - type: entities
-                entities:
-                  - binary_sensor.pi_hole
-                  - sensor.pi_hole_ads_blocked_today
-                  - sensor.pi_hole_dns_queries_cached
-                  - sensor.pi_hole_ads_percentage_blocked_today
-                  - sensor.pi_hole_seen_clients
-                  - sensor.pi_hole_domains_blocked
-                  - sensor.pi_hole_dns_unique_domains
-                  - sensor.pi_hole_dns_unique_clients
-                  - sensor.pi_hole_dns_queries_today
-                  - sensor.pi_hole_dns_queries_forwarded
               - entity: light.hue_white_lamp_1
                 type: light
               - type: entities
@@ -161,15 +174,44 @@ views:
                 title: NetGear Router Traffic
                 type: history-graph
           - type: horizontal-stack
+            cards:  
+              - type: entities
+                entities:
+                  - water_heater.electric_water_heater
+                  - sensor.electric_water_heater_alert_count
+                  - sensor.electric_water_heater_available_hot_water
+                  - sensor.electric_water_heater_override_status
+                  - sensor.electric_water_heater_power_usage_today
+                  - binary_sensor.electric_water_heater_running
+                  - sensor.electric_water_heater_running_state
+                  - binary_sensor.electric_water_heater_shutoff_valve
+                  - sensor.electric_water_heater_tank_health
+                  - sensor.electric_water_heater_water_usage_today
+                  - sensor.electric_water_heater_wifi_signal 
+              - type: history-graph
+                entities:
+                  - entity: sensor.electric_water_heater_available_hot_water
+                  - entity: sensor.electric_water_heater_power_usage_today
+                hours_to_show: 24
+                refresh_interval: 1
+          - type: horizontal-stack
             cards:
               - type: entities
                 entities:
-                  - entity: sensor.lumi_lumi_sensor_switch_505d9b07_power
+                  - entity: sensor.0x00158d000864f652_battery
                   - entity: sensor.lumi_lumi_sensor_switch_power
                   - entity: sensor.tz3000_vp6clf9d_ts0044_power
               - type: entities
                 entities:
+                  - fan.levoit_smart_true_hepa_air_purifier
+                  - sensor.levoit_smart_true_hepa_air_purifier_filter_life
+                  - sensor.levoit_smart_true_hepa_air_purifier_pm2_5
+                  - sensor.levoit_smart_true_hepa_air_purifier_air_quality
+              - type: entities
+                entities:
                   - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+          - type: horizontal-stack
+            cards:
               - type: history-graph
                 entities:
                   - entity: sensor.hallway_temperature
@@ -203,7 +245,16 @@ views:
             cards:
               - type: history-graph
                 entities:
+                  - entity: media_player.shield
+                  - entity: binary_sensor.0x00158d000864f652_occupancy
+                  - entity: sensor.apple_watch_de_sean_battery_state
+                  - entity: light.driveway_light
+                  - entity: binary_sensor.pi_hole_2
                   - entity: sensor.google_wifi_status
                   - entity: binary_sensor.pi_hole
-            path: default_view
-            title: Home
+                  - entity: sensor.pi_hole_dns_unique_clients_2
+                  - entity: sensor.sean_hindss_iphone_battery_level_3
+                  - entity: sensor.pi_hole_dns_queries_cached_2
+                  - entity: sensor.pi_hole_dns_queries_today_2
+                  - entity: sensor.pi_hole_dns_unique_domains_2c
+                title: Home

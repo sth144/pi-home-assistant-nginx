@@ -1,0 +1,23 @@
+- description: "switch-toggle-backyard-hose"
+  id: "1638738317412"
+  mode: single
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_ieee: 84:71:27:ff:fe:d0:95:f3
+        unique_id: 84:71:27:ff:fe:d0:95:f3:2:0x0006
+        device_id: 5ce89c45457b99a84eb2896c8d595f45
+        endpoint_id: 2
+        cluster_id: 6
+        command: remote_button_short_press
+        args: []
+        params: {}
+  condition: []
+  action:
+    - type: toggle
+      device_id: c4ecd64ab8334f9b8845fc50a9f4db25
+      entity_id: light.hue_white_lamp_1
+      domain: light
+  alias: Toggle Backyard Hose
+
