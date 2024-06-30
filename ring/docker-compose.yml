@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  ring-mqtt:
+    container_name: ring-mqtt
+    restart: unless-stopped
+    image: tsightler/ring-mqtt
+    ports:
+      - 8555:8554                      # Enable RTSP port for external media player access
+    volumes:
+      - /home/pi/Volumes/ring:/data           # Mapping of local folder to provide persistent storage
+    logging:                           #limit logs to 10m and 3 files
+      options:
+        max-size: 10m
+        max-file: "3"

@@ -26,10 +26,9 @@
       device_id: c4ecd64ab8334f9b8845fc50a9f4db25
       entity_id: light.hue_white_lamp_1
       domain: light
-
   mode: single
 
-
+# TODO: light.smart_switch_guest_room_light turn on hue
 
 - id: '1680368786413'
   alias: guest-room-smart-switch-button1-turn-fan-off

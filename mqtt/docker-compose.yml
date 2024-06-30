@@ -4,28 +4,9 @@ services:
     image: eclipse-mosquitto:2.0
     restart: unless-stopped
     volumes:
-      - "./config/mqtt:/mosquitto"
+      - "./config:/mosquitto"
     ports:
       - "1883:1883"
       - "9001:9001"
       - 18080:8080
     command: "mosquitto -c /mosquitto-no-auth.conf"
-  zigbee2mqtt:
-    container_name: zigbee2mqtt
-    image: koenkk/zigbee2mqtt
-    restart: unless-stopped
-    volumes:
-      - ./config/zigbee2mqtt:/app/data
-      - /run/udev:/run/udev:ro
-    privileged: true
-      #ports:
-      # Frontend port
-      #- 18080:8080
-      #- 1883:1883
-    environment:
-      - TZ=America/Chicago
-    devices:
-      # Make sure this matched your adapter location
-      - /dev/ttyACM0:/dev/ttyACM0
-      - /dev/ttyACM1:/dev/ttyACM1
-      - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2692360-if00:/dev/ttyCONBEE

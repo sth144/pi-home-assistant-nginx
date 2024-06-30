@@ -31,8 +31,8 @@
       entity_id: light.hue_white_lamp_2
       domain: light
     - type: toggle
-      device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      device_id: 06f9c3ce63ae315d592e2271dd2946f3
+      entity_id: switch.office_string_lights
       domain: switch
   mode: single
 
@@ -59,7 +59,7 @@
   action:
     - type: turn_off
       device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+      entity_id: switch.0x00124b0022d5f06b
       domain: switch
   mode: single
 

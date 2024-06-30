@@ -11,7 +11,7 @@
     - type: motion
       platform: device
       device_id: 11fb3d2922fb58e14230c471d871a1b0
-      entity_id: binary_sensor.0x00158d000864f652_occupancy
+      entity_id: binary_sensor.driveway_motion_sensor_occupancy
       domain: binary_sensor
   condition:
     - condition: sun
@@ -37,7 +37,7 @@
     - type: no_motion
       platform: device
       device_id: 11fb3d2922fb58e14230c471d871a1b0
-      entity_id: binary_sensor.0x00158d000864f652_occupancy
+      entity_id: binary_sensor.driveway_motion_sensor_occupancy
       domain: binary_sensor
   condition: []
   action:

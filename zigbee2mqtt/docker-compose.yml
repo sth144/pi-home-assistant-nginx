@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/data
+      - /run/udev:/run/udev:ro
+    privileged: true
+    ports:
+      # Frontend port
+      - 18081:8080
+      #- 1883:1883
+    environment:
+      - TZ=America/Chicago
+    devices:
+      # Make sure this matched your adapter location
+      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyACM1:/dev/ttyACM1
+      - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2692360-if00:/dev/ttyCONBEE

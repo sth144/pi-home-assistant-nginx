@@ -1,24 +1,23 @@
-- description: "switch-toggle-backyard-hose"
-  id: "1638738317412"
+- description: "switch-toggle-frontyard-hose"
+  id: "1248226327456"
   mode: single
   trigger:
     - platform: event
       event_type: zha_event
       event_data:
         device_ieee: 84:71:27:ff:fe:d0:95:f3
-        unique_id: 84:71:27:ff:fe:d0:95:f3:2:0x0006
+        unique_id: 84:71:27:ff:fe:d0:95:f3:3:0x0006
         device_id: 5ce89c45457b99a84eb2896c8d595f45
-        endpoint_id: 2
+        endpoint_id: 3
         cluster_id: 6
         command: remote_button_short_press
         args: []
         params: {}
   condition: []
-  # TODO: replace with backyard hose timer
   action:
     - type: toggle
-      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
-      entity_id: light.hue_white_lamp_2
-      domain: light
-  alias: Toggle Backyard Hose
+      device_id: c9323841349f7ac7a9bd159f757eb03c
+      entity_id: switch.0xa4c1383205699ded
+      domain: switch
+  alias: Toggle Frontyard Hose
 

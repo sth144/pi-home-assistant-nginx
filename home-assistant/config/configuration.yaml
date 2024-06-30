@@ -48,19 +48,21 @@ nest:
 camera:
   - platform: ffmpeg
     name: wyze_v3
-    input: rtsp://192.168.1.243:8554/living-room-cam
+    input: rtsp://192.168.1.63:8554/video1_unicast
+    #input: rtsp://192.168.1.243:8554/living-room-cam
   - platform: ffmpeg
     name: wyze_v3_garage_cam
     input: rtsp://192.168.1.64:8554/video1_unicast
   - platform: ffmpeg
     name: wyze_v3_driveway_cam
     input: rtsp://192.168.1.55:8554/video1_unicast
-    #- platform: ring
-    #name: camera.front_door
+  - platform: ffmpeg
+    name: camera.front_door_1
+    input: rtsp://192.168.1.243:8555
 
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
+      #ring:
+      #username: !secret ring_username
+      #password: !secret ring_password
 
 sensor:
   - platform: google_wifi
@@ -85,6 +87,8 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
+
+
 
 # no longer configurable from YAML
 #mqtt:

@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   duckdns:
-    image: linuxserver/duckdns
+    image: linuxserver/duckdns:arm32v7-version-fb872cca
     container_name: duckdns
     environment:
       - PUID=1000

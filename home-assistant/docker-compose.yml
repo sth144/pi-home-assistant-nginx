@@ -1,7 +1,7 @@
 version: "2.0"
 services:
   home-assistant:
-    image: homeassistant/raspberrypi3-homeassistant:stable
+    image: homeassistant/raspberrypi3-homeassistant:latest # stable
     container_name: home-assistant
     restart: always
     volumes:
@@ -20,17 +20,17 @@ services:
       #- /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2692360-if00:/dev/ttyUSB2
       # TODO: figure out how to run as not-privileged: https://community.home-assistant.io/t/migration-to-2021-7-fails-fatal-python-error-init-interp-main-cant-initialize-time/320648/3
     privileged: true
-  wyze-bridge:
-    container_name: wyze-bridge
-    restart: unless-stopped
-    image: mrlt8/wyze-bridge:latest
-    ports:
-      - 1935:1935 # RTMP
-      - 8554:8554 # RTSP
-      - 8888:8888 # HLS
-      - 5000:5000
-    volumes:
-      - ./tokens:/tokens/
-    environment:
-      - WYZE_EMAIL=${WYZE_EMAIL}
-      - WYZE_PASSWORD=${WYZE_PASSWORD}
+      #wyze-bridge:
+      #container_name: wyze-bridge
+      #restart: unless-stopped
+      #image: mrlt8/wyze-bridge:latest
+      #ports:
+      #- 1935:1935 # RTMP
+      #- 8554:8554 # RTSP
+      #- 8888:8888 # HLS
+      #- 5000:5000
+      #volumes:
+      #- ./tokens:/tokens/
+      #environment:
+      #- WYZE_EMAIL=${WYZE_EMAIL}
+      #- WYZE_PASSWORD=${WYZE_PASSWORD}

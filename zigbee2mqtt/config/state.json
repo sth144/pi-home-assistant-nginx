@@ -1,0 +1,30 @@
+{
+    "0x00124b00226d64c4": {
+        "state": "OFF",
+        "linkquality": 255
+    },
+    "0x00158d00090ec513": {
+        "contact": true,
+        "voltage": 3175,
+        "battery": 100,
+        "device_temperature": 33,
+        "power_outage_count": 6,
+        "trigger_count": 9
+    },
+    "0x00158d000864f652": {
+        "occupancy": false,
+        "illuminance": 0,
+        "illuminance_lux": 0,
+        "voltage": 3145,
+        "battery": 100,
+        "device_temperature": 41,
+        "power_outage_count": 38
+    },
+    "0x282c02bfffe7a47c": {
+        "battery": 34.5,
+        "voltage": 2900,
+        "contact": true,
+        "tamper": false,
+        "battery_low": false
+    }
+}

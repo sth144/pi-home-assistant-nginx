@@ -11,7 +11,7 @@ views:
           - type: horizontal-stack
             cards:
               - type: picture-entity
-                entity: camera.front_door
+                entity: camera.front_door_snapshot_mqtt
               - type: picture-entity
                 entity: camera.wyze_v3_garage_cam
           - type: horizontal-stack
@@ -27,11 +27,27 @@ views:
                 entity: camera.wyze_v3_driveway_cam
           - type: horizontal-stack
             cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    title: Front Door
+                    entities:
+                      - binary_sensor.ding
+                      - binary_sensor.motion
+                      - button.take_snapshot
+                  - type: entities
+                    entities:
+                      - binary_sensor.driveway_motion_sensor_occupancy
+                      - sensor.driveway_motion_sensor_battery
+                      - sensor.driveway_motion_sensor_illuminance_lux
+                      - sensor.driveway_motion_sensor_power_outage_count
+                      - sensor.driveway_motion_sensor_device_temperature
+                    title: Driveway Motion Sensor
               - type: entities
                 entities:
                   - entity: light.hue_white_lamp_1
                     name: Philips Hue - Guest Room
-                  - entity: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
+                  - entity: switch.office_string_lights
                     name: Smart Plug - Office Lights
                   - entity: light.hue_white_lamp_2
                     name: Philips Hue - Office
@@ -43,42 +59,74 @@ views:
                     name: Guestroom Lights
                   - entity: switch.tz3000_nfnmi125_ts011f_switch
                     name: Guestroom Fan
-                  - entity: switch.smart_plug_9_switch_2
-                    name: Christmas Lights
+                  #- entity: switch.smart_plug_9_switch_2
+                  - entity: switch.workbench_light_smart_plug_5_socket_1
+                    name: Garage Workbench Light
                   - entity: light.driveway_light
-                    name: Driveway Lights
+                    name: Driveway Light
+                  - entity: switch.christmas_lights_smart_plug_9_switch_2
+                    name: Christmas Lights
                   - entity: light.garage_light
                     name: Garage Lights
-              - type: entities
-                entities:
-                  - entity: number.0xa4c1383205699ded_countdown
-                    name: Countdown
-                  - switch.0xa4c1383205699ded
-                title: Hose Timer (Rain Seer)
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: number.0xa4c1383205699ded_countdown
+                        name: Countdown
+                      - switch.0xa4c1383205699ded
+                    title: Hose Timer (Rain Seer)
+                  - title: Front Gate
+                    type: entities
+                    entities:
+                      #- update.front_gate_sensor
+                      - binary_sensor.front_gate_sensor_contact
+                      - binary_sensor.front_gate_sensor_battery_low
+                      - sensor.front_gate_sensor_battery
+                  - title: Back Door
+                    type: entities
+                    entities:
+                      - binary_sensor.back_door_sensor_contact
+                      - sensor.back_door_sensor_battery
+                      - sensor.back_door_sensor_device_temperature
+                  - type: gauge
+                    entity: sensor.google_travel_time
+                    severity:
+                      green: 16
+                      yellow: 20
+                      red: 30
+                    min: 0
+                    max: 40
+                    name: Travel Time To St. David's Hospital
+                    needle: false
           - type: horizontal-stack
             cards:
-              - entity: weather.home
-                type: weather-forecast
-              - type: map
-                entities:
-                  - entity: device_tracker.sean_hindss_iphone_4
-                  - entity: person.amy
-          - type: horizontal-stack
-            cards:
-              - type: thermostat
-                entity: climate.hallway
-              - type: humidifier
-                entity: humidifier.midea_dehumidifier_147334558156779
-          - type: horizontal-stack
-            cards:
-              - type: gauge
-                entity: sensor.canon_ts300_series_black
-                min: 0
-                max: 100
-              - type: gauge
-                entity: sensor.canon_ts300_series_color
-                min: 0
-                max: 100
+              - type: vertical-stack
+                cards:
+                  - entity: weather.home
+                    type: weather-forecast
+                  - type: map
+                    entities:
+                      - entity: device_tracker.sean_hindss_iphone_4
+                      - entity: person.amy
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: thermostat
+                        entity: climate.hallway
+                      - type: humidifier
+                        entity: humidifier.midea_dehumidifier_147334558156779
+                  - type: horizontal-stack
+                    cards:
+                      - type: gauge
+                        entity: sensor.canon_ts300_series_black
+                        min: 0
+                        max: 100
+                      - type: gauge
+                        entity: sensor.canon_ts300_series_color
+                        min: 0
+                        max: 100
           - type: horizontal-stack
             cards:
               - type: entities
@@ -104,20 +152,23 @@ views:
                   - sensor.pi_hole_dns_queries_forwarded_2
           - type: horizontal-stack
             cards:
-              - type: entities
-                entities:
-                  - sensor.0x00158d000864f652_battery
-                  - sensor.0x00158d000864f652_illuminance_lux
-                  - binary_sensor.0x00158d000864f652_occupancy
-                  - sensor.0x00158d000864f652_power_outage_count
-                  - sensor.0x00158d000864f652_device_temperature
-                title: Driveway Motion Sensor
-              - title: Gate Sensor
-                type: entities
-                entities:
-                  - binary_sensor.third_reality_inc_3rds17bz_iaszone
-                  - sensor.third_reality_inc_3rds17bz_battery
-
+              - type: vertical-stack
+                cards:
+                  - type: history-graph
+                    entities:
+                      - entity: light.driveway_light
+                        name: Driveway Light
+                      - entity: binary_sensor.driveway_motion_sensor_occupancy
+                        name: Driveway Motion Sensor Occupancy
+                      - entity: light.garage_light
+                        name: Garage Light
+                      - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
+                        name: Bedroom String Lights
+                      - entity: switch.0x00124b0022d5f06b 
+                      - entity: binary_sensor.back_door_sensor_contact
+                        name: Back Door
+                      - entity: binary_sensor.front_gate_sensor_contact
+                        name: Front Gate
           - type: horizontal-stack
             cards:
               - entity: light.hue_white_lamp_1
@@ -137,30 +188,25 @@ views:
                   - sensor.plex_openmediavault
           - type: horizontal-stack
             cards:
-              - entities:
-                  - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
-                type: entities
               - type: entities
                 entities:
-                  - device_tracker.sean_hindss_iphone_3
-                  - sensor.sean_hindss_iphone_bssid_2
-                  - sensor.sean_hindss_iphone_connection_type_2
-                  - sensor.sean_hindss_iphone_geocoded_location_2
-                  - sensor.sean_hindss_iphone_last_update_trigger_2
-                  - sensor.sean_hindss_iphone_sim_1_2
-                  - sensor.sean_hindss_iphone_sim_2
-                  - sensor.sean_hindss_iphone_ssid_2
-                  - sensor.sean_hindss_iphone_storage_2
-          - type: horizontal-stack
-            cards:
-              - type: entities
-                entities:
-                  - binary_sensor.front_door_ding
-                  - sensor.front_door_last_activity
-                  - sensor.front_door_last_ding
-                  - sensor.front_door_last_motion
-                  - binary_sensor.front_door_motion
-                  - sensor.front_door_volume
+                  - entity: device_tracker.sean_hindss_iphone_4
+                  - entity: sensor.sean_hindss_iphone_activity
+                  - entity: sensor.sean_hindss_iphone_average_active_pace
+                  - entity: sensor.sean_hindss_iphone_battery_level_3
+                  - entity: sensor.sean_hindss_iphone_battery_state_4
+                  - entity: sensor.sean_hindss_iphone_bssid_3
+                  - entity: sensor.sean_hindss_iphone_connection_type_3
+                  - entity: sensor.sean_hindss_iphone_distance
+                  - entity: sensor.sean_hindss_iphone_geocoded_location_3
+                  - entity: sensor.sean_hindss_iphone_last_update_trigger_3
+                  - entity: sensor.sean_hindss_iphone_sim_1_3
+                  - entity: sensor.sean_hindss_iphone_sim_2_2
+                  - entity: sensor.sean_hindss_iphone_ssid_3
+                  - entity: sensor.sean_hindss_iphone_steps
+                  - entity: sensor.sean_hindss_iphone_storage_3
+                  - entity: device_tracker.apple_watch_de_sean
+                  - entity: sensor.apple_watch_de_sean_battery_state
               - type: entities
                 entities:
                   - sensor.canon_ts300_series
@@ -174,20 +220,27 @@ views:
                 title: NetGear Router Traffic
                 type: history-graph
           - type: horizontal-stack
-            cards:  
-              - type: entities
-                entities:
-                  - water_heater.electric_water_heater
-                  - sensor.electric_water_heater_alert_count
-                  - sensor.electric_water_heater_available_hot_water
-                  - sensor.electric_water_heater_override_status
-                  - sensor.electric_water_heater_power_usage_today
-                  - binary_sensor.electric_water_heater_running
-                  - sensor.electric_water_heater_running_state
-                  - binary_sensor.electric_water_heater_shutoff_valve
-                  - sensor.electric_water_heater_tank_health
-                  - sensor.electric_water_heater_water_usage_today
-                  - sensor.electric_water_heater_wifi_signal 
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.back_door_sensor_battery
+                      - entity: sensor.lumi_lumi_sensor_switch_power
+                      - entity: sensor.tz3000_vp6clf9d_ts0044_power  
+                  - type: entities
+                    entities:
+                      - water_heater.electric_water_heater
+                      - sensor.electric_water_heater_alert_count
+                      - sensor.electric_water_heater_available_hot_water
+                      - sensor.electric_water_heater_override_status
+                      - sensor.electric_water_heater_power_usage_today
+                      - binary_sensor.electric_water_heater_running
+                      - sensor.electric_water_heater_running_state
+                      - binary_sensor.electric_water_heater_shutoff_valve
+                      - sensor.electric_water_heater_tank_health
+                      - sensor.electric_water_heater_water_usage_today
+                      - sensor.electric_water_heater_wifi_signal 
               - type: history-graph
                 entities:
                   - entity: sensor.electric_water_heater_available_hot_water
@@ -198,18 +251,10 @@ views:
             cards:
               - type: entities
                 entities:
-                  - entity: sensor.0x00158d000864f652_battery
-                  - entity: sensor.lumi_lumi_sensor_switch_power
-                  - entity: sensor.tz3000_vp6clf9d_ts0044_power
-              - type: entities
-                entities:
                   - fan.levoit_smart_true_hepa_air_purifier
                   - sensor.levoit_smart_true_hepa_air_purifier_filter_life
                   - sensor.levoit_smart_true_hepa_air_purifier_pm2_5
                   - sensor.levoit_smart_true_hepa_air_purifier_air_quality
-              - type: entities
-                entities:
-                  - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
           - type: horizontal-stack
             cards:
               - type: history-graph
@@ -246,15 +291,28 @@ views:
               - type: history-graph
                 entities:
                   - entity: media_player.shield
-                  - entity: binary_sensor.0x00158d000864f652_occupancy
+                    name: NVIDIA shield TV
                   - entity: sensor.apple_watch_de_sean_battery_state
-                  - entity: light.driveway_light
+                    name: Sean Hinds' iPhone Battery State
                   - entity: binary_sensor.pi_hole_2
+                    name: Pi-hole 2
                   - entity: sensor.google_wifi_status
+                    name: Google Fiber Wifi
                   - entity: binary_sensor.pi_hole
+                    name: Pi-hole
                   - entity: sensor.pi_hole_dns_unique_clients_2
+                    name: Pi-hole Unique DNS Clients
                   - entity: sensor.sean_hindss_iphone_battery_level_3
+                    name: Sean Hinds' iPhone Battery Level
                   - entity: sensor.pi_hole_dns_queries_cached_2
+                    name: Pi-hole DNS Queries Cached
                   - entity: sensor.pi_hole_dns_queries_today_2
+                    name: Pi-hole DNS Queries Today
                   - entity: sensor.pi_hole_dns_unique_domains_2c
+                    name: Pi-hole DNS Unique Domains
                 title: Home
+          - type: horizontal-stack
+            cards:
+              - entities:
+                  - zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+                type: entities
