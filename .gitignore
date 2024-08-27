@@ -33,4 +33,3 @@ zigbee2mqtt/config/database.db
 zigbee2mqtt/config/state.json
 
 !zigbee2mqtt/config/configuration.yaml
-

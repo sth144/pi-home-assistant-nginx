@@ -12,14 +12,15 @@ services:
     environment:
       - TZ=America/Chicago
     # NOTE: could these device files change?
-    devices: 
+    devices:
       #- /dev/ttyUSB0:/dev/ttyUSB0
       #- /dev/ttyUSB1:/dev/ttyUSB1
       - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_81300853-if00-port0:/dev/ttyUSB0
       - /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_81300853-if01-port0:/dev/ttyUSB1
       #- /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2692360-if00:/dev/ttyUSB2
       # TODO: figure out how to run as not-privileged: https://community.home-assistant.io/t/migration-to-2021-7-fails-fatal-python-error-init-interp-main-cant-initialize-time/320648/3
-    privileged: true
+    privileged:
+      true
       #wyze-bridge:
       #container_name: wyze-bridge
       #restart: unless-stopped

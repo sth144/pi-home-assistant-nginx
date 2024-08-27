@@ -1,51 +1,51 @@
-- id: '1618016643099'
+- id: "1618016643099"
   name: Living Room Lights On
   entities:
     light.hue_white_lamp_1:
       brightness: 255
       friendly_name: Hue white lamp 1
       supported_features: 41
-      state: 'on'
+      state: "on"
     switch.ewelink_sa_003_zigbee_on_off:
       friendly_name: Smart Plug 0 on_off
-      state: 'on'
-- id: '1618017118920'
+      state: "on"
+- id: "1618017118920"
   name: Office Lights On
   entities:
     light.hue_white_lamp_2:
       brightness: 51
       friendly_name: Hue white lamp 2
       supported_features: 41
-      state: 'on'
+      state: "on"
     switch.ewelink_sa_003_zigbee_6bf0d522_on_off:
       friendly_name: eWeLink SA-003-Zigbee 6bf0d522 on_off
-      state: 'on'
-- id: '1618073290021'
+      state: "on"
+- id: "1618073290021"
   name: Office Lights Off
   entities:
     switch.ewelink_sa_003_zigbee_6bf0d522_on_off:
       friendly_name: eWeLink SA-003-Zigbee 6bf0d522 on_off
-      state: 'off'
+      state: "off"
     light.hue_white_lamp_2:
       friendly_name: Philips Hue - Office
       supported_features: 41
-      state: 'off'
-- id: '1618073326537'
+      state: "off"
+- id: "1618073326537"
   name: Living Room Lights Off
   entities:
     light.hue_white_lamp_1:
       friendly_name: Philips Hue - Living Room
       supported_features: 41
-      state: 'off'
+      state: "off"
     switch.ewelink_sa_003_zigbee_on_off:
       friendly_name: Smart Plug 0 on_off
-      state: 'off'
-- id: '1665796467497'
+      state: "off"
+- id: "1665796467497"
   name: Backyard Lights On
   entities:
     switch.ewelink_sa_003_zigbee_837dce22_on_off:
       friendly_name: eWeLink SA-003-Zigbee 837dce22 on_off
-      state: 'on'
+      state: "on"
   icon: mdi:globe-light
   metadata:
     switch.ewelink_sa_003_zigbee_837dce22_on_off:

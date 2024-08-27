@@ -151,5 +151,3 @@ services:
         logo: "assets/tools/redis.png"
         subtitle: "Database"
         url: "http://192.168.1.245:8002"
-  
-

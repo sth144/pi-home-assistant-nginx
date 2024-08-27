@@ -5,7 +5,7 @@ services:
     container_name: nginx
     restart: unless-stopped
     privileged: true
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /etc/hosts:/etc/hosts
