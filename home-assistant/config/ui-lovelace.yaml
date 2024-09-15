@@ -11,7 +11,7 @@ views:
           - type: horizontal-stack
             cards:
               - type: picture-entity
-                entity: camera.front_door_snapshot_mqtt
+                entity: camera.front_door_mqtt
               - type: picture-entity
                 entity: camera.wyze_v3_garage_cam
           - type: horizontal-stack
@@ -164,7 +164,7 @@ views:
                         name: Garage Light
                       - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
                         name: Bedroom String Lights
-                      - entity: switch.0x00124b0022d5f06b 
+                      - entity: switch.0x00124b0022d5f06b
                       - entity: binary_sensor.back_door_sensor_contact
                         name: Back Door
                       - entity: binary_sensor.front_gate_sensor_contact
@@ -227,7 +227,7 @@ views:
                     entities:
                       - entity: sensor.back_door_sensor_battery
                       - entity: sensor.lumi_lumi_sensor_switch_power
-                      - entity: sensor.tz3000_vp6clf9d_ts0044_power  
+                      - entity: sensor.tz3000_vp6clf9d_ts0044_power
                   - type: entities
                     entities:
                       - water_heater.electric_water_heater
@@ -240,7 +240,7 @@ views:
                       - binary_sensor.electric_water_heater_shutoff_valve
                       - sensor.electric_water_heater_tank_health
                       - sensor.electric_water_heater_water_usage_today
-                      - sensor.electric_water_heater_wifi_signal 
+                      - sensor.electric_water_heater_wifi_signal
               - type: history-graph
                 entities:
                   - entity: sensor.electric_water_heater_available_hot_water

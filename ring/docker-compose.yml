@@ -12,3 +12,8 @@ services:
       options:
         max-size: 10m
         max-file: "3"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'  # CPU core
+          memory: 256M  # MB

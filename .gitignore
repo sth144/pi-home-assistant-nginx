@@ -10,6 +10,7 @@ home-assistant/config/*.txt
 home-assistant/config/downloads
 home-assistant/tokens
 home-assistant/config/core
+home-assistant/config.bak*
 
 !home-assistant/config/automations.yaml
 !home-assistant/config/configuration.yaml

@@ -1,7 +1,9 @@
 version: "2.0"
 services:
   home-assistant:
-    image: homeassistant/raspberrypi3-homeassistant:latest # stable
+    #image: homeassistant/raspberrypi3-homeassistant:stable
+    #image: homeassistant/home-assistant
+    image: lscr.io/linuxserver/homeassistant:latest
     container_name: home-assistant
     restart: always
     volumes:
@@ -21,6 +23,10 @@ services:
       # TODO: figure out how to run as not-privileged: https://community.home-assistant.io/t/migration-to-2021-7-fails-fatal-python-error-init-interp-main-cant-initialize-time/320648/3
     privileged:
       true
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'  # CPU core
       #wyze-bridge:
       #container_name: wyze-bridge
       #restart: unless-stopped

@@ -31,7 +31,7 @@
       entity_id: light.hue_white_lamp_2
       domain: light
     - type: toggle
-      device_id: 06f9c3ce63ae315d592e2271dd2946f3
+      device_id: 1baf2d052ed2bb5e127c2969f0408d77
       entity_id: switch.office_string_lights
       domain: switch
   mode: single

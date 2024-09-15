@@ -1,6 +1,7 @@
 homeassistant: true
 permit_join: true
 frontend: true
+availability: true
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://192.168.1.243:1883
@@ -24,3 +25,12 @@ devices:
     friendly_name: '0xa4c13831eed53b45'
   '0x00124b0022d5f06b':
     friendly_name: '0x00124b0022d5f06b'
+  '0x00124b002c3a9c0b':
+    friendly_name: Sonoff Smart Plug 1
+    availability: true
+  '0x847127fffed095f3':
+    friendly_name: '0x847127fffed095f3'
+  '0x00124b00226d6776':
+    friendly_name: '0x00124b00226d6776'
+  '0x00158d000864f2d2':
+    friendly_name: '0x00158d000864f2d2'
