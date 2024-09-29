@@ -27,17 +27,22 @@ services:
       resources:
         limits:
           cpus: '1.0'  # CPU core
-      #wyze-bridge:
-      #container_name: wyze-bridge
-      #restart: unless-stopped
-      #image: mrlt8/wyze-bridge:latest
-      #ports:
-      #- 1935:1935 # RTMP
-      #- 8554:8554 # RTSP
-      #- 8888:8888 # HLS
-      #- 5000:5000
-      #volumes:
-      #- ./tokens:/tokens/
-      #environment:
-      #- WYZE_EMAIL=${WYZE_EMAIL}
-      #- WYZE_PASSWORD=${WYZE_PASSWORD}
+  wyze-bridge:
+    container_name: wyze-bridge
+    restart: unless-stopped
+    image: mrlt8/wyze-bridge:latest
+    ports:
+      - 1935:1935 # RTMP
+      - 8554:8554 # RTSP
+      - 8888:8888 # HLS
+      - 5000:5000
+    volumes:
+      - ./tokens:/tokens/
+    environment:
+      - WYZE_EMAIL=${WYZE_EMAIL}
+      - WYZE_PASSWORD=${WYZE_PASSWORD}
+      - API_ID=${API_ID}
+      - API_KEY=${API_KEY}
+      - WB_AUTH=true
+      - WB_USERNAME=${WB_USERNAME}
+      - WB_PASSWORD=${WB_PASSWORD}

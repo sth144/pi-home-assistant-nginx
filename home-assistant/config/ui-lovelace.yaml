@@ -40,7 +40,6 @@ views:
                       - binary_sensor.driveway_motion_sensor_occupancy
                       - sensor.driveway_motion_sensor_battery
                       - sensor.driveway_motion_sensor_illuminance_lux
-                      - sensor.driveway_motion_sensor_power_outage_count
                       - sensor.driveway_motion_sensor_device_temperature
                     title: Driveway Motion Sensor
               - type: entities
@@ -53,11 +52,11 @@ views:
                     name: Philips Hue - Office
                   - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
                     name: Bedroom String Lights
-                  - entity: switch.ewelink_sa_003_zigbee_76676d22_on_off
+                  - entity: switch.smart_plug_6_switch
                     name: Backyard String Lights
-                  - entity: light.smart_switch_guest_room_light_2
+                  - entity: light.guest_room_light_switch_light_2
                     name: Guestroom Lights
-                  - entity: switch.tz3000_nfnmi125_ts011f_switch
+                  - entity: light.guest_room_light_switch_light
                     name: Guestroom Fan
                   #- entity: switch.smart_plug_9_switch_2
                   - entity: switch.workbench_light_smart_plug_5_socket_1
@@ -72,23 +71,48 @@ views:
                 cards:
                   - type: entities
                     entities:
-                      - entity: number.0xa4c1383205699ded_countdown
-                        name: Countdown
-                      - switch.0xa4c1383205699ded
+                      - entity: switch.backyard_hose_timer_zone
+                        name: Backyard Hose Timer
+                      - entity: switch.backyard_hose_timer_rain_delay
+                        name: Backyard Hose Timer Rain Delay
+                      - entity: switch.backyard_hose_timer_sunset_program
+                        name: Backyard Hose Timer Sunset Program
+                      - entity: sensor.backyard_hose_timer_battery_level
+                        name: Backyard Hose Timer Battery Level
+                      - entity: switch.frontyard_hose_timer_zone
+                        name: Frontyard Hose Timer
+                      - entity: switch.frontyard_hose_timer_rain_delay
+                        name: Frontyard Hose Timer Rain Delay
+                      - entity: switch.frontyard_hose_timer_sunset_program
+                        name: Frontyard Hose Timer Sunset Program
+                      - entity: switch.frontyard_hose_timer_smart_watering_program
+                        name: Frontyard Hose Timer Smart Watering Program
+                      - entity: sensor.frontyard_hose_timer_battery_level
+                        name: Frontyard Hose Timer Battery Level
+
                     title: Hose Timer (Rain Seer)
                   - title: Front Gate
                     type: entities
                     entities:
                       #- update.front_gate_sensor
-                      - binary_sensor.front_gate_sensor_contact
-                      - binary_sensor.front_gate_sensor_battery_low
-                      - sensor.front_gate_sensor_battery
+                      - entity: binary_sensor.backyard_front_gate_sensor_contact
+                        name: Front Gate Sensor Contact
+                      - entity: binary_sensor.backyard_front_gate_sensor_battery_low
+                        name: Front Gate Sensor Battery Low
+                      - entity: sensor.backyard_front_gate_sensor_battery
+                        name: Front Gate Sensor Battery
                   - title: Back Door
                     type: entities
                     entities:
                       - binary_sensor.back_door_sensor_contact
                       - sensor.back_door_sensor_battery
                       - sensor.back_door_sensor_device_temperature
+                  - type: history-graph
+                    entities:
+                      - entity: binary_sensor.backyard_front_gate_sensor_contact
+                        name: Front Gate
+                      - entity: binary_sensor.back_door_sensor_contact
+                        name: Back Door
                   - type: gauge
                     entity: sensor.google_travel_time
                     severity:
@@ -167,7 +191,7 @@ views:
                       - entity: switch.0x00124b0022d5f06b
                       - entity: binary_sensor.back_door_sensor_contact
                         name: Back Door
-                      - entity: binary_sensor.front_gate_sensor_contact
+                      - entity: binary_sensor.backyard_front_gate_sensor_contact
                         name: Front Gate
           - type: horizontal-stack
             cards:

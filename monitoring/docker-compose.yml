@@ -26,7 +26,7 @@ services:
     image: grafana/promtail:2.0.0
     restart: always
     volumes:
-      - /etc/promtail/:/etc/promtail
+      - ./config:/etc/promtail
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /etc/hosts:/etc/hosts
     command: -config.file=/etc/promtail/promtail.yaml

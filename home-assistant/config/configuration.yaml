@@ -33,8 +33,8 @@ ecovacs:
   country: us
   continent: na
 
-pi_hole:
-  - host: !secret pihole_host
+# pi_hole:
+#   - host: !secret pihole_host
 
 nest:
   client_id: !secret nest_client_id
@@ -44,25 +44,22 @@ nest:
   # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
   subscriber_id: !secret nest_subscriber_id
 
-# ring
 camera:
   - platform: ffmpeg
     name: wyze_v3
-    input: rtsp://192.168.1.63:8554/video1_unicast
-    #input: rtsp://192.168.1.243:8554/living-room-cam
+    #input: rtsp://192.168.1.63:8554/video1
+    input: !secret wb_rtsp_url_living_room_cam
   - platform: ffmpeg
     name: wyze_v3_garage_cam
-    input: rtsp://192.168.1.64:8554/video1_unicast
+    input: !secret wb_rtsp_url_garage_cam
   - platform: ffmpeg
     name: wyze_v3_driveway_cam
-    input: rtsp://192.168.1.55:8554/video1_unicast
+    input: !secret wb_rtsp_url_driveway_cam
+    # name: wyze_v3_driveway_cam
+    # input: rtsp://192.168.1.55:8554/video1_unicast
   - platform: ffmpeg
     name: camera.front_door_1
     input: rtsp://192.168.1.243:8555
-
-      #ring:
-      #username: !secret ring_username
-      #password: !secret ring_password
 
 sensor:
   - platform: google_wifi
@@ -87,9 +84,6 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
-
-
-
 # no longer configurable from YAML
 #mqtt:
 #  broker: 192.168.1.243
