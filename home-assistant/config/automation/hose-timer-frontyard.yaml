@@ -14,7 +14,7 @@
   condition: []
   action:
     - type: toggle
-      device_id: c9323841349f7ac7a9bd159f757eb03c
-      entity_id: switch.0xa4c1383205699ded
+      device_id: 41477a55feb8f710d5fd247782a11cc8
+      entity_id: switch.frontyard_hose_timer_zone
       domain: switch
   alias: Toggle Frontyard Hose

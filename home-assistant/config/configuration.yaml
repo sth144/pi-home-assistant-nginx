@@ -27,11 +27,13 @@ http:
   use_x_forwarded_for: true
   trusted_proxies: 127.0.0.1
 
-ecovacs:
-  username: !secret email
-  password: !secret deebot_password
-  country: us
-  continent: na
+bluetooth:
+
+# ecovacs:
+#   username: !secret email
+#   password: !secret deebot_password
+#   country: us
+#   continent: na
 
 # pi_hole:
 #   - host: !secret pihole_host
