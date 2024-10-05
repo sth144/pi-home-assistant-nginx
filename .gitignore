@@ -12,6 +12,7 @@ home-assistant/tokens
 home-assistant/config/core
 home-assistant/config.bak*
 
+
 !home-assistant/config/automations.yaml
 !home-assistant/config/configuration.yaml
 !home-assistant/config/groups.yaml
@@ -26,6 +27,8 @@ openvpn/conf
 
 wireshark/config/*
 wireguard/config*
+
+wyze/tokens
 
 zigbee2mqtt/config/log
 

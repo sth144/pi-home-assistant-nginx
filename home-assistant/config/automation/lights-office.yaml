@@ -1,24 +1,12 @@
-#- id: "1631075410449"
-#  alias: switch-toggle-office-string-lights
-#  description: ""
-#  trigger:
-#    - device_id: 9207a1c4c264befd7e62c32fee0e3155
-#      domain: zha
-#      platform: device
-#      type: remote_button_short_press
-#      subtype: remote_button_short_press
-#  condition: []
-#  action:
-#    - type: toggle
-#      device_id: 1baf2d052ed2bb5e127c2969f0408d77
-#      entity_id: switch.ewelink_sa_003_zigbee_6bf0d522_on_off
-#      domain: switch
-#  mode: single
-
 - id: "1632251772271"
   alias: button0-toggle-office-lights
   description: ""
   trigger:
+    # - platform: device
+    #   device_id: 9207a1c4c264befd7e62c32fee0e3155
+    #   domain: button
+    #   entity_id: 6595489f8984f26a3e5cd3632c043963
+    #   type: pressed
     - device_id: 9207a1c4c264befd7e62c32fee0e3155
       domain: zha
       platform: device
@@ -35,7 +23,6 @@
       entity_id: switch.office_string_lights
       domain: switch
   mode: single
-
 - id: "1670545620753"
   alias: Tag Toggle Office Light is scanned
   description: ""
@@ -59,8 +46,6 @@
   action:
     - type: turn_off
       device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.0x00124b0022d5f06b
+      entity_id: switch.office_string_lights
       domain: switch
   mode: single
-
-

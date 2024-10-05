@@ -50,7 +50,7 @@ views:
                     name: Smart Plug - Office Lights
                   - entity: light.hue_white_lamp_2
                     name: Philips Hue - Office
-                  - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
+                  - entity: switch.smart_plug_0
                     name: Bedroom String Lights
                   - entity: switch.smart_plug_6_switch
                     name: Backyard String Lights
@@ -59,17 +59,18 @@ views:
                   - entity: light.guest_room_light_switch_light
                     name: Guestroom Fan
                   #- entity: switch.smart_plug_9_switch_2
-                  - entity: switch.workbench_light_smart_plug_5_socket_1
+                  - entity: switch.smart_plug_5_socket_1
                     name: Garage Workbench Light
                   - entity: light.driveway_light
                     name: Driveway Light
-                  - entity: switch.christmas_lights_smart_plug_9_switch_2
+                  - entity: switch.smart_plug_9
                     name: Christmas Lights
                   - entity: light.garage_light
                     name: Garage Lights
               - type: vertical-stack
                 cards:
                   - type: entities
+                    title: Hose Timer (Rain Seer)
                     entities:
                       - entity: switch.backyard_hose_timer_zone
                         name: Backyard Hose Timer
@@ -89,12 +90,9 @@ views:
                         name: Frontyard Hose Timer Smart Watering Program
                       - entity: sensor.frontyard_hose_timer_battery_level
                         name: Frontyard Hose Timer Battery Level
-
-                    title: Hose Timer (Rain Seer)
                   - title: Front Gate
                     type: entities
                     entities:
-                      #- update.front_gate_sensor
                       - entity: binary_sensor.backyard_front_gate_sensor_contact
                         name: Front Gate Sensor Contact
                       - entity: binary_sensor.backyard_front_gate_sensor_battery_low
@@ -114,7 +112,7 @@ views:
                       - entity: binary_sensor.back_door_sensor_contact
                         name: Back Door
                   - type: gauge
-                    entity: sensor.google_travel_time
+                    entity: sensor.travel_time_to_st_david_s
                     severity:
                       green: 16
                       yellow: 20
@@ -137,10 +135,19 @@ views:
                 cards:
                   - type: horizontal-stack
                     cards:
-                      - type: thermostat
-                        entity: climate.hallway
-                      - type: humidifier
-                        entity: humidifier.midea_dehumidifier_147334558156779
+                      - type: entities
+                        entities:
+                          - entity: humidifier.sala_de_estar
+                          - entity: fan.sala_de_estar_fan
+                          - entity: binary_sensor.sala_de_estar_replace_filter
+                          - entity: binary_sensor.sala_de_estar_tank_full
+                          - entity: sensor.sala_de_estar_temperature
+                          - entity: sensor.sala_de_estar_water_level
+                  - type: humidifier
+                    entity: humidifier.sala_de_estar
+
+                  - type: thermostat
+                    entity: climate.hallway
                   - type: horizontal-stack
                     cards:
                       - type: gauge
@@ -164,16 +171,16 @@ views:
                   - sensor.local_ip
               - type: entities
                 entities:
-                  - binary_sensor.pi_hole_2
-                  - sensor.pi_hole_ads_blocked_today_2
-                  - sensor.pi_hole_dns_queries_cached_2
-                  - sensor.pi_hole_ads_percentage_blocked_today_2
-                  - sensor.pi_hole_seen_clients_2
-                  - sensor.pi_hole_domains_blocked_2
-                  - sensor.pi_hole_dns_unique_domains_2
-                  - sensor.pi_hole_dns_unique_clients_2
-                  - sensor.pi_hole_dns_queries_today_2
-                  - sensor.pi_hole_dns_queries_forwarded_2
+                  - switch.pi_hole
+                  - sensor.pi_hole_ads_blocked_today
+                  - sensor.pi_hole_dns_queries_cached
+                  - sensor.pi_hole_ads_percentage_blocked_today
+                  - sensor.pi_hole_seen_clients
+                  - sensor.pi_hole_domains_blocked
+                  - sensor.pi_hole_dns_unique_domains
+                  - sensor.pi_hole_dns_unique_clients
+                  - sensor.pi_hole_dns_queries_today
+                  - sensor.pi_hole_dns_queries_forwarded
           - type: horizontal-stack
             cards:
               - type: vertical-stack
@@ -186,7 +193,7 @@ views:
                         name: Driveway Motion Sensor Occupancy
                       - entity: light.garage_light
                         name: Garage Light
-                      - entity: switch.ewelink_sa_003_zigbee_837dce22_on_off
+                      - entity: switch.smart_plug_0_switch
                         name: Bedroom String Lights
                       - entity: switch.0x00124b0022d5f06b
                       - entity: binary_sensor.back_door_sensor_contact

@@ -8,10 +8,10 @@
     #   entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_occupancy_2
     #   domain: binary_sensor
   
-    - type: motion
+    - type: occupied
       platform: device
-      device_id: 11fb3d2922fb58e14230c471d871a1b0
-      entity_id: binary_sensor.driveway_motion_sensor_occupancy
+      device_id: d7400d27d57adce1824667cd3920e561
+      entity_id: 408da866843b07be2a12a3be27914db1
       domain: binary_sensor
   condition:
     - condition: sun
@@ -19,9 +19,11 @@
       after: sunset
   action:
     - type: turn_on
-      device_id: 5c606aafc2ab973585cb0279d5e5a742
-      entity_id: light.driveway_light
+      device_id: e6975083590ac95fb5f909bda12de9cb
+      entity_id: f764218affe2f971cdbf5b4e43e879c7
       domain: light
+
+  
   mode: single
   # TODO: turn off after a certain point...
 

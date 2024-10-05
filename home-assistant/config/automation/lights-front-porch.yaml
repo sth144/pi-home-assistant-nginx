@@ -8,8 +8,8 @@
   condition: []
   action:
     - type: turn_on
-      device_id: 00ab74d8c93098199435d24acf15961f
-      entity_id: switch.christmas_lights_smart_plug_9_switch_2
+      device_id: 7b33dfc66858617a9e7441d9edf9e56b
+      entity_id: switch.smart_plug_9
       #entity_id: switch.0x00124b00226d64c4
       domain: switch
   mode: single
@@ -23,25 +23,8 @@
   condition: []
   action:
     - type: turn_off
-      device_id: 00ab74d8c93098199435d24acf15961f
-      entity_id: switch.christmas_lights_smart_plug_9_switch_2
+      device_id: 7b33dfc66858617a9e7441d9edf9e56b
+      entity_id: switch.smart_plug_9
       #entity_id: switch.christmas_lights
       domain: switch
   mode: single
-
-#- alias: switch-toggle-front-porch-string-lights
-#description: ""
-#trigger:
-#- device_id: 5ce89c45457b99a84eb2896c8d595f45
-#  domain: zha
-#  platform: device
-#  type: remote_button_short_press
-#  subtype: button_2
-#condition: []
-#action:
-#- type: toggle 
-#  device_id: 3b7129a1a791ca8dea5d00a2b1da6e45
-#  #entity_id: switch.smart_plug_9_switch_2
-#  entity_id: switch.christmas_lights
-#  domain: switch
-#mode: single

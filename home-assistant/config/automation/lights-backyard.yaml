@@ -10,8 +10,8 @@
   condition: []
   action:
     - type: toggle
-      device_id: cd5a43708cf0ce48d37ff9a1307edd10
-      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      device_id: 2a10cb6b191cdb24c8c4336d441605df
+      entity_id: switch.smart_plug_6_switch
       domain: switch
   mode: single
 - id: "1633738838537"
@@ -24,8 +24,8 @@
   condition: []
   action:
     - type: turn_on
-      device_id: cd5a43708cf0ce48d37ff9a1307edd10
-      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      device_id: 2a10cb6b191cdb24c8c4336d441605df
+      entity_id: switch.smart_plug_6_switch
       domain: switch
   mode: single
 - id: "1633738917611"
@@ -38,7 +38,7 @@
   condition: []
   action:
     - type: turn_off
-      device_id: cd5a43708cf0ce48d37ff9a1307edd10
-      entity_id: switch.ewelink_sa_003_zigbee_76676d22_on_off
+      device_id: 2a10cb6b191cdb24c8c4336d441605df
+      entity_id: switch.smart_plug_6_switch
       domain: switch
   mode: single
