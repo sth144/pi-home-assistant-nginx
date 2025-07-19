@@ -19,8 +19,8 @@
       entity_id: light.hue_white_lamp_2
       domain: light
     - type: toggle
-      device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.office_string_lights
+      device_id: 3dfa2ec82a6ddd2080f0c32ac28c709b
+      entity_id: switch.smart_plug_1
       domain: switch
   mode: single
 - id: "1670545620753"
@@ -40,12 +40,17 @@
   alias: turn-off-office-lights-late-night
   description: ""
   trigger:
-    - platform: time
-      at: 01:00:00
+    - platform: sun
+      event: sunset
+      offset: "5:00"
   condition: []
   action:
     - type: turn_off
       device_id: 1baf2d052ed2bb5e127c2969f0408d77
       entity_id: switch.office_string_lights
       domain: switch
+    - type: turn_off
+      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
+      entity_id: light.hue_white_lamp_2
+      domain: light
   mode: single

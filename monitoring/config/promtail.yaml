@@ -26,7 +26,7 @@ scrape_configs:
           - localhost
         labels:
           job: containers
-          __path__: /var/lib/docker/containers/*/*.log
+          __path__: /var/lib/docker/containers/*/*log
     file_sd_configs:
       - files:
         - /etc/promtail/promtail-targets.yaml
@@ -36,3 +36,12 @@ scrape_configs:
       - source_labels: [container_id]
         target_label: __path__
         replacement: /var/lib/docker/containers/$1*/*.log
+  - job_name: cron
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: cron
+          __path__: /home/pi/.cache/.workflow/*log
+
+

@@ -5,14 +5,19 @@ lovelace:
   mode: yaml
   # mode: storage
   # Add yaml dashboards
-  # dashboards:
-  #   lovelace-mobile: # Needs to contain a hyphen (-)
-  #     mode: yaml
-  #     filename: ui-lovelace.mobile.yaml
-  #     title: Mobile
-  #     icon: mdi:cellphone
-  #     show_in_sidebar: true
-  #     require_admin: true
+  dashboards:
+    ui-overview:
+      mode: yaml
+      title: System
+      filename: ui-lovelace.yaml
+      show_in_sidebar: false
+    ui-mobile: # Needs to contain a hyphen (-)
+      mode: yaml
+      filename: ui-lovelace.mobile.yaml
+      title: Mobile
+      icon: mdi:cellphone
+      show_in_sidebar: true
+      require_admin: true
 
 # Text to speech
 tts:
@@ -56,12 +61,17 @@ camera:
     input: !secret wb_rtsp_url_garage_cam
   - platform: ffmpeg
     name: wyze_v3_driveway_cam
-    input: !secret wb_rtsp_url_driveway_cam
+    input: rtsp://192.168.1.243:8554/driveway-cam
+    #input: !secret wb_rtsp_url_driveway_cam
     # name: wyze_v3_driveway_cam
     # input: rtsp://192.168.1.55:8554/video1_unicast
   - platform: ffmpeg
     name: camera.front_door_1
     input: rtsp://192.168.1.243:8555
+  - platform: ffmpeg
+    name: wyze_og_bear_cam
+    input: !secret wb_rtsp_url_bear_cam
+
 
 sensor:
   - platform: google_wifi
@@ -74,9 +84,9 @@ sensor:
         unit_of_measurement: "°F"
         value_template: "{{ state_attr('weather.home', 'temperature') }}"
 
-midea_dehumidifier:
-  username: sthinds144@gmail.com
-  password: !secret midea_password
+#midea_dehumidifier:
+#  username: sthinds144@gmail.com
+#  password: !secret midea_password
 
 device_tracker:
   - platform: netgear

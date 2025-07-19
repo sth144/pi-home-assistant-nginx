@@ -1,9 +1,7 @@
-homeassistant:
-  enabled: true
-frontend:
-  enabled: true
-availability:
-  enabled: true
+homeassistant: true
+permit_join: true
+frontend: true
+availability: true
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://192.168.1.243:1883
@@ -46,4 +44,3 @@ devices:
     friendly_name: '0x00124b0022ce7d83'
   '0x00158d00079b7f1f':
     friendly_name: '0x00158d00079b7f1f'
-version: 4

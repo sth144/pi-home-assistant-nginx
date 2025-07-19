@@ -1,45 +1,45 @@
-- id: "1631076079215"
-  alias: switch-toggle-living-room-string-lights
-  description: ""
-  trigger:
-    - device_id: 5ce89c45457b99a84eb2896c8d595f45
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: button_4
-  condition: []
-  action:
-    - type: toggle
-      device_id: c62836e61b52ccc9bab970cbec757d48
-      entity_id: switch.eb9f88cafdc227b60ausoh
-      domain: switch
-  mode: single
+#- id: "1631076079215"
+#  alias: switch-toggle-living-room-string-lights
+#  description: ""
+#  trigger:
+#    - device_id: 5ce89c45457b99a84eb2896c8d595f45
+#      domain: zha
+#      platform: device
+#      type: remote_button_short_press
+#      subtype: button_4
+#  condition: []
+#  action:
+#    - type: toggle
+#      device_id: c62836e61b52ccc9bab970cbec757d48
+#      entity_id: switch.eb9f88cafdc227b60ausoh
+#      domain: switch
+#  mode: single
 
-- id: "1633481274356"
-  alias: sunset-turnon-living-room-string-lights
-  description: ""
-  trigger:
-    - platform: sun
-      event: sunset
-      offset: "1:00"
-  condition: []
-  action:
-    - type: turn_on
-      device_id: c62836e61b52ccc9bab970cbec757d48
-      entity_id: switch.eb9f88cafdc227b60ausoh
-      domain: switch
-  mode: single
+#- id: "1633481274356"
+#  alias: sunset-turnon-living-room-string-lights
+#  description: ""
+#  trigger:
+#    - platform: sun
+#      event: sunset
+#      offset: "1:00"
+#  condition: []
+#  action:
+#    - type: turn_on
+#      device_id: c62836e61b52ccc9bab970cbec757d48
+#      entity_id: switch.eb9f88cafdc227b60ausoh
+#      domain: switch
+#  mode: single
 
-- id: "1633481363918"
-  alias: sunset-plus4hr-turnoff-living-room-string-lights
-  description: ""
-  trigger:
-    - platform: time
-      at: "23:00:00"
-  condition: []
-  action:
-    - type: turn_off
-      device_id: c62836e61b52ccc9bab970cbec757d48
-      entity_id: switch.eb9f88cafdc227b60ausoh
-      domain: switch
-  mode: single
+#- id: "1633481363918"
+#  alias: sunset-plus4hr-turnoff-living-room-string-lights
+#  description: ""
+#  trigger:
+#    - platform: time
+#      at: "23:00:00"
+#  condition: []
+#  action:
+#    - type: turn_off
+#      device_id: c62836e61b52ccc9bab970cbec757d48
+#      entity_id: switch.eb9f88cafdc227b60ausoh
+#      domain: switch
+#  mode: single

@@ -23,12 +23,14 @@ services:
       - INFLUXDB_USERNAME=admin
       - INFLUXDB_PASSWORD=password
   promtail:
-    image: grafana/promtail:2.0.0
+    #image: grafana/promtail:2.0.0
+    image: grafana/promtail:latest
     restart: always
     volumes:
       - ./config:/etc/promtail
+      - /etc/promtail/promtail-targets.yaml:/etc/promtail/promtail-targets.yaml
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /etc/hosts:/etc/hosts
+      - /etc/hosts:/etc/hosts:ro
     command: -config.file=/etc/promtail/promtail.yaml
     network_mode: host
     privileged: true

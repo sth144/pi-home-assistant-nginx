@@ -7,7 +7,7 @@
       event_data:
         device_ieee: 70:ac:08:ff:fe:26:1f:15
         unique_id: 70:ac:08:ff:fe:26:1f:15:1:0x0008
-        device_id: d93e9a99eb7a1cc1f31002d25147027c
+        device_id: 45e5de7794548747ce47a8e42f0f72e5
         endpoint_id: 1
         cluster_id: 8
         command: move_to_level
@@ -19,7 +19,7 @@
     #  entity_id: light.smart_switch_guest_room_light
     #  domain: light
     - type: toggle
-      device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+      device_id: 45e5de7794548747ce47a8e42f0f72e5
       entity_id: light.smart_switch_guest_room_light_2
       domain: light
     - type: toggle
@@ -36,7 +36,7 @@
   trigger:
   - platform: device
     type: turned_off
-    device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+    device_id: 45e5de7794548747ce47a8e42f0f72e5
     entity_id: light.smart_switch_guest_room_light
     domain: light
   condition: []
@@ -52,7 +52,7 @@
   trigger:
   - platform: device
     type: turned_on
-    device_id: 0d442e3ede49b0055d2c85f1f52c2de5
+    device_id: 45e5de7794548747ce47a8e42f0f72e5
     entity_id: light.smart_switch_guest_room_light
     domain: light
   condition: []

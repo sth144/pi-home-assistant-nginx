@@ -8,8 +8,8 @@
   condition: []
   action:
     - type: turn_off
-      device_id: 95a59e307bc74d56acce312f849753a1
-      entity_id: switch.workbench_light_smart_plug_5_socket_1
+      device_id: a7c2684b160aaa6c6d38b32051e8fad6
+      entity_id: switch.smart_plug_5_socket_1
       domain: switch
   mode: single
 

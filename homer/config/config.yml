@@ -101,6 +101,17 @@ services:
         subtitle: "Cluster management"
         tag: "app"
         url: "https://pc0"
+  - name: "Services"
+    icon: "fas fa-bolt"
+    items:
+      - name: "TTS UI"
+        logo: "assets/tools/tts.png"
+        tag: "app"
+        url: "http://tts-ui.pc1"
+      - name: "Gitlab"
+        logo: "assets/tools/gitlab.png"
+        tag: "app"
+        url: "http://192.168.1.245:11080"
   - name: "Devices"
     icon: "fas fa-print"
     items:

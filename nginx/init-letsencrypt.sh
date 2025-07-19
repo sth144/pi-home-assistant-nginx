@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(sth144.duckdns.org plex.sth144.duckdns.org audiobookshelf.sth144.duckdns.org hass.sth144.duckdns.org picocluster.sth144.duckdns.org portainer.sth144.duckdns.org nas.sth144.duckdns.org nextcloud.sth144.duckdns.org tts-ui.sth144.duckdns.org)
+domains=(sth144.duckdns.org plex.sth144.duckdns.org audiobookshelf.sth144.duckdns.org hass.sth144.duckdns.org picocluster.sth144.duckdns.org portainer.sth144.duckdns.org nas.sth144.duckdns.org nextcloud.sth144.duckdns.org tts-ui.sth144.duckdns.org gitlab.sth144.duckdns.org joplin.sth144.duckdns.org open-webui.sth144.duckdns.org)
 rsa_key_size=4096
 data_path="/home/pi/Volumes/certbot"
 email="sthinds144@gmail.com" # Adding a valid address is strongly recommended

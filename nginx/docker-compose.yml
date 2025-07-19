@@ -16,7 +16,7 @@ services:
         # - 443:443
     network_mode: "host"
   certbot:
-    image: certbot/certbot:arm32v6-latest
+    image: certbot/certbot:arm64v8-nightly
     restart: unless-stopped
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     volumes:

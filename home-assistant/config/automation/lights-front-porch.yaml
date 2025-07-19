@@ -4,13 +4,12 @@
   trigger:
     - platform: sun
       event: sunset
-      offset: "1:30"
+      offset: 00:00:00
   condition: []
   action:
     - type: turn_on
       device_id: 7b33dfc66858617a9e7441d9edf9e56b
       entity_id: switch.smart_plug_9
-      #entity_id: switch.0x00124b00226d64c4
       domain: switch
   mode: single
 - id: "1631321965638"

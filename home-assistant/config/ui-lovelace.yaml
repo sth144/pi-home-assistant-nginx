@@ -42,6 +42,27 @@ views:
                       - sensor.driveway_motion_sensor_illuminance_lux
                       - sensor.driveway_motion_sensor_device_temperature
                     title: Driveway Motion Sensor
+                  - title: Front Gate
+                    type: entities
+                    entities:
+                      - entity: binary_sensor.backyard_front_gate_sensor_contact
+                        name: Front Gate Sensor Contact
+                      - entity: binary_sensor.backyard_front_gate_sensor_battery_low
+                        name: Front Gate Sensor Battery Low
+                      - entity: sensor.backyard_front_gate_sensor_battery
+                        name: Front Gate Sensor Battery
+                  - title: Back Door
+                    type: entities
+                    entities:
+                      - binary_sensor.back_door_sensor_contact
+                      - sensor.back_door_sensor_battery
+                      - sensor.back_door_sensor_device_temperature
+                  - type: history-graph
+                    entities:
+                      - entity: binary_sensor.backyard_front_gate_sensor_contact
+                        name: Front Gate
+                      - entity: binary_sensor.back_door_sensor_contact
+                        name: Back Door
               - type: entities
                 entities:
                   - entity: light.hue_white_lamp_1
@@ -90,27 +111,6 @@ views:
                         name: Frontyard Hose Timer Smart Watering Program
                       - entity: sensor.frontyard_hose_timer_battery_level
                         name: Frontyard Hose Timer Battery Level
-                  - title: Front Gate
-                    type: entities
-                    entities:
-                      - entity: binary_sensor.backyard_front_gate_sensor_contact
-                        name: Front Gate Sensor Contact
-                      - entity: binary_sensor.backyard_front_gate_sensor_battery_low
-                        name: Front Gate Sensor Battery Low
-                      - entity: sensor.backyard_front_gate_sensor_battery
-                        name: Front Gate Sensor Battery
-                  - title: Back Door
-                    type: entities
-                    entities:
-                      - binary_sensor.back_door_sensor_contact
-                      - sensor.back_door_sensor_battery
-                      - sensor.back_door_sensor_device_temperature
-                  - type: history-graph
-                    entities:
-                      - entity: binary_sensor.backyard_front_gate_sensor_contact
-                        name: Front Gate
-                      - entity: binary_sensor.back_door_sensor_contact
-                        name: Back Door
                   - type: gauge
                     entity: sensor.travel_time_to_st_david_s
                     severity:
@@ -246,7 +246,7 @@ views:
               - entities:
                   - entity: sensor.r6220_gateway_kib_s_received
                   - entity: sensor.r6220_gateway_kib_s_sent
-                hours_to_show: 24
+                hours_to_show: 168
                 refresh_interval: 0
                 title: NetGear Router Traffic
                 type: history-graph
@@ -276,7 +276,7 @@ views:
                 entities:
                   - entity: sensor.electric_water_heater_available_hot_water
                   - entity: sensor.electric_water_heater_power_usage_today
-                hours_to_show: 24
+                hours_to_show: 168
                 refresh_interval: 1
           - type: horizontal-stack
             cards:
@@ -295,7 +295,7 @@ views:
                     name: Outdoor Temperature
                   - entity: sensor.hallway_humidity
                   - entity: sensor.midea_dehumidifier_147334558156779_humidity
-                hours_to_show: 24
+                hours_to_show: 168
                 refresh_interval: 0
           - type: horizontal-stack
             cards:
