@@ -20,7 +20,7 @@
       domain: light
     - type: toggle
       device_id: 3dfa2ec82a6ddd2080f0c32ac28c709b
-      entity_id: switch.smart_plug_1
+      entity_id: switch.office_string_lights
       domain: switch
   mode: single
 - id: "1670545620753"

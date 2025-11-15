@@ -62,9 +62,11 @@ camera:
   - platform: ffmpeg
     name: wyze_v3_driveway_cam
     input: rtsp://192.168.1.243:8554/driveway-cam
-    #input: !secret wb_rtsp_url_driveway_cam
-    # name: wyze_v3_driveway_cam
-    # input: rtsp://192.168.1.55:8554/video1_unicast
+    extra_arguments: -rtsp_transport tcp -stimeout 5000000 -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 10
+  #- platform: generic
+  #  name: wyze_v3_driveway_cam
+  #  stream_source: rtsp://192.168.1.243:8554/driveway-cam
+  #  still_image_url: /local/obama.jpg
   - platform: ffmpeg
     name: camera.front_door_1
     input: rtsp://192.168.1.243:8555

@@ -23,8 +23,13 @@ views:
                 entities:
                   - entity: camera.wyze_v3
                 camera_image: camera.wyze_v3
-              - type: picture-entity
-                entity: camera.wyze_v3_driveway_cam
+              - camera_view: auto
+                type: picture-glance
+                title: Driveway
+                image: https://demo.home-assistant.io/stub_config/kitchen.png
+                entities:
+                  - entity: camera.wyze_v3_driveway_cam
+                camera_image: camera.wyze_v3_driveway_cam
           - type: horizontal-stack
             cards:
               - type: vertical-stack

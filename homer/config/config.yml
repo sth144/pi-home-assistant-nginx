@@ -108,6 +108,9 @@ services:
         logo: "assets/tools/tts.png"
         tag: "app"
         url: "http://tts-ui.pc1"
+  - name: "CI/CD & Automation"
+    icon: "fas fa-robot"
+    items:
       - name: "Gitlab"
         logo: "assets/tools/gitlab.png"
         tag: "app"
@@ -154,6 +157,19 @@ services:
         logo: "assets/tools/audiobookshelf.png"
         subtitle: "Audiobook Manager"
         url: "https://audiobookshelf.sth144.duckdns.org"
+  - name: "CAD"
+    icon: "fas fa-screwdriver-wrench"
+    items:
+      - name: FreeCAD
+        logo: "assets/tools/freecad.png"
+        subtitle: "CAD"
+        tag: "app"
+        url: freecad.sth144.duckdns.org
+      - name: QGIS
+        logo: "assets/tools/qgis.png"
+        subtitle: "GIS"
+        tag: "app"
+        url: 192.168.1.235:90
   - name: "Telemetry"
     icon: "fas fa-desktop"
     items:

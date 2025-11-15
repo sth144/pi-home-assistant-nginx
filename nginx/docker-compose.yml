@@ -9,6 +9,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /etc/hosts:/etc/hosts
+      - ./.env.htpasswd:/etc/nginx/.htpasswd
       - /home/pi/Volumes/letsencrypt:/etc/letsencrypt
       - /home/pi/Volumes/certbot:/var/www/certbot
         # ports:
