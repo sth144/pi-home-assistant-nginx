@@ -1,6 +1,10 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+homeassistant:
+  external_url: "https://hass.sth144.duckdns.org"
+  internal_url: "http://192.168.1.243:8123"
+
 lovelace:
   mode: yaml
   # mode: storage
@@ -30,7 +34,26 @@ scene: !include scenes.yaml
 
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 127.0.0.1
+  trusted_proxies: 
+    - 127.0.0.1
+    - 192.168.1.243
+    - 192.168.240.2
+    - 172.16.0.0/12
+    - 172.17.0.0/16
+    - 172.18.0.0/16
+    - 172.19.0.0/16
+    - 172.20.0.0/16
+    - 172.21.0.0/16
+    - 172.22.0.0/16
+    - 172.23.0.0/16
+    - 172.24.0.0/16
+    - 172.25.0.0/16
+    - 172.26.0.0/16
+    - 172.27.0.0/16
+    - 172.28.0.0/16
+    - 172.29.0.0/16
+    - 172.30.0.0/16
+    - 172.31.0.0/16
 
 bluetooth:
 

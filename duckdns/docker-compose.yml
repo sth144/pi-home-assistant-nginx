@@ -1,13 +1,13 @@
 version: "3.1"
 services:
   duckdns:
-    image: linuxserver/duckdns:arm32v7-version-fb872cca
+    image: linuxserver/duckdns:latest #arm32v7-version-fb872cca
     container_name: duckdns
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
-      - SUBDOMAINS=sthinds144,sth144
+      - SUBDOMAINS=sth144 #,sthinds144
       - TOKEN=${DUCKDNS_TOKEN}
       - LOG_FILE=true
     volumes:
