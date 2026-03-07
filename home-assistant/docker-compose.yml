@@ -2,8 +2,8 @@ version: "2.0"
 services:
   home-assistant:
     #image: homeassistant/raspberrypi3-homeassistant:stable
-    #image: homeassistant/home-assistant
     image: lscr.io/linuxserver/homeassistant:latest
+    #image: lscr.io/linuxserver/homeassistant:latest
     container_name: home-assistant
     restart: always
     logging:
