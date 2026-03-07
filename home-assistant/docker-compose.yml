@@ -6,6 +6,10 @@ services:
     image: lscr.io/linuxserver/homeassistant:latest
     container_name: home-assistant
     restart: always
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - /home/pi/Projects/home-assistant/config:/config
       - /etc/hosts:/etc/hosts

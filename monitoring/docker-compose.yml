@@ -4,6 +4,10 @@ services:
     image: telegraf:1.16
     container_name: telegraf
     restart: always
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
@@ -14,18 +18,32 @@ services:
     network_mode: "host"
   chronograf:
     image: chronograf:latest
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     ports:
       - "127.0.0.1:8890:8888"
     volumes:
       - /home/pi/Volumes/chronograf:/var/lib/chronograf
     environment:
-      - INFLUXDB_URL=http://127.0.0.1:8086
+      - INFLUXDB_URL=http://192.168.1.245:8086
       - INFLUXDB_USERNAME=admin
       - INFLUXDB_PASSWORD=password
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8888/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
   promtail:
     #image: grafana/promtail:2.0.0
     image: grafana/promtail:latest
     restart: always
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - ./config:/etc/promtail
       - /etc/promtail/promtail-targets.yaml:/etc/promtail/promtail-targets.yaml
@@ -37,6 +55,10 @@ services:
   pushgateway:
     image: prom/pushgateway:v1.0.1
     restart: always
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     command:
       - --persistence.file=/data/pushgateway.data
       - --persistence.interval=1h

@@ -5,11 +5,13 @@ services:
       - NET_ADMIN
     image: mjenz/rpi-openvpn
     container_name: openvpn
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     ports:
       - "1194:1194/udp"
     restart: unless-stopped
-      - 1194:1194/udp
-      - 943:943/tcp
     network_mode: "host"
     volumes:
       - /home/pi/Volumes/ovpn_data_raspi/:/etc/openvpn

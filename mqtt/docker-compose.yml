@@ -3,6 +3,10 @@ services:
   mqtt:
     image: eclipse-mosquitto:2.0
     restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - "./config:/mosquitto"
     ports:

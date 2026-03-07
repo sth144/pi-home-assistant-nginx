@@ -3,6 +3,10 @@ services:
   duckdns:
     image: linuxserver/duckdns:latest #arm32v7-version-fb872cca
     container_name: duckdns
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     environment:
       - PUID=1000
       - PGID=1000

@@ -5,6 +5,10 @@ services:
     container_name: nginx
     restart: unless-stopped
     privileged: true
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     #command: >
     #  /bin/sh -c "nginx -g 'daemon off;' &
     #  while :; do
@@ -17,6 +21,9 @@ services:
       - ./.env.htpasswd:/etc/nginx/.htpasswd
       - /home/pi/Volumes/letsencrypt:/etc/letsencrypt
       - /home/pi/Volumes/certbot:/var/www/certbot
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
     ports:
       - 80:80
       - 443:443
@@ -25,8 +32,11 @@ services:
   certbot:
     image: certbot/certbot:arm64v8-nightly
     restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     volumes:
       - /home/pi/Volumes/letsencrypt:/etc/letsencrypt
       - /home/pi/Volumes/certbot:/var/www/certbot
-

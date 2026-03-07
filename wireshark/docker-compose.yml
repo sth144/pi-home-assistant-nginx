@@ -4,6 +4,10 @@ services:
   wireshark:
     image: lscr.io/linuxserver/wireshark
     container_name: wireshark
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     cap_add:
       - NET_ADMIN
     network_mode: host

@@ -4,6 +4,10 @@ services:
     container_name: wyze-bridge
     restart: unless-stopped
     image: mrlt8/wyze-bridge:latest
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     network_mode: host
     #ports:
     #  - 1935:1935 # RTMP

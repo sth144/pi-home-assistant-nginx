@@ -4,6 +4,10 @@ services:
   homer:
     image: b4bz/homer
     container_name: homer
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - ./config:/www/assets
     ports:

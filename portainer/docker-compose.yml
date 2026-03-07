@@ -4,6 +4,10 @@ services:
     image: portainer/portainer
     container_name: portainer
     restart: always
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - /home/pi/Volumes/portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock

@@ -4,6 +4,10 @@ services:
     container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt
     restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
     volumes:
       - ./config:/app/data
       - /run/udev:/run/udev:ro
