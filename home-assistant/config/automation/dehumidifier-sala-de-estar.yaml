@@ -1,0 +1,200 @@
+- id: midea_sala_de_estar_auto_on_high_humidity
+  alias: "Midea Sala de estar: turn on when humid"
+  description: "Turn dehumidifier on when the room stays above the configured humidity threshold."
+  trigger:
+    - platform: template
+      value_template: >-
+        {{
+          [
+            states('sensor.sala_de_estar_humidity') | float(0),
+            states('sensor.hallway_humidity') | float(0)
+          ] | max > states('input_number.midea_sala_de_estar_on_humidity') | float(58)
+        }}
+      for: "00:10:00"
+  condition:
+    - condition: state
+      entity_id: humidifier.sala_de_estar
+      state: "off"
+  action:
+    - service: humidifier.turn_on
+      target:
+        entity_id: humidifier.sala_de_estar
+    - service: humidifier.set_humidity
+      target:
+        entity_id: humidifier.sala_de_estar
+      data:
+        humidity: "{{ states('input_number.midea_sala_de_estar_target_humidity') | int(50) }}"
+  mode: single
+
+- id: midea_sala_de_estar_auto_off_low_humidity
+  alias: "Midea Sala de estar: turn off when dry enough"
+  description: "Turn dehumidifier off once the room stays below the configured stop threshold."
+  trigger:
+    - platform: template
+      value_template: >-
+        {{
+          [
+            states('sensor.sala_de_estar_humidity') | float(100),
+            states('sensor.hallway_humidity') | float(100)
+          ] | max < states('input_number.midea_sala_de_estar_off_humidity') | float(50)
+        }}
+      for: "00:15:00"
+  condition:
+    - condition: state
+      entity_id: humidifier.sala_de_estar
+      state: "on"
+  action:
+    - service: humidifier.turn_off
+      target:
+        entity_id: humidifier.sala_de_estar
+  mode: single
+
+- id: midea_sala_de_estar_night_fan_low
+  alias: "Midea Sala de estar: set fan Low at night"
+  description: "Keep fan quieter during the configured quiet-hours window."
+  trigger:
+    - platform: template
+      value_template: >-
+        {% set start = states('input_datetime.midea_sala_de_estar_quiet_start') %}
+        {% set end = states('input_datetime.midea_sala_de_estar_quiet_end') %}
+        {% set now_t = now().strftime('%H:%M:%S') %}
+        {{
+          start not in ['unknown', 'unavailable', '']
+          and end not in ['unknown', 'unavailable', '']
+          and (
+            (start < end and start <= now_t and now_t < end)
+            or (start > end and (now_t >= start or now_t < end))
+          )
+        }}
+      for: "00:01:00"
+    - platform: state
+      entity_id: humidifier.sala_de_estar
+      from: "off"
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >-
+        {% set start = states('input_datetime.midea_sala_de_estar_quiet_start') %}
+        {% set end = states('input_datetime.midea_sala_de_estar_quiet_end') %}
+        {% set now_t = now().strftime('%H:%M:%S') %}
+        {{
+          start not in ['unknown', 'unavailable', '']
+          and end not in ['unknown', 'unavailable', '']
+          and (
+            (start < end and start <= now_t and now_t < end)
+            or (start > end and (now_t >= start or now_t < end))
+          )
+        }}
+    - condition: state
+      entity_id: humidifier.sala_de_estar
+      state: "on"
+  action:
+    - service: fan.set_preset_mode
+      target:
+        entity_id: fan.sala_de_estar_fan
+      data:
+        preset_mode: Low
+  mode: single
+
+- id: midea_sala_de_estar_day_fan_high
+  alias: "Midea Sala de estar: set fan High in daytime"
+  description: "Restore stronger fan mode outside quiet hours."
+  trigger:
+    - platform: template
+      value_template: >-
+        {% set start = states('input_datetime.midea_sala_de_estar_quiet_start') %}
+        {% set end = states('input_datetime.midea_sala_de_estar_quiet_end') %}
+        {% set now_t = now().strftime('%H:%M:%S') %}
+        {{
+          start not in ['unknown', 'unavailable', '']
+          and end not in ['unknown', 'unavailable', '']
+          and (
+            (start < end and (now_t < start or now_t >= end))
+            or (start > end and now_t >= end and now_t < start)
+          )
+        }}
+      for: "00:01:00"
+    - platform: state
+      entity_id: humidifier.sala_de_estar
+      from: "off"
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >-
+        {% set start = states('input_datetime.midea_sala_de_estar_quiet_start') %}
+        {% set end = states('input_datetime.midea_sala_de_estar_quiet_end') %}
+        {% set now_t = now().strftime('%H:%M:%S') %}
+        {{
+          start not in ['unknown', 'unavailable', '']
+          and end not in ['unknown', 'unavailable', '']
+          and (
+            (start < end and (now_t < start or now_t >= end))
+            or (start > end and now_t >= end and now_t < start)
+          )
+        }}
+    - condition: state
+      entity_id: humidifier.sala_de_estar
+      state: "on"
+  action:
+    - service: fan.set_preset_mode
+      target:
+        entity_id: fan.sala_de_estar_fan
+      data:
+        preset_mode: High
+  mode: single
+
+- id: midea_sala_de_estar_tank_full_alert
+  alias: "Midea Sala de estar: tank full alert"
+  description: "Raise a persistent alert when bucket is full."
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sala_de_estar_tank_full
+      to: "on"
+      for: "00:02:00"
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "Dehumidifier bucket is full"
+        message: "Sala de estar dehumidifier tank is full. Empty bucket to resume operation."
+        notification_id: midea_sala_de_estar_tank_full
+    - service: notify.mobile_app_sean_hinds
+      continue_on_error: true
+      data:
+        title: "Dehumidifier bucket is full"
+        message: "Sala de estar dehumidifier tank is full. Empty bucket to resume operation."
+  mode: single
+
+- id: midea_sala_de_estar_tank_full_cleared
+  alias: "Midea Sala de estar: clear tank full alert"
+  description: "Dismiss the full-bucket alert when condition clears."
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sala_de_estar_tank_full
+      to: "off"
+      for: "00:02:00"
+  action:
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: midea_sala_de_estar_tank_full
+  mode: single
+
+- id: midea_sala_de_estar_unavailable_alert
+  alias: "Midea Sala de estar: unavailable alert"
+  description: "Alert if integration/device goes unavailable for an extended period."
+  trigger:
+    - platform: state
+      entity_id: humidifier.sala_de_estar
+      to: "unavailable"
+      for: "00:10:00"
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "Dehumidifier unavailable"
+        message: "humidifier.sala_de_estar has been unavailable for over 10 minutes. Check device power, Wi-Fi, and integration health."
+        notification_id: midea_sala_de_estar_unavailable
+    - service: notify.mobile_app_sean_hinds
+      continue_on_error: true
+      data:
+        title: "Dehumidifier unavailable"
+        message: "humidifier.sala_de_estar has been unavailable for over 10 minutes. Check device power, Wi-Fi, and integration health."
+  mode: single

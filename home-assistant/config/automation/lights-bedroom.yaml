@@ -2,15 +2,21 @@
   alias: button1-toggle-bedroom-string-lights
   description: ""
   trigger:
-    - device_id: 719637889f2498a3d70a1f7ea7f746e0
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: remote_button_short_press
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 719637889f2498a3d70a1f7ea7f746e0
+        device_ieee: 00:15:8d:00:07:9b:5d:50
+        unique_id: 00:15:8d:00:07:9b:5d:50:1:0x0006
+        endpoint_id: 1
+        cluster_id: 6
+        command: click
+        args:
+          click_type: single
+        params: {}
   condition: []
   action:
-    - type: toggle
-      device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.smart_plug_0
-      domain: switch
+    - service: switch.toggle
+      target:
+        entity_id: switch.smart_plug_0
   mode: single

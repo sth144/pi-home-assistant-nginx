@@ -2,26 +2,26 @@
   alias: button0-toggle-office-lights
   description: ""
   trigger:
-    # - platform: device
-    #   device_id: 9207a1c4c264befd7e62c32fee0e3155
-    #   domain: button
-    #   entity_id: 6595489f8984f26a3e5cd3632c043963
-    #   type: pressed
-    - device_id: 9207a1c4c264befd7e62c32fee0e3155
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: remote_button_short_press
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 9207a1c4c264befd7e62c32fee0e3155
+        device_ieee: 00:15:8d:00:07:9b:7f:1f
+        unique_id: 00:15:8d:00:07:9b:7f:1f:1:0x0006
+        endpoint_id: 1
+        cluster_id: 6
+        command: click
+        args:
+          click_type: single
+        params: {}
   condition: []
   action:
-    - type: toggle
-      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
-      entity_id: light.hue_white_lamp_2
-      domain: light
-    - type: toggle
-      device_id: 3dfa2ec82a6ddd2080f0c32ac28c709b
-      entity_id: switch.office_string_lights
-      domain: switch
+    - service: light.toggle
+      target:
+        entity_id: light.hue_white_lamp_2
+    - service: switch.toggle
+      target:
+        entity_id: switch.office_string_lights
   mode: single
 - id: "1670545620753"
   alias: Tag Toggle Office Light is scanned

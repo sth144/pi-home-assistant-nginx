@@ -31,6 +31,43 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 scene: !include scenes.yaml
+input_number:
+  midea_sala_de_estar_on_humidity:
+    name: Midea Sala de estar on humidity
+    min: 45
+    max: 75
+    step: 1
+    unit_of_measurement: "%"
+    mode: slider
+    initial: 58
+  midea_sala_de_estar_off_humidity:
+    name: Midea Sala de estar off humidity
+    min: 35
+    max: 70
+    step: 1
+    unit_of_measurement: "%"
+    mode: slider
+    initial: 50
+  midea_sala_de_estar_target_humidity:
+    name: Midea Sala de estar target humidity
+    min: 35
+    max: 60
+    step: 1
+    unit_of_measurement: "%"
+    mode: slider
+    initial: 50
+
+input_datetime:
+  midea_sala_de_estar_quiet_start:
+    name: Midea Sala de estar quiet start
+    has_date: false
+    has_time: true
+    initial: "22:30"
+  midea_sala_de_estar_quiet_end:
+    name: Midea Sala de estar quiet end
+    has_date: false
+    has_time: true
+    initial: "07:30"
 
 http:
   use_x_forwarded_for: true

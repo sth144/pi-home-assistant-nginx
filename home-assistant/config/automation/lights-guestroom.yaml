@@ -34,31 +34,25 @@
   alias: guest-room-smart-switch-button1-turn-fan-off
   description: 'Turn off Guest Room fan with Guest Room Smart Switch button 1'
   trigger:
-  - platform: device
-    type: turned_off
-    device_id: 45e5de7794548747ce47a8e42f0f72e5
-    entity_id: light.smart_switch_guest_room_light
-    domain: light
+  - platform: state
+    entity_id: light.guest_room_light_switch_light
+    to: "off"
   condition: []
   action:
-  - type: turn_off
-    device_id: 0bc4918becee90ccc3a53630fdfc96e7
-    entity_id: switch.tz3000_nfnmi125_ts011f_switch
-    domain: switch
+  - service: switch.turn_off
+    target:
+      entity_id: switch.tz3000_nfnmi125_ts011f_switch
   mode: single
 - id: '1680368920618'
   alias: guest-room-smart-switch-button1-turn-fan-on
   description: 'Turn on Guest Room fan with Guest Room Smart Switch button 1'
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: 45e5de7794548747ce47a8e42f0f72e5
-    entity_id: light.smart_switch_guest_room_light
-    domain: light
+  - platform: state
+    entity_id: light.guest_room_light_switch_light
+    to: "on"
   condition: []
   action:
-  - type: turn_on
-    device_id: 0bc4918becee90ccc3a53630fdfc96e7
-    entity_id: switch.tz3000_nfnmi125_ts011f_switch
-    domain: switch
+  - service: switch.turn_on
+    target:
+      entity_id: switch.tz3000_nfnmi125_ts011f_switch
   mode: single

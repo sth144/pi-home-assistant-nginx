@@ -2,17 +2,20 @@
   alias: switch-toggle-backyard-string-lights
   description: ""
   trigger:
-    - device_id: 5ce89c45457b99a84eb2896c8d595f45
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: button_1
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: 5ce89c45457b99a84eb2896c8d595f45
+        endpoint_id: 1
+        cluster_id: 6
+        command: remote_button_short_press
+        args: []
+        params: {}
   condition: []
   action:
-    - type: toggle
-      device_id: 2a10cb6b191cdb24c8c4336d441605df
-      entity_id: switch.smart_plug_6_switch
-      domain: switch
+    - service: switch.toggle
+      target:
+        entity_id: switch.smart_plug_6_switch
   mode: single
 - id: "1633738838537"
   alias: sunset-turnon-backyard-string-lights

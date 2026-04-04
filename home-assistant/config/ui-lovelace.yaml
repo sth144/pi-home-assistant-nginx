@@ -144,10 +144,25 @@ views:
                         entities:
                           - entity: humidifier.sala_de_estar
                           - entity: fan.sala_de_estar_fan
+                          - entity: sensor.sala_de_estar_humidity
+                          - entity: sensor.hallway_humidity
                           - entity: binary_sensor.sala_de_estar_replace_filter
                           - entity: binary_sensor.sala_de_estar_tank_full
                           - entity: sensor.sala_de_estar_temperature
                           - entity: sensor.sala_de_estar_water_level
+                  - type: entities
+                    title: Dehumidifier Automation
+                    show_header_toggle: false
+                    entities:
+                      - entity: automation.midea_sala_de_estar_turn_on_when_humid
+                      - entity: automation.midea_sala_de_estar_turn_off_when_dry_enough
+                      - entity: automation.midea_sala_de_estar_set_fan_low_at_night
+                      - entity: automation.midea_sala_de_estar_set_fan_high_in_daytime
+                      - entity: input_number.midea_sala_de_estar_on_humidity
+                      - entity: input_number.midea_sala_de_estar_off_humidity
+                      - entity: input_number.midea_sala_de_estar_target_humidity
+                      - entity: input_datetime.midea_sala_de_estar_quiet_start
+                      - entity: input_datetime.midea_sala_de_estar_quiet_end
                   - type: humidifier
                     entity: humidifier.sala_de_estar
 
@@ -299,7 +314,7 @@ views:
                   - entity: sensor.outdoor_temperature_f
                     name: Outdoor Temperature
                   - entity: sensor.hallway_humidity
-                  - entity: sensor.midea_dehumidifier_147334558156779_humidity
+                  - entity: sensor.sala_de_estar_humidity
                 hours_to_show: 168
                 refresh_interval: 0
           - type: horizontal-stack
