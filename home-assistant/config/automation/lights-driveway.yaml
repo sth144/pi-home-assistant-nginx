@@ -6,6 +6,14 @@
       entity_id: binary_sensor.driveway_motion_sensor
       from: "off"
       to: "on"
+    - platform: state
+      entity_id: binary_sensor.driveway_motion_sensor_occupancy_1 # ZHA
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.motion # mqtt
+      from: "off"
+      to: "on"
   condition:
     - condition: sun
       after: sunset
@@ -28,4 +36,3 @@
     - service: light.turn_off
       target:
         entity_id: light.driveway_light
-

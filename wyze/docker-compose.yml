@@ -26,3 +26,14 @@ services:
       - WB_AUTH=false
       - WB_USERNAME=${WB_USERNAME}
       - WB_PASSWORD=${WB_PASSWORD}
+      - ENABLE_AUDIO=false
+  scrypted:
+    container_name: scrypted
+    image: ghcr.io/koush/scrypted:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - SCRYPTED_WEBHOOK_UPDATE_AUTHORIZATION=${SCRYPTED_WEBHOOK_UPDATE_AUTHORIZATION:-}
+      - SCRYPTED_WEBHOOK_UPDATE=${SCRYPTED_WEBHOOK_UPDATE:-}
+    volumes:
+      - /home/pi/Volumes/scrypted:/server/volume

@@ -74,7 +74,7 @@ http:
   trusted_proxies: 
     - 127.0.0.1
     - 192.168.1.243
-    - 192.168.240.2
+    - 192.168.240.0/24
     - 172.16.0.0/12
     - 172.17.0.0/16
     - 172.18.0.0/16
@@ -120,8 +120,9 @@ camera:
     name: wyze_v3_garage_cam
     input: !secret wb_rtsp_url_garage_cam
   - platform: ffmpeg
-    name: wyze_v3_driveway_cam
-    input: rtsp://192.168.1.243:8554/driveway-cam
+    name: wyze_v4_driveway_cam_1
+    input: rtsp://192.168.1.243:4550/686569ac8d69d5f8
+    # input: rtsp://192.168.1.243:8554/driveway-cam
     extra_arguments: -rtsp_transport tcp -stimeout 5000000 -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 10
   #- platform: generic
   #  name: wyze_v3_driveway_cam

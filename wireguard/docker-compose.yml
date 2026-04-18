@@ -19,7 +19,7 @@ services:
       - PGID=100
       - TZ=Europe/London
       - WG_HOST=sth144.duckdns.org
-      - WG_DEFAULT_DNS=192.168.1.240
+      - WG_DEFAULT_DNS=192.168.1.244
     env_file:
       - .env.PASSWORD
     volumes:

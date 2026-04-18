@@ -35,3 +35,16 @@ services:
       resources:
         limits:
           cpus: "1.0" # CPU core
+  ha-mcp:
+    image: ghcr.io/homeassistant-ai/ha-mcp:latest
+    container_name: ha-mcp
+    restart: unless-stopped
+    environment:
+      - HOMEASSISTANT_URL=http://192.168.1.243:8123
+      - HOMEASSISTANT_TOKEN=${HOME_ASSISTANT_TOKEN}
+      - MCP_SECRET_PATH=/mcp-secret
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: ["ha-mcp-web"]
+    ports:
+      - "8086:8086"

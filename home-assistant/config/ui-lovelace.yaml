@@ -28,8 +28,8 @@ views:
                 title: Driveway
                 image: https://demo.home-assistant.io/stub_config/kitchen.png
                 entities:
-                  - entity: camera.wyze_v3_driveway_cam
-                camera_image: camera.wyze_v3_driveway_cam
+                  - entity: camera.wyze_v4_driveway_cam_1
+                camera_image: camera.wyze_v4_driveway_cam_1
           - type: horizontal-stack
             cards:
               - type: vertical-stack
@@ -44,7 +44,7 @@ views:
                     entities:
                       - binary_sensor.driveway_motion_sensor_occupancy
                       - sensor.driveway_motion_sensor_battery
-                      - sensor.driveway_motion_sensor_illuminance_lux
+                      - sensor.driveway_motion_sensor_illuminance
                       - sensor.driveway_motion_sensor_device_temperature
                     title: Driveway Motion Sensor
                   - title: Front Gate
