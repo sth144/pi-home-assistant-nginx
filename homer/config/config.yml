@@ -71,7 +71,7 @@ services:
         tag: "app"
         url: "http://192.168.1.243:51821"
         target: "_blank" # optional html a tag target attribute
-      - name: "NetGear Router"
+      - name: "TP-Link IoT Router"
         logo: "assets/tools/router.png"
         subtitle: "Subnetwork"
         tag: "app"
