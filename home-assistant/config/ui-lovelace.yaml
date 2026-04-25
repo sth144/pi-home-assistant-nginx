@@ -96,16 +96,26 @@ views:
               - type: vertical-stack
                 cards:
                   - type: entities
-                    title: Hose Timer (Rain Seer)
+                    title: Hose Timers
                     entities:
-                      - entity: switch.backyard_hose_timer_zone
+                      - entity: switch.backyard_hose_timer_sonnof
                         name: Backyard Hose Timer
-                      - entity: switch.backyard_hose_timer_rain_delay
-                        name: Backyard Hose Timer Rain Delay
-                      - entity: switch.backyard_hose_timer_sunset_program
-                        name: Backyard Hose Timer Sunset Program
-                      - entity: sensor.backyard_hose_timer_battery_level
-                        name: Backyard Hose Timer Battery Level
+                      - entity: sensor.backyard_hose_timer_sonnof_battery
+                        name: Backyard Hose Timer Battery
+                      - entity: sensor.backyard_hose_timer_sonnof_volume_flow_rate
+                        name: Backyard Hose Timer Flow Rate
+                      - entity: sensor.backyard_hose_water_total
+                        name: Backyard Hose Water Total
+                      - entity: sensor.backyard_hose_water_last_7_days
+                        name: Backyard Hose Water Used (7d)
+                      - entity: binary_sensor.backyard_hose_timer_sonnof_water_leak
+                        name: Backyard Hose Timer Water Leak
+                      - entity: binary_sensor.backyard_hose_timer_sonnof_water_supply
+                        name: Backyard Hose Timer Water Supply
+                      - entity: button.backyard_hose_timer_sonnof_identify
+                        name: Backyard Hose Timer Identify
+                      - entity: update.backyard_hose_timer_sonnof_firmware
+                        name: Backyard Hose Timer Firmware
                       - entity: switch.frontyard_hose_timer_zone
                         name: Frontyard Hose Timer
                       - entity: switch.frontyard_hose_timer_rain_delay

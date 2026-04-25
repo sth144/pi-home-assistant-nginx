@@ -146,6 +146,20 @@ sensor:
         friendly_name: "Outdoor Temperature F"
         unit_of_measurement: "°F"
         value_template: "{{ state_attr('weather.home', 'temperature') }}"
+  - platform: integration
+    source: sensor.backyard_hose_timer_sonnof_volume_flow_rate
+    name: "Backyard Hose Water Total"
+    unit_time: h
+    method: trapezoidal
+    round: 3
+  - platform: statistics
+    name: "Backyard Hose Water Last 7 Days"
+    entity_id: sensor.backyard_hose_water_total
+    state_characteristic: change
+    max_age:
+      days: 7
+    sampling_size: 10000
+    precision: 3
 
 #midea_dehumidifier:
 #  username: sthinds144@gmail.com

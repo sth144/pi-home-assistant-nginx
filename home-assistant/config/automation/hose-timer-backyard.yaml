@@ -13,8 +13,34 @@
         params: {}
   condition: []
   action:
-    - type: toggle
-      device_id: 06475782fd1f328e27ecf05f945aec11
-      entity_id: switch.backyard_hose_timer_zone
-      domain: switch
+    - service: switch.toggle
+      target:
+        entity_id: switch.backyard_hose_timer_sonnof
   alias: Toggle Backyard Hose
+
+- id: backyard_hose_timer_run_at_sunset
+  alias: Backyard Hose Timer At Sunset
+  description: Run the backyard hose timer for one hour at sunset and notify Sean when it starts and stops.
+  mode: single
+  trigger:
+    - platform: sun
+      event: sunset
+  condition: []
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.backyard_hose_timer_sonnof
+    - service: notify.mobile_app_sean_hindss_iphone
+      continue_on_error: true
+      data:
+        title: Backyard Hose Timer
+        message: Backyard hose timer started at sunset and will run for 1 hour.
+    - delay: "01:00:00"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.backyard_hose_timer_sonnof
+    - service: notify.mobile_app_sean_hindss_iphone
+      continue_on_error: true
+      data:
+        title: Backyard Hose Timer
+        message: Backyard hose timer stopped after 1 hour.
