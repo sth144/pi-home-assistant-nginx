@@ -23,3 +23,11 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
       - /dev/ttyACM1:/dev/ttyACM1
       - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2692360-if00:/dev/ttyCONBEE
+  zwave:
+    image: zwavejs/zwave-js-ui:latest
+    container_name: zwave
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0

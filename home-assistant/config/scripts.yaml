@@ -1,0 +1,13 @@
+test_iphone_notification:
+  alias: Test iPhone Notification
+  sequence:
+    - service: persistent_notification.create
+      data:
+        title: Home Assistant Test
+        message: Dashboard test button pressed. Mobile notifications were triggered.
+        notification_id: test_iphone_notification
+    - service: notify.mobile_app_sean_hindss_iphone
+      continue_on_error: true
+      data:
+        title: Home Assistant Test
+        message: Test notification sent from Lovelace

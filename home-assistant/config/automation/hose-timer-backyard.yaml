@@ -44,3 +44,31 @@
       data:
         title: Backyard Hose Timer
         message: Backyard hose timer stopped after 1 hour.
+
+- id: backyard_hose_timer_failsafe_off
+  alias: Backyard Hose Timer Failsafe Off
+  description: Turn off the backyard hose timer if it has been left on for more than 2 hours.
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: switch.backyard_hose_timer_sonnof
+      to: "on"
+      for: "02:00:00"
+    - platform: time_pattern
+      minutes: "/15"
+  condition:
+    - condition: state
+      entity_id: switch.backyard_hose_timer_sonnof
+      state: "on"
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(states.switch.backyard_hose_timer_sonnof.last_changed)) > 7200 }}
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.backyard_hose_timer_sonnof
+    - service: notify.mobile_app_sean_hindss_iphone
+      continue_on_error: true
+      data:
+        title: Backyard Hose Timer Failsafe
+        message: Backyard hose timer was turned off after running for over 2 hours.

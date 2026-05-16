@@ -1,0 +1,558 @@
+title: Mobile
+views:
+  - title: Mobile
+    path: mobile
+    badges:
+      - entity: person.sean
+      - entity: person.amy
+      - entity: sun.sun
+    cards:
+      - type: weather-forecast
+        entity: weather.home
+
+      - type: glance
+        title: Presence
+        columns: 2
+        entities:
+          - entity: device_tracker.sean
+            name: Sean
+          - entity: person.amy
+            name: Amy
+
+      - type: grid
+        title: Quick Controls
+        columns: 2
+        square: false
+        cards:
+          - type: tile
+            entity: light.driveway_light
+            name: Driveway
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: light.garage_light
+            name: Garage
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.office_string_lights
+            name: Office Lights
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.smart_plug_0
+            name: Bedroom Lights
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.smart_plug_6_switch
+            name: Backyard Lights
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.smart_plug_5_socket_1
+            name: Workbench
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.backyard_hose_timer_sonnof
+            name: Backyard Hose
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.frontyard_hose_timer_zone
+            name: Frontyard Hose
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.pi_hole
+            name: Pi-hole
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: vacuum.robovac
+            name: Deborah
+            features_position: bottom
+            vertical: false
+
+      - type: entities
+        title: Entry and Perimeter
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.ding
+            name: Front Door Ding
+          - entity: binary_sensor.motion
+            name: Front Door Motion
+          - entity: button.take_snapshot
+            name: Front Door Snapshot
+          - entity: binary_sensor.driveway_motion_sensor_occupancy
+            name: Driveway Motion
+          - entity: sensor.driveway_motion_sensor_battery
+            name: Driveway Battery
+          - entity: sensor.driveway_motion_sensor_illuminance
+            name: Driveway Lux
+          - entity: binary_sensor.backyard_front_gate_sensor_contact
+            name: Front Gate
+          - entity: sensor.backyard_front_gate_sensor_battery
+            name: Front Gate Battery
+          - entity: binary_sensor.back_door_sensor_contact
+            name: Back Door
+          - entity: sensor.back_door_sensor_battery
+            name: Back Door Battery
+
+      - type: history-graph
+        title: Door Activity
+        hours_to_show: 24
+        entities:
+          - entity: binary_sensor.backyard_front_gate_sensor_contact
+            name: Front Gate
+          - entity: binary_sensor.back_door_sensor_contact
+            name: Back Door
+          - entity: binary_sensor.driveway_motion_sensor_occupancy
+            name: Driveway Motion
+
+      - type: entities
+        title: Sean Travel Times
+        show_header_toggle: false
+        entities:
+          - entity: sensor.travel_time_to_st_david_s
+            name: St. David's Medical Center
+          - entity: sensor.travel_time_to_waterloo_pickleball
+            name: Waterloo Pickleball
+          - entity: sensor.travel_time_to_l7_informatics
+            name: L7 Informatics
+
+      - type: history-graph
+        title: Travel Time Trends
+        hours_to_show: 24
+        entities:
+          - entity: sensor.travel_time_to_st_david_s
+            name: St. David's Medical Center
+          - entity: sensor.travel_time_to_waterloo_pickleball
+            name: Waterloo Pickleball
+          - entity: sensor.travel_time_to_l7_informatics
+            name: L7 Informatics
+
+      - type: thermostat
+        entity: climate.hallway
+
+      - type: humidifier
+        entity: humidifier.147334558156779_dehumidifier
+        name: Midea Dehumidifier (Living Room)
+
+      - type: entities
+        title: Midea Dehumidifier (Living Room)
+        show_header_toggle: false
+        entities:
+          - entity: humidifier.147334558156779_dehumidifier
+            name: Midea Dehumidifier (Living Room)
+          - entity: select.147334558156779_wind_speed
+            name: Dehumidifier Fan
+          - entity: sensor.hallway_humidity
+            name: Hallway Humidity
+          - entity: sensor.hallway_temperature
+            name: Hallway Temperature
+          - entity: sensor.147334558156779_water_full_level
+            name: Water Level
+          - entity: sensor.147334558156779_water_full_time
+            name: Minutes Since Full
+          - entity: binary_sensor.147334558156779_status
+            name: Connectivity
+          - entity: binary_sensor.147334558156779_tank_status
+            name: Tank Full
+          - entity: input_number.midea_sala_de_estar_on_humidity
+            name: Turn On At
+          - entity: input_number.midea_sala_de_estar_off_humidity
+            name: Turn Off At
+          - entity: input_number.midea_sala_de_estar_target_humidity
+            name: Target Humidity
+          - entity: input_datetime.midea_sala_de_estar_quiet_start
+            name: Quiet Start
+          - entity: input_datetime.midea_sala_de_estar_quiet_end
+            name: Quiet End
+
+      - type: entities
+        title: Air Purifier
+        show_header_toggle: false
+        entities:
+          - entity: fan.levoit_smart_true_hepa_air_purifier
+            name: Levoit Air Purifier
+          - entity: sensor.levoit_smart_true_hepa_air_purifier_air_quality
+            name: Air Quality
+          - entity: sensor.levoit_smart_true_hepa_air_purifier_pm2_5
+            name: PM2.5
+          - entity: sensor.levoit_smart_true_hepa_air_purifier_filter_life
+            name: Filter Life
+
+      - type: entities
+        title: Dehumidifier Automation
+        show_header_toggle: false
+        entities:
+          - entity: automation.midea_sala_de_estar_turn_on_when_humid
+          - entity: automation.midea_sala_de_estar_turn_off_when_dry_enough
+          - entity: automation.midea_sala_de_estar_set_fan_low_at_night
+          - entity: automation.midea_sala_de_estar_set_fan_high_in_daytime
+
+      - type: history-graph
+        title: Environment
+        hours_to_show: 24
+        entities:
+          - entity: sensor.hallway_temperature
+            name: Hallway Temp
+          - entity: sensor.outdoor_temperature_f
+            name: Outdoor Temp
+          - entity: sensor.hallway_humidity
+            name: Hallway Humidity
+
+      - type: entities
+        title: Hose Timers
+        show_header_toggle: false
+        entities:
+          - entity: sensor.backyard_hose_timer_sonnof_battery
+            name: Backyard Battery
+          - entity: sensor.backyard_hose_timer_sonnof_volume_flow_rate
+            name: Flow Rate
+          - entity: sensor.backyard_hose_water_total
+            name: Water Total
+          - entity: sensor.backyard_hose_water_last_7_days
+            name: Water Used 7d
+          - entity: binary_sensor.backyard_hose_timer_sonnof_water_leak
+            name: Water Leak
+          - entity: binary_sensor.backyard_hose_timer_sonnof_water_supply
+            name: Water Supply
+          - entity: button.backyard_hose_timer_sonnof_identify
+            name: Identify
+          - entity: update.backyard_hose_timer_sonnof_firmware
+            name: Firmware
+
+      - type: entities
+        title: Media and Devices
+        show_header_toggle: false
+        entities:
+          - entity: media_player.shield
+            name: Shield
+          - entity: media_player.plex_plex_web_chrome
+            name: Plex Web
+          - entity: sensor.plex_openmediavault
+            name: Plex Server
+          - entity: light.hue_white_lamp_1
+            name: Guest Room Lamp
+          - entity: light.hue_white_lamp_2
+            name: Office Lamp
+          - entity: light.guest_room_light_switch_light
+            name: Guest Room Lights
+          - entity: light.guest_room_light_switch_light_2
+            name: Guest Room Fan
+          - entity: switch.smart_plug_9
+            name: Christmas Lights
+
+      - type: entities
+        title: Network
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.onhub_wan_status
+            name: WAN Connected
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_external_ip
+            name: External IP
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_download_speed
+            name: Download Speed
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
+            name: Upload Speed
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
+            name: Data Received
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
+            name: Data Sent
+          - entity: sensor.local_ip
+            name: Home Assistant IP
+          - entity: sensor.pi_hole_ads_blocked_today
+            name: Ads Blocked Today
+          - entity: sensor.pi_hole_ads_percentage_blocked_today
+            name: Ads Blocked Percent
+          - entity: sensor.pi_hole_dns_queries_today
+            name: DNS Queries Today
+          - entity: sensor.pi_hole_dns_unique_clients
+            name: DNS Clients
+          - entity: sensor.pi_hole_domains_blocked
+            name: Domains Blocked
+
+      - type: entities
+        title: Water Heater and Air
+        show_header_toggle: false
+        entities:
+          - entity: water_heater.electric_water_heater_2
+            name: Water Heater
+          - entity: sensor.electric_water_heater_electric_water_heater_available_hot_water
+            name: Hot Water Available
+          - entity: sensor.electric_water_heater_electric_water_heater_power_usage_today
+            name: Power Usage Today
+          - entity: sensor.electric_water_heater_electric_water_heater_water_usage_today
+            name: Water Usage Today
+          - entity: sensor.electric_water_heater_electric_water_heater_tank_health
+            name: Tank Health
+          - entity: binary_sensor.electric_water_heater_electric_water_heater_running
+            name: Heating
+          - entity: sensor.electric_water_heater_electric_water_heater_alert_count
+            name: Alert Count
+
+      - type: gauge
+        entity: sensor.dishwasher_program_progress
+        name: Bosch Dishwasher Progress
+        min: 0
+        max: 100
+
+      - type: entities
+        title: Bosch Dishwasher
+        show_header_toggle: false
+        entities:
+          - entity: sensor.dishwasher_operation_state
+            name: Operation State
+          - entity: select.dishwasher_selected_program
+            name: Selected Program
+          - entity: select.dishwasher_active_program
+            name: Active Program
+          - entity: sensor.dishwasher_program_finish_time
+            name: Finish Time
+          - entity: sensor.dishwasher_door
+            name: Door
+          - entity: switch.dishwasher_power
+            name: Power
+          - entity: binary_sensor.dishwasher_remote_control
+            name: Remote Control
+          - entity: binary_sensor.dishwasher_remote_start
+            name: Remote Start
+          - entity: switch.dishwasher_half_load
+            name: Half Load
+          - entity: switch.dishwasher_extra_dry
+            name: Extra Dry
+          - entity: switch.dishwasher_hygiene
+            name: Hygiene+
+          - entity: sensor.dishwasher_rinse_aid_nearly_empty
+            name: Rinse Aid
+          - entity: sensor.dishwasher_salt_nearly_empty
+            name: Salt
+          - entity: binary_sensor.dishwasher_connectivity
+            name: Connectivity
+          - entity: button.dishwasher_stop_program
+            name: Stop Program
+
+      - type: entities
+        title: Printer and Device Status
+        show_header_toggle: false
+        entities:
+          - entity: sensor.canon_ts300_series
+            name: Canon TS300
+          - entity: sensor.canon_ts300_series_black
+            name: Black Ink
+          - entity: sensor.canon_ts300_series_color
+            name: Color Ink
+          - entity: sensor.sean_iphone_battery
+            name: iPhone Battery
+          - entity: sensor.sean_iphone_zone_name
+            name: iPhone Zone
+
+      - type: history-graph
+        title: Network Traffic
+        hours_to_show: 24
+        entities:
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_download_speed
+            name: Router RX
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
+            name: Router TX
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
+            name: Data Received
+          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
+            name: Data Sent
+
+      - type: markdown
+        content: |
+          ## Cameras
+
+      - type: conditional
+        conditions:
+          - entity: camera.front_door_mqtt
+            state_not: unavailable
+        card:
+          type: picture-entity
+          entity: camera.front_door_mqtt
+          name: Front Door
+          camera_view: auto
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.front_door_mqtt
+            state: unavailable
+        card:
+          type: picture
+          image: /local/front_door_snapshot.jpg
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3_garage_cam
+            state_not: unavailable
+        card:
+          type: picture-entity
+          entity: camera.wyze_v3_garage_cam
+          name: Garage
+          camera_view: auto
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3_garage_cam
+            state: unavailable
+        card:
+          type: picture
+          image: /local/garage_cam_snapshot.jpg
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3
+            state_not: unavailable
+          - entity: camera.wyze_v3
+            state_not: unknown
+        card:
+          type: picture-entity
+          entity: camera.wyze_v3
+          name: Living Room
+          camera_view: auto
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3
+            state: unavailable
+          - entity: binary_sensor.living_room_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/living_room_snapshot.jpg
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3
+            state: unknown
+          - entity: binary_sensor.living_room_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/living_room_snapshot.jpg
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3
+            state: unavailable
+          - entity: binary_sensor.living_room_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3
+            state: unknown
+          - entity: binary_sensor.living_room_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v4_driveway_cam_1
+            state_not: unavailable
+          - entity: camera.wyze_v4_driveway_cam_1
+            state_not: unknown
+        card:
+          type: picture-entity
+          entity: camera.wyze_v4_driveway_cam_1
+          name: Driveway
+          camera_view: auto
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v4_driveway_cam_1
+            state: unavailable
+          - entity: binary_sensor.driveway_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/driveway_cam_snapshot.jpg
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v4_driveway_cam_1
+            state: unknown
+          - entity: binary_sensor.driveway_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/driveway_cam_snapshot.jpg
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v4_driveway_cam_1
+            state: unavailable
+          - entity: binary_sensor.driveway_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v4_driveway_cam_1
+            state: unknown
+          - entity: binary_sensor.driveway_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+          tap_action:
+            action: none
+          hold_action:
+            action: none

@@ -4,17 +4,18 @@ default_config:
 homeassistant:
   external_url: "https://hass.sth144.duckdns.org"
   internal_url: "http://192.168.1.243:8123"
+  allowlist_external_dirs:
+    - /config/www
 
 lovelace:
-  mode: yaml
-  # mode: storage
-  # Add yaml dashboards
+  resource_mode: storage
   dashboards:
-    ui-overview:
+    ui-system:
       mode: yaml
       title: System
-      filename: ui-lovelace.yaml
-      show_in_sidebar: false
+      filename: ui-system.yaml
+      icon: mdi:server
+      show_in_sidebar: true
     ui-mobile: # Needs to contain a hyphen (-)
       mode: yaml
       filename: ui-lovelace.mobile.yaml
@@ -22,10 +23,19 @@ lovelace:
       icon: mdi:cellphone
       show_in_sidebar: true
       require_admin: true
+    ui-overview:
+      mode: yaml
+      title: Overview
+      filename: ui-overview.yaml
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
 
 # Text to speech
 tts:
   - platform: google_translate
+
+shell_command:
+  promote_camera_snapshot: "bash /config/bin/promote_camera_snapshot.sh {{ temp_path }} {{ final_path }}"
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation/
@@ -71,7 +81,7 @@ input_datetime:
 
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 
+  trusted_proxies:
     - 127.0.0.1
     - 192.168.1.243
     - 192.168.240.0/24
@@ -114,27 +124,20 @@ nest:
 camera:
   - platform: ffmpeg
     name: wyze_v3
-    #input: rtsp://192.168.1.63:8554/video1
     input: !secret wb_rtsp_url_living_room_cam
   - platform: ffmpeg
     name: wyze_v3_garage_cam
     input: !secret wb_rtsp_url_garage_cam
   - platform: ffmpeg
     name: wyze_v4_driveway_cam_1
-    input: rtsp://192.168.1.243:4550/686569ac8d69d5f8
-    # input: rtsp://192.168.1.243:8554/driveway-cam
+    input: !secret wb_rtsp_url_driveway_cam
     extra_arguments: -rtsp_transport tcp -stimeout 5000000 -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 10
-  #- platform: generic
-  #  name: wyze_v3_driveway_cam
-  #  stream_source: rtsp://192.168.1.243:8554/driveway-cam
-  #  still_image_url: /local/obama.jpg
   - platform: ffmpeg
     name: camera.front_door_1
     input: rtsp://192.168.1.243:8555
   - platform: ffmpeg
     name: wyze_og_bear_cam
     input: !secret wb_rtsp_url_bear_cam
-
 
 sensor:
   - platform: google_wifi
@@ -161,9 +164,21 @@ sensor:
     sampling_size: 10000
     precision: 3
 
-#midea_dehumidifier:
-#  username: sthinds144@gmail.com
-#  password: !secret midea_password
+binary_sensor:
+  - platform: command_line
+    name: Living Room Snapshot Available
+    unique_id: living_room_snapshot_available
+    command: test -s /config/www/living_room_snapshot.jpg && echo ON || echo OFF
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    scan_interval: 60
+  - platform: command_line
+    name: Driveway Snapshot Available
+    unique_id: driveway_snapshot_available
+    command: test -s /config/www/driveway_cam_snapshot.jpg && echo ON || echo OFF
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    scan_interval: 60
 
 device_tracker:
   - platform: netgear
@@ -173,10 +188,3 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
-# no longer configurable from YAML
-#mqtt:
-#  broker: 192.168.1.243
-#  port: 1883
-#  discovery: true
-#  discovery_prefix: homeassistant
-#  username: mosquitto

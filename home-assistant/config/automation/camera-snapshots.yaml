@@ -1,0 +1,91 @@
+- id: front_door_snapshot_cache_refresh
+  alias: Refresh front door snapshot cache
+  description: Cache the latest front door still image for Lovelace fallback.
+  mode: single
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - condition: template
+      value_template: "{{ states('camera.front_door_mqtt') not in ['unavailable', 'unknown'] }}"
+  action:
+    - service: camera.snapshot
+      target:
+        entity_id: camera.front_door_mqtt
+      data:
+        filename: /config/www/tmp/front_door_snapshot.jpg
+    - service: shell_command.promote_camera_snapshot
+      data:
+        temp_path: /config/www/tmp/front_door_snapshot.jpg
+        final_path: /config/www/front_door_snapshot.jpg
+
+- id: garage_snapshot_cache_refresh
+  alias: Refresh garage snapshot cache
+  description: Cache the latest garage still image for Lovelace fallback.
+  mode: single
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - condition: template
+      value_template: "{{ states('camera.wyze_v3_garage_cam') not in ['unavailable', 'unknown'] }}"
+  action:
+    - service: camera.snapshot
+      target:
+        entity_id: camera.wyze_v3_garage_cam
+      data:
+        filename: /config/www/tmp/garage_cam_snapshot.jpg
+    - service: shell_command.promote_camera_snapshot
+      data:
+        temp_path: /config/www/tmp/garage_cam_snapshot.jpg
+        final_path: /config/www/garage_cam_snapshot.jpg
+
+- id: living_room_snapshot_cache_refresh
+  alias: Refresh living room snapshot cache
+  description: Cache the latest living room still image for Lovelace fallback.
+  mode: single
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - condition: template
+      value_template: "{{ states('camera.wyze_v3') not in ['unavailable', 'unknown'] }}"
+  action:
+    - service: camera.snapshot
+      target:
+        entity_id: camera.wyze_v3
+      data:
+        filename: /config/www/tmp/living_room_snapshot.jpg
+    - service: shell_command.promote_camera_snapshot
+      data:
+        temp_path: /config/www/tmp/living_room_snapshot.jpg
+        final_path: /config/www/living_room_snapshot.jpg
+
+- id: driveway_snapshot_cache_refresh
+  alias: Refresh driveway snapshot cache
+  description: Cache the latest driveway still image for Lovelace fallback.
+  mode: single
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: time_pattern
+      minutes: "/5"
+  condition:
+    - condition: template
+      value_template: "{{ states('camera.wyze_v4_driveway_cam_1') not in ['unavailable', 'unknown'] }}"
+  action:
+    - service: camera.snapshot
+      target:
+        entity_id: camera.wyze_v4_driveway_cam_1
+      data:
+        filename: /config/www/tmp/driveway_cam_snapshot.jpg
+    - service: shell_command.promote_camera_snapshot
+      data:
+        temp_path: /config/www/tmp/driveway_cam_snapshot.jpg
+        final_path: /config/www/driveway_cam_snapshot.jpg
