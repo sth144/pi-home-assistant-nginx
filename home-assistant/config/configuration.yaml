@@ -124,7 +124,9 @@ nest:
 camera:
   - platform: ffmpeg
     name: wyze_v3
-    input: !secret wb_rtsp_url_living_room_cam
+    # Previous stream:
+    # input: !secret wb_rtsp_url_living_room_cam
+    input: -rtsp_transport tcp -i !secret wb_rtsp_url_living_room_cam_rtsp
   - platform: ffmpeg
     name: wyze_v3_garage_cam
     input: !secret wb_rtsp_url_garage_cam
@@ -155,6 +157,12 @@ sensor:
     unit_time: h
     method: trapezoidal
     round: 3
+  - platform: integration
+    source: sensor.frontyard_hose_timer_sonoff_volume_flow_rate
+    name: "Frontyard Hose Water Total"
+    unit_time: h
+    method: trapezoidal
+    round: 3
   - platform: statistics
     name: "Backyard Hose Water Last 7 Days"
     entity_id: sensor.backyard_hose_water_total
@@ -163,8 +171,30 @@ sensor:
       days: 7
     sampling_size: 10000
     precision: 3
+  - platform: statistics
+    name: "Frontyard Hose Water Last 7 Days"
+    entity_id: sensor.frontyard_hose_water_total
+    state_characteristic: change
+    max_age:
+      days: 7
+    sampling_size: 10000
+    precision: 3
 
 binary_sensor:
+  - platform: command_line
+    name: Front Door Snapshot Available
+    unique_id: front_door_snapshot_available
+    command: test -s /config/www/front_door_snapshot.jpg && echo ON || echo OFF
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    scan_interval: 60
+  - platform: command_line
+    name: Garage Snapshot Available
+    unique_id: garage_snapshot_available
+    command: test -s /config/www/garage_cam_snapshot.jpg && echo ON || echo OFF
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    scan_interval: 60
   - platform: command_line
     name: Living Room Snapshot Available
     unique_id: living_room_snapshot_available

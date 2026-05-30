@@ -54,3 +54,34 @@
       entity_id: light.hue_white_lamp_2
       domain: light
   mode: single
+- id: "1747987200000"
+  alias: keep-office-lamp-synced-with-string-lights
+  description: ""
+  trigger:
+    - platform: time_pattern
+      minutes: "/2"
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.office_string_lights
+              state: "on"
+            - condition: state
+              entity_id: light.hue_white_lamp_2
+              state: "off"
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.hue_white_lamp_2
+        - conditions:
+            - condition: state
+              entity_id: switch.office_string_lights
+              state: "off"
+            - condition: state
+              entity_id: light.hue_white_lamp_2
+              state: "on"
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.hue_white_lamp_2
+  mode: single

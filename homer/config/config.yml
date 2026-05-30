@@ -108,6 +108,10 @@ services:
         logo: "assets/tools/tts.png"
         tag: "app"
         url: "http://tts-ui.pc1"
+      - name: "Open WebUI"
+        logo: "assets/tools/open-webui.png"
+        tag: "app"
+        url: "http://open-webui.local"
   - name: "CI/CD & Automation"
     icon: "fas fa-robot"
     items:

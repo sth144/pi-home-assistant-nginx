@@ -16,6 +16,8 @@ views:
                     conditions:
                       - entity: camera.front_door_mqtt
                         state_not: unavailable
+                      - entity: camera.front_door_mqtt
+                        state_not: unknown
                     card:
                       type: picture-entity
                       camera_view: auto
@@ -25,16 +27,52 @@ views:
                     conditions:
                       - entity: camera.front_door_mqtt
                         state: unavailable
+                      - entity: binary_sensor.front_door_snapshot_available
+                        state: "on"
                     card:
                       type: picture
                       aspect_ratio: 16x9
                       image: /local/front_door_snapshot.jpg
+                  - type: conditional
+                    conditions:
+                      - entity: camera.front_door_mqtt
+                        state: unknown
+                      - entity: binary_sensor.front_door_snapshot_available
+                        state: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: /local/front_door_snapshot.jpg
+                  - type: conditional
+                    conditions:
+                      - entity: camera.front_door_mqtt
+                        state: unavailable
+                      - entity: binary_sensor.front_door_snapshot_available
+                        state_not: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: >-
+                        data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+                  - type: conditional
+                    conditions:
+                      - entity: camera.front_door_mqtt
+                        state: unknown
+                      - entity: binary_sensor.front_door_snapshot_available
+                        state_not: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: >-
+                        data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
               - type: vertical-stack
                 cards:
                   - type: conditional
                     conditions:
                       - entity: camera.wyze_v3_garage_cam
                         state_not: unavailable
+                      - entity: camera.wyze_v3_garage_cam
+                        state_not: unknown
                     card:
                       type: picture-entity
                       camera_view: auto
@@ -44,10 +82,44 @@ views:
                     conditions:
                       - entity: camera.wyze_v3_garage_cam
                         state: unavailable
+                      - entity: binary_sensor.garage_snapshot_available
+                        state: "on"
                     card:
                       type: picture
                       aspect_ratio: 16x9
                       image: /local/garage_cam_snapshot.jpg
+                  - type: conditional
+                    conditions:
+                      - entity: camera.wyze_v3_garage_cam
+                        state: unknown
+                      - entity: binary_sensor.garage_snapshot_available
+                        state: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: /local/garage_cam_snapshot.jpg
+                  - type: conditional
+                    conditions:
+                      - entity: camera.wyze_v3_garage_cam
+                        state: unavailable
+                      - entity: binary_sensor.garage_snapshot_available
+                        state_not: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: >-
+                        data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+                  - type: conditional
+                    conditions:
+                      - entity: camera.wyze_v3_garage_cam
+                        state: unknown
+                      - entity: binary_sensor.garage_snapshot_available
+                        state_not: "on"
+                    card:
+                      type: picture
+                      aspect_ratio: 16x9
+                      image: >-
+                        data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
           - type: horizontal-stack
             cards:
               - type: vertical-stack
@@ -285,12 +357,31 @@ views:
                         name: Backyard Hose Timer Identify
                       - entity: update.backyard_hose_timer_sonnof_firmware
                         name: Backyard Hose Timer Firmware
-                      - entity: switch.frontyard_hose_timer_zone
+                      - entity: switch.frontyard_hose_timer_sonoff
+                        name: Frontyard Hose Timer
+                      - entity: sensor.frontyard_hose_timer_sonoff_battery
+                        name: Frontyard Hose Timer Battery
+                      - entity: sensor.frontyard_hose_timer_sonoff_volume_flow_rate
+                        name: Frontyard Hose Timer Flow Rate
+                      - entity: sensor.frontyard_hose_water_total
+                        name: Frontyard Hose Water Total
+                      - entity: sensor.frontyard_hose_water_last_7_days
+                        name: Frontyard Hose Water Used (7d)
+                      - entity: binary_sensor.frontyard_hose_timer_sonoff_water_leak
+                        name: Frontyard Hose Timer Water Leak
+                      - entity: binary_sensor.frontyard_hose_timer_sonoff_water_supply
+                        name: Frontyard Hose Timer Water Supply
+                      - entity: button.frontyard_hose_timer_sonoff_identify
+                        name: Frontyard Hose Timer Identify
+                      - entity: update.frontyard_hose_timer_sonoff_firmware
+                        name: Frontyard Hose Timer Firmware
                   - type: history-graph
                     hours_to_show: 168
                     entities:
                       - entity: switch.backyard_hose_timer_sonnof
                         name: Backyard Hose Timer
+                      - entity: switch.frontyard_hose_timer_sonoff
+                        name: Frontyard Hose Timer
                   - type: entities
                     title: Sean Travel Times
                     show_header_toggle: false
@@ -336,10 +427,6 @@ views:
                         name: Extra Dry
                       - entity: switch.dishwasher_hygiene
                         name: Hygiene+
-                      - entity: sensor.dishwasher_rinse_aid_nearly_empty
-                        name: Rinse Aid
-                      - entity: sensor.dishwasher_salt_nearly_empty
-                        name: Salt
                       - entity: binary_sensor.dishwasher_connectivity
                         name: Connectivity
                       - entity: button.dishwasher_stop_program
@@ -350,6 +437,27 @@ views:
                     entities:
                       - entity: device_tracker.sean
                       - entity: person.amy
+
+                  - type: custom:floorplan-card
+                    config:
+                      image: /local/floorplan/house.svg
+                      stylesheet: /local/floorplan/house.css
+                      rules:
+                        - entity: light.living_room
+                          element: room_living
+                          tap_action:
+                            action: toggle
+                      state_action:
+                        action: call-service
+                        service: floorplan.class_set
+                        service_data:
+                          class: light-${entity.state}
+                    card_mod:
+                      style: |
+                       ha-card {
+                         max-width: 400px !important;
+                         margin: auto;
+                       }
                   - type: horizontal-stack
                     cards:
                       - type: gauge
@@ -420,10 +528,6 @@ views:
                     name: Download Speed
                   - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
                     name: Upload Speed
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
-                    name: Data Received
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
-                    name: Data Sent
                   - entity: sensor.local_ip
                     name: Home Assistant IP
               - type: entities
@@ -451,9 +555,8 @@ views:
                         name: Driveway Motion Sensor Occupancy
                       - entity: light.garage_light
                         name: Garage Light
-                      - entity: switch.smart_plug_0_switch
+                      - entity: switch.smart_plug_0
                         name: Bedroom String Lights
-                      - entity: switch.0x00124b0022d5f06b
                       - entity: binary_sensor.back_door_sensor_contact
                         name: Back Door
                       - entity: binary_sensor.backyard_front_gate_sensor_contact
@@ -566,10 +669,14 @@ views:
               - type: entities
                 title: TP-Link Router Metrics
                 entities:
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_packets_received
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_packets_sent
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
-                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
+                  - entity: sensor.local_ip
+                    name: Home Assistant IP
+                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_external_ip
+                    name: Router IP
+                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_download_speed
+                    name: Download Speed
+                  - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
+                    name: Upload Speed
               - type: history-graph
                 title: TP-Link Throughput
                 entities:
@@ -583,21 +690,19 @@ views:
                     name: NVIDIA shield TV
                   - entity: sensor.sean_iphone_battery_status
                     name: Sean iPhone Battery Status
-                  - entity: binary_sensor.pi_hole_2
-                    name: Pi-hole 2
                   - entity: binary_sensor.onhub_wan_status
                     name: TP-Link WAN
-                  - entity: binary_sensor.pi_hole
+                  - entity: binary_sensor.pi_hole_status
                     name: Pi-hole
-                  - entity: sensor.pi_hole_dns_unique_clients_2
+                  - entity: sensor.pi_hole_dns_unique_clients
                     name: Pi-hole Unique DNS Clients
                   - entity: sensor.sean_iphone_battery
                     name: Sean iPhone Battery
-                  - entity: sensor.pi_hole_dns_queries_cached_2
+                  - entity: sensor.pi_hole_dns_queries_cached
                     name: Pi-hole DNS Queries Cached
-                  - entity: sensor.pi_hole_dns_queries_today_2
+                  - entity: sensor.pi_hole_dns_queries_today
                     name: Pi-hole DNS Queries Today
-                  - entity: sensor.pi_hole_dns_unique_domains_2c
+                  - entity: sensor.pi_hole_dns_unique_domains
                     name: Pi-hole DNS Unique Domains
                 title: Home
           - type: vertical-stack
@@ -611,3 +716,4 @@ views:
                 tap_action:
                   action: call-service
                   service: script.test_iphone_notification
+

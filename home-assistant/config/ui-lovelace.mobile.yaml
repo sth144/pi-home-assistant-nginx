@@ -60,7 +60,7 @@ views:
             features_position: bottom
             vertical: false
           - type: tile
-            entity: switch.frontyard_hose_timer_zone
+            entity: switch.frontyard_hose_timer_sonoff
             name: Frontyard Hose
             features_position: bottom
             vertical: false
@@ -224,6 +224,22 @@ views:
             name: Identify
           - entity: update.backyard_hose_timer_sonnof_firmware
             name: Firmware
+          - entity: sensor.frontyard_hose_timer_sonoff_battery
+            name: Frontyard Battery
+          - entity: sensor.frontyard_hose_timer_sonoff_volume_flow_rate
+            name: Frontyard Flow Rate
+          - entity: sensor.frontyard_hose_water_total
+            name: Frontyard Water Total
+          - entity: sensor.frontyard_hose_water_last_7_days
+            name: Frontyard Water Used 7d
+          - entity: binary_sensor.frontyard_hose_timer_sonoff_water_leak
+            name: Frontyard Water Leak
+          - entity: binary_sensor.frontyard_hose_timer_sonoff_water_supply
+            name: Frontyard Water Supply
+          - entity: button.frontyard_hose_timer_sonoff_identify
+            name: Frontyard Identify
+          - entity: update.frontyard_hose_timer_sonoff_firmware
+            name: Frontyard Firmware
 
       - type: entities
         title: Media and Devices
@@ -258,10 +274,6 @@ views:
             name: Download Speed
           - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
             name: Upload Speed
-          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
-            name: Data Received
-          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
-            name: Data Sent
           - entity: sensor.local_ip
             name: Home Assistant IP
           - entity: sensor.pi_hole_ads_blocked_today
@@ -326,10 +338,6 @@ views:
             name: Extra Dry
           - entity: switch.dishwasher_hygiene
             name: Hygiene+
-          - entity: sensor.dishwasher_rinse_aid_nearly_empty
-            name: Rinse Aid
-          - entity: sensor.dishwasher_salt_nearly_empty
-            name: Salt
           - entity: binary_sensor.dishwasher_connectivity
             name: Connectivity
           - entity: button.dishwasher_stop_program
@@ -358,10 +366,6 @@ views:
             name: Router RX
           - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_upload_speed
             name: Router TX
-          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_received
-            name: Data Received
-          - entity: sensor.archer_a54_ac1200_dual_band_wi_fi_router_data_sent
-            name: Data Sent
 
       - type: markdown
         content: |
@@ -371,6 +375,8 @@ views:
         conditions:
           - entity: camera.front_door_mqtt
             state_not: unavailable
+          - entity: camera.front_door_mqtt
+            state_not: unknown
         card:
           type: picture-entity
           entity: camera.front_door_mqtt
@@ -382,6 +388,8 @@ views:
         conditions:
           - entity: camera.front_door_mqtt
             state: unavailable
+          - entity: binary_sensor.front_door_snapshot_available
+            state: "on"
         card:
           type: picture
           image: /local/front_door_snapshot.jpg
@@ -389,8 +397,45 @@ views:
 
       - type: conditional
         conditions:
+          - entity: camera.front_door_mqtt
+            state: unknown
+          - entity: binary_sensor.front_door_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/front_door_snapshot.jpg
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.front_door_mqtt
+            state: unavailable
+          - entity: binary_sensor.front_door_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.front_door_mqtt
+            state: unknown
+          - entity: binary_sensor.front_door_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
           - entity: camera.wyze_v3_garage_cam
             state_not: unavailable
+          - entity: camera.wyze_v3_garage_cam
+            state_not: unknown
         card:
           type: picture-entity
           entity: camera.wyze_v3_garage_cam
@@ -402,9 +447,46 @@ views:
         conditions:
           - entity: camera.wyze_v3_garage_cam
             state: unavailable
+          - entity: binary_sensor.garage_snapshot_available
+            state: "on"
         card:
           type: picture
           image: /local/garage_cam_snapshot.jpg
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3_garage_cam
+            state: unknown
+          - entity: binary_sensor.garage_snapshot_available
+            state: "on"
+        card:
+          type: picture
+          image: /local/garage_cam_snapshot.jpg
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3_garage_cam
+            state: unavailable
+          - entity: binary_sensor.garage_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
+          aspect_ratio: 16x9
+
+      - type: conditional
+        conditions:
+          - entity: camera.wyze_v3_garage_cam
+            state: unknown
+          - entity: binary_sensor.garage_snapshot_available
+            state_not: "on"
+        card:
+          type: picture
+          image: >-
+            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
           aspect_ratio: 16x9
 
       - type: conditional
@@ -556,3 +638,4 @@ views:
             action: none
           hold_action:
             action: none
+
