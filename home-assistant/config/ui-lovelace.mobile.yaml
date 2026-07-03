@@ -369,273 +369,63 @@ views:
 
       - type: markdown
         content: |
-          ## Cameras
+          ## Cameras and Digital Twin
 
-      - type: conditional
-        conditions:
-          - entity: camera.front_door_mqtt
-            state_not: unavailable
-          - entity: camera.front_door_mqtt
-            state_not: unknown
-        card:
-          type: picture-entity
-          entity: camera.front_door_mqtt
-          name: Front Door
-          camera_view: auto
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.front_door_mqtt
-            state: unavailable
-          - entity: binary_sensor.front_door_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/front_door_snapshot.jpg
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.front_door_mqtt
-            state: unknown
-          - entity: binary_sensor.front_door_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/front_door_snapshot.jpg
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.front_door_mqtt
-            state: unavailable
-          - entity: binary_sensor.front_door_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.front_door_mqtt
-            state: unknown
-          - entity: binary_sensor.front_door_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3_garage_cam
-            state_not: unavailable
-          - entity: camera.wyze_v3_garage_cam
-            state_not: unknown
-        card:
-          type: picture-entity
-          entity: camera.wyze_v3_garage_cam
-          name: Garage
-          camera_view: auto
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3_garage_cam
-            state: unavailable
-          - entity: binary_sensor.garage_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/garage_cam_snapshot.jpg
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3_garage_cam
-            state: unknown
-          - entity: binary_sensor.garage_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/garage_cam_snapshot.jpg
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3_garage_cam
-            state: unavailable
-          - entity: binary_sensor.garage_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3_garage_cam
-            state: unknown
-          - entity: binary_sensor.garage_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3
-            state_not: unavailable
-          - entity: camera.wyze_v3
-            state_not: unknown
-        card:
-          type: picture-entity
-          entity: camera.wyze_v3
-          name: Living Room
-          camera_view: auto
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3
-            state: unavailable
-          - entity: binary_sensor.living_room_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/living_room_snapshot.jpg
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3
-            state: unknown
-          - entity: binary_sensor.living_room_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/living_room_snapshot.jpg
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3
-            state: unavailable
-          - entity: binary_sensor.living_room_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v3
-            state: unknown
-          - entity: binary_sensor.living_room_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v4_driveway_cam_1
-            state_not: unavailable
-          - entity: camera.wyze_v4_driveway_cam_1
-            state_not: unknown
-        card:
-          type: picture-entity
-          entity: camera.wyze_v4_driveway_cam_1
-          name: Driveway
-          camera_view: auto
-          aspect_ratio: 16x9
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v4_driveway_cam_1
-            state: unavailable
-          - entity: binary_sensor.driveway_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/driveway_cam_snapshot.jpg
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v4_driveway_cam_1
-            state: unknown
-          - entity: binary_sensor.driveway_snapshot_available
-            state: "on"
-        card:
-          type: picture
-          image: /local/driveway_cam_snapshot.jpg
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v4_driveway_cam_1
-            state: unavailable
-          - entity: binary_sensor.driveway_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
-      - type: conditional
-        conditions:
-          - entity: camera.wyze_v4_driveway_cam_1
-            state: unknown
-          - entity: binary_sensor.driveway_snapshot_available
-            state_not: "on"
-        card:
-          type: picture
-          image: >-
-            data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23111827'/><rect x='360' y='190' width='560' height='340' rx='32' fill='%23374151' stroke='%236b7280' stroke-width='12'/><path d='M920 290l120-70c26-15 60 3 60 34v212c0 31-34 49-60 34l-120-70V290z' fill='%234b5563'/><circle cx='640' cy='360' r='92' fill='%23111827' stroke='%239ca3af' stroke-width='12'/><path d='M578 422l124-124' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><path d='M702 422L578 298' stroke='%23ef4444' stroke-width='22' stroke-linecap='round'/><text x='640' y='600' fill='%23e5e7eb' font-family='Arial,sans-serif' font-size='44' text-anchor='middle'>Camera unavailable</text></svg>
-          aspect_ratio: 16x9
-          tap_action:
-            action: none
-          hold_action:
-            action: none
-
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: picture-entity
+            entity: camera.front_door_mqtt
+            name: Front Door
+            camera_view: auto
+            aspect_ratio: 16x9
+          - type: picture-entity
+            entity: camera.wyze_v3_garage_cam
+            name: Garage
+            camera_view: auto
+            aspect_ratio: 16x9
+          - type: picture-entity
+            entity: camera.wyze_v3
+            name: Living Room
+            camera_view: auto
+            aspect_ratio: 16x9
+          - type: picture-entity
+            entity: camera.wyze_v4_driveway_cam_1
+            name: Driveway
+            camera_view: auto
+            aspect_ratio: 16x9
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: camera.chihuahueno_cam
+                name: Chihuahueño
+                camera_view: auto
+                aspect_ratio: 16x9
+              - type: picture-entity
+                entity: camera.wyze_v3_bear_cam
+                name: Bear
+                camera_view: auto
+                aspect_ratio: 16x9
+          - type: custom:floorplan-card
+            config:
+              image: /local/floorplan/house-3d.svg
+              stylesheet: /local/floorplan/house-3d.css
+              rules:
+                - entity: light.living_room
+                  element: room_living
+                  tap_action:
+                    action: toggle
+                  state_action:
+                    action: call-service
+                    service: floorplan.class_set
+                    service_data:
+                      class: light-${entity.state}
+            card_mod:
+              style: |
+                ha-card {
+                  width: 100%;
+                  max-width: 300px !important;
+                  margin: 0 auto;
+                  overflow: hidden;
+                }

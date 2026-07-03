@@ -124,22 +124,22 @@ nest:
 camera:
   - platform: ffmpeg
     name: wyze_v3
-    # Previous stream:
-    # input: !secret wb_rtsp_url_living_room_cam
-    input: -rtsp_transport tcp -i !secret wb_rtsp_url_living_room_cam_rtsp
+    input: !secret wb_rtsp_url_living_room_cam
+  - platform: ffmpeg
+    name: chihuahueno_cam
+    input: !secret wb_rtsp_url_living_room_cam_rtsp
   - platform: ffmpeg
     name: wyze_v3_garage_cam
     input: !secret wb_rtsp_url_garage_cam
   - platform: ffmpeg
     name: wyze_v4_driveway_cam_1
-    input: !secret wb_rtsp_url_driveway_cam
-    extra_arguments: -rtsp_transport tcp -stimeout 5000000 -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 10
+    input: !secret wb_snapshot_url_driveway_cam
   - platform: ffmpeg
     name: camera.front_door_1
     input: rtsp://192.168.1.243:8555
   - platform: ffmpeg
-    name: wyze_og_bear_cam
-    input: !secret wb_rtsp_url_bear_cam
+    name: wyze_v3_bear_cam
+    input: !secret wb_snapshot_url_bear_cam
 
 sensor:
   - platform: google_wifi

@@ -272,6 +272,67 @@ views:
             cards:
               - type: vertical-stack
                 cards:
+                  - type: conditional
+                    conditions:
+                      - entity: camera.chihuahueno_cam
+                        state_not: unavailable
+                      - entity: camera.chihuahueno_cam
+                        state_not: unknown
+                    card:
+                      camera_view: auto
+                      type: picture-entity
+                      name: Chihuahueño
+                      aspect_ratio: 16x9
+                      entity: camera.chihuahueno_cam
+                      show_state: false
+                  - type: conditional
+                    conditions:
+                      - entity: camera.chihuahueno_cam
+                        state: unavailable
+                    card:
+                      type: entity
+                      entity: camera.chihuahueno_cam
+                      name: Chihuahueño camera unavailable
+                  - type: conditional
+                    conditions:
+                      - entity: camera.chihuahueno_cam
+                        state: unknown
+                    card:
+                      type: entity
+                      entity: camera.chihuahueno_cam
+                      name: Chihuahueño camera unavailable
+                  - type: picture-entity
+                    entity: camera.wyze_v3_bear_cam
+                    name: Bear
+                    camera_view: auto
+                    aspect_ratio: 16x9
+                    show_state: false
+              - type: custom:floorplan-card
+                config:
+                  image: /local/floorplan/house-3d.svg
+                  stylesheet: /local/floorplan/house-3d.css
+                  rules:
+                    - entity: light.living_room
+                      element: room_living
+                      tap_action:
+                        action: toggle
+                      state_action:
+                        action: call-service
+                        service: floorplan.class_set
+                        service_data:
+                          class: light-${entity.state}
+                card_mod:
+                  style: |
+                    ha-card {
+                      width: 100%;
+                      max-width: 300px !important;
+                      margin: 0 auto;
+                      overflow: hidden;
+                    }
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
                   - type: entities
                     title: Front Door
                     entities:
@@ -438,26 +499,6 @@ views:
                       - entity: device_tracker.sean
                       - entity: person.amy
 
-                  - type: custom:floorplan-card
-                    config:
-                      image: /local/floorplan/house.svg
-                      stylesheet: /local/floorplan/house.css
-                      rules:
-                        - entity: light.living_room
-                          element: room_living
-                          tap_action:
-                            action: toggle
-                      state_action:
-                        action: call-service
-                        service: floorplan.class_set
-                        service_data:
-                          class: light-${entity.state}
-                    card_mod:
-                      style: |
-                       ha-card {
-                         max-width: 400px !important;
-                         margin: auto;
-                       }
                   - type: horizontal-stack
                     cards:
                       - type: gauge
@@ -716,4 +757,3 @@ views:
                 tap_action:
                   action: call-service
                   service: script.test_iphone_notification
-

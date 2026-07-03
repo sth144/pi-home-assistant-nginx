@@ -1,5 +1,30 @@
 version: "2.0"
 services:
+  wyze-host-shim:
+    container_name: wyze-host-shim
+    build:
+      context: ./host-shim
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PARENT_IF=eth0
+      - SHIM_IF=wyze-shim
+      - SHIM_IP=192.168.1.232
+      - WYZE_BRIDGE_IP=192.168.1.231
+    command: >
+      sh -c "
+        while true; do
+          ip link show \"$${SHIM_IF}\" >/dev/null 2>&1 ||
+            ip link add \"$${SHIM_IF}\" link \"$${PARENT_IF}\" type macvlan mode bridge;
+          ip addr show \"$${SHIM_IF}\" | grep -q \"$${SHIM_IP}/32\" ||
+            ip addr add \"$${SHIM_IP}/32\" dev \"$${SHIM_IF}\";
+          ip link set \"$${SHIM_IF}\" up;
+          ip route replace \"$${WYZE_BRIDGE_IP}/32\" dev \"$${SHIM_IF}\";
+          sleep 3600;
+        done
+      "
   wyze-bridge:
     container_name: wyze-bridge
     restart: unless-stopped
@@ -8,7 +33,10 @@ services:
       options:
         max-size: 10m
         max-file: "3"
-    network_mode: host
+    #network_mode: host
+    networks:
+      wyze_macvlan:
+        ipv4_address: 192.168.1.231
     #ports:
     #  - 1935:1935 # RTMP
     #  - 8554:8554 # RTSP
@@ -16,17 +44,24 @@ services:
     #  - 8889:8889 # webRTC
     #  - 8189:8189/udp # webRTC/ice
     #  - 5000:5000
-    #volumes:
-    #  - ./tokens:/tokens/
+    volumes:
+      - ./tokens:/tokens/
     environment:
       - WYZE_EMAIL=${WYZE_EMAIL}
       - WYZE_PASSWORD=${WYZE_PASSWORD}
       - API_ID=${API_ID}
       - API_KEY=${API_KEY}
       - WB_AUTH=false
-      - WB_USERNAME=${WB_USERNAME}
-      - WB_PASSWORD=${WB_PASSWORD}
+#      - WB_USERNAME=${WB_USERNAME}
+#      - WB_PASSWORD=${WB_PASSWORD}
       - ENABLE_AUDIO=false
+      - WB_IP=192.168.1.231
+      - NET_MODE=P2P
+      - MQTT_HOST=192.168.1.232
+      - MOTION_API=True
+      # Retired OG shares the "Bear Cam" nickname with its V3 replacement.
+      - FILTER_BLOCK=true
+      - FILTER_MACS=GW_GC1_80482C0EDB5E
   scrypted:
     container_name: scrypted
     image: ghcr.io/koush/scrypted:latest
@@ -37,3 +72,7 @@ services:
       - SCRYPTED_WEBHOOK_UPDATE=${SCRYPTED_WEBHOOK_UPDATE:-}
     volumes:
       - /home/pi/Volumes/scrypted:/server/volume
+
+networks:
+  wyze_macvlan:
+    external: true
