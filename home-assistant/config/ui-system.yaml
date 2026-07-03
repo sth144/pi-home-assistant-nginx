@@ -274,32 +274,32 @@ views:
                 cards:
                   - type: conditional
                     conditions:
-                      - entity: camera.chihuahueno_cam
+                      - entity: camera.chihuahueo_cam
                         state_not: unavailable
-                      - entity: camera.chihuahueno_cam
+                      - entity: camera.chihuahueo_cam
                         state_not: unknown
                     card:
                       camera_view: auto
                       type: picture-entity
                       name: Chihuahueño
                       aspect_ratio: 16x9
-                      entity: camera.chihuahueno_cam
+                      entity: camera.chihuahueo_cam
                       show_state: false
                   - type: conditional
                     conditions:
-                      - entity: camera.chihuahueno_cam
+                      - entity: camera.chihuahueo_cam
                         state: unavailable
                     card:
                       type: entity
-                      entity: camera.chihuahueno_cam
+                      entity: camera.chihuahueo_cam
                       name: Chihuahueño camera unavailable
                   - type: conditional
                     conditions:
-                      - entity: camera.chihuahueno_cam
+                      - entity: camera.chihuahueo_cam
                         state: unknown
                     card:
                       type: entity
-                      entity: camera.chihuahueno_cam
+                      entity: camera.chihuahueo_cam
                       name: Chihuahueño camera unavailable
                   - type: picture-entity
                     entity: camera.wyze_v3_bear_cam

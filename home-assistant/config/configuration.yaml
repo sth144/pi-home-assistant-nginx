@@ -126,8 +126,8 @@ camera:
     name: wyze_v3
     input: !secret wb_rtsp_url_living_room_cam
   - platform: ffmpeg
-    name: chihuahueno_cam
-    input: !secret wb_rtsp_url_living_room_cam_rtsp
+    name: chihuahueo_cam
+    input: !secret wb_rtsp_url_chihuahueo_cam
   - platform: ffmpeg
     name: wyze_v3_garage_cam
     input: !secret wb_rtsp_url_garage_cam

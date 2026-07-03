@@ -398,7 +398,7 @@ views:
           - type: vertical-stack
             cards:
               - type: picture-entity
-                entity: camera.chihuahueno_cam
+                entity: camera.chihuahueo_cam
                 name: Chihuahueño
                 camera_view: auto
                 aspect_ratio: 16x9
