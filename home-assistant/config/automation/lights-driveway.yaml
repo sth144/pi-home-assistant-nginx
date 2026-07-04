@@ -1,38 +1,63 @@
 - id: "1677731437365"
   alias: turn-on-driveway-light-when-motion-detected
-  mode: single
+  mode: restart
   trigger:
-    - platform: state
-      entity_id: binary_sensor.driveway_motion_sensor
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.driveway_motion_sensor_occupancy_1 # ZHA
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.motion # mqtt
-      from: "off"
-      to: "on"
-  condition:
-    - condition: sun
-      after: sunset
-      before: sunrise
+    # Retired physical/Zigbee/MQTT driveway motion sensors:
+    # - platform: state
+    #   entity_id: binary_sensor.driveway_motion_sensor
+    #   from: "off"
+    #   to: "on"
+    # - platform: state
+    #   entity_id: binary_sensor.driveway_motion_sensor_occupancy_1 # ZHA
+    #   from: "off"
+    #   to: "on"
+    # - platform: state
+    #   entity_id: binary_sensor.motion # mqtt
+    #   from: "off"
+    #   to: "on"
+    - platform: mqtt
+      topic: wyzebridge/driveway-cam/motion
+      payload: "1"
+      id: motion_on
+    - platform: mqtt
+      topic: wyzebridge/driveway-cam/motion
+      payload: "2"
+      id: motion_off
+  condition: []
   action:
-    - service: light.turn_on
-      target:
-        entity_id: light.driveway_light
-- id: "1677811291662"
-  alias: turn-off-driveway-light-when-not-occupied
-  mode: single
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.driveway_motion_sensor
-      from: "on"
-      to: "off"
-      for:
-        minutes: 2   # ← highly recommended
-  action:
-    - service: light.turn_off
-      target:
-        entity_id: light.driveway_light
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: motion_on
+            - condition: sun
+              after: sunset
+              after_offset: "-01:00:00"
+              before: sunrise
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.driveway_light
+        - conditions:
+            - condition: trigger
+              id: motion_off
+          sequence:
+            - delay:
+                minutes: 2
+            - service: light.turn_off
+              target:
+                entity_id: light.driveway_light
+# Retired physical driveway motion sensor off automation:
+# - id: "1677811291662"
+#   alias: turn-off-driveway-light-when-not-occupied
+#   mode: single
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.driveway_motion_sensor
+#       from: "on"
+#       to: "off"
+#       for:
+#         minutes: 2
+#   action:
+#     - service: light.turn_off
+#       target:
+#         entity_id: light.driveway_light
