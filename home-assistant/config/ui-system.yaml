@@ -307,6 +307,12 @@ views:
                     camera_view: auto
                     aspect_ratio: 16x9
                     show_state: false
+                  - type: picture-entity
+                    entity: camera.usb_webcam_c615
+                    name: USB Webcam
+                    camera_view: auto
+                    aspect_ratio: 16x9
+                    show_state: false
               - type: custom:floorplan-card
                 config:
                   image: /local/floorplan/house-3d.svg

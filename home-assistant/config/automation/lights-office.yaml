@@ -16,9 +16,9 @@
         params: {}
   condition: []
   action:
-    - service: light.toggle
+    - service: switch.toggle
       target:
-        entity_id: light.hue_white_lamp_2
+        entity_id: switch.sonoff_smart_plug_4
     - service: switch.toggle
       target:
         entity_id: switch.office_string_lights
@@ -31,10 +31,9 @@
       tag_id: 2b55a522-e72d-49a5-8e86-0bd7a26bfa36
   condition: []
   action:
-    - type: toggle
-      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
-      entity_id: light.hue_white_lamp_2
-      domain: light
+    - service: switch.toggle
+      target:
+        entity_id: switch.sonoff_smart_plug_4
   mode: single
 - id: "1678768493430"
   alias: turn-off-office-lights-late-night
@@ -45,18 +44,16 @@
       offset: "5:00"
   condition: []
   action:
-    - type: turn_off
-      device_id: 1baf2d052ed2bb5e127c2969f0408d77
-      entity_id: switch.office_string_lights
-      domain: switch
-    - type: turn_off
-      device_id: 2b76e34a8a2d43b790fb6b8d4fe03e13
-      entity_id: light.hue_white_lamp_2
-      domain: light
+    - service: switch.turn_off
+      target:
+        entity_id: switch.office_string_lights
+    - service: switch.turn_off
+      target:
+        entity_id: switch.sonoff_smart_plug_4
   mode: single
 - id: "1747987200000"
   alias: keep-office-lamp-synced-with-string-lights
-  description: ""
+  description: Keep Sonoff Smart Plug 4 synced with office string lights.
   trigger:
     - platform: time_pattern
       minutes: "/2"
@@ -67,21 +64,21 @@
               entity_id: switch.office_string_lights
               state: "on"
             - condition: state
-              entity_id: light.hue_white_lamp_2
+              entity_id: switch.sonoff_smart_plug_4
               state: "off"
           sequence:
-            - service: light.turn_on
+            - service: switch.turn_on
               target:
-                entity_id: light.hue_white_lamp_2
+                entity_id: switch.sonoff_smart_plug_4
         - conditions:
             - condition: state
               entity_id: switch.office_string_lights
               state: "off"
             - condition: state
-              entity_id: light.hue_white_lamp_2
+              entity_id: switch.sonoff_smart_plug_4
               state: "on"
           sequence:
-            - service: light.turn_off
+            - service: switch.turn_off
               target:
-                entity_id: light.hue_white_lamp_2
+                entity_id: switch.sonoff_smart_plug_4
   mode: single

@@ -1,0 +1,48 @@
+- id: '1639939566463'
+  alias: button1-toggle-bedroom-string-lights
+  description: Toggle bedroom string lights from Smart Button 1 short press. Queue
+    presses so button events are not dropped while the Zigbee plug is still responding.
+  triggers:
+  - trigger: event
+    event_type: zha_event
+    event_data:
+      device_ieee: 00:15:8d:00:07:9b:5d:50
+      command: single
+  actions:
+  - action: switch.toggle
+    target:
+      entity_id: switch.smart_plug_0
+  mode: queued
+  max: 10
+- id: '1747987200000'
+  alias: keep-office-lamp-synced-with-string-lights
+  description: Keep Sonoff Smart Plug 4 synced with office string lights, replacing
+    the old Hue white lamp 1 dependency.
+  triggers:
+  - trigger: time_pattern
+    minutes: /2
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.office_string_lights
+        state: 'on'
+      - condition: state
+        entity_id: switch.sonoff_smart_plug_4
+        state: 'off'
+      sequence:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.sonoff_smart_plug_4
+    - conditions:
+      - condition: state
+        entity_id: switch.office_string_lights
+        state: 'off'
+      - condition: state
+        entity_id: switch.sonoff_smart_plug_4
+        state: 'on'
+      sequence:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.sonoff_smart_plug_4
+  mode: single
