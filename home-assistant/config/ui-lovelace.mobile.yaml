@@ -75,6 +75,52 @@ views:
             features_position: bottom
             vertical: false
 
+      - type: grid
+        title: Kasa Switches
+        columns: 2
+        square: false
+        cards:
+          - type: tile
+            entity: switch.entryway_light
+            name: Entryway
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.front_porch_light
+            name: Front Porch
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.kitchen_chandelier_light
+            name: Kitchen Chandelier
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.living_room_light
+            name: Living Room
+            features_position: bottom
+            vertical: false
+          - type: tile
+            entity: switch.living_room_fan
+            name: Living Room Fan
+            features_position: bottom
+            vertical: false
+
+      - type: history-graph
+        title: Kasa Switch History
+        hours_to_show: 24
+        entities:
+          - entity: switch.entryway_light
+            name: Entryway
+          - entity: switch.front_porch_light
+            name: Front Porch
+          - entity: switch.kitchen_chandelier_light
+            name: Kitchen Chandelier
+          - entity: switch.living_room_light
+            name: Living Room
+          - entity: switch.living_room_fan
+            name: Living Room Fan
+
       - type: entities
         title: Entry and Perimeter
         show_header_toggle: false
