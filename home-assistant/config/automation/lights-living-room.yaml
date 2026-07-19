@@ -43,3 +43,25 @@
 #      entity_id: switch.eb9f88cafdc227b60ausoh
 #      domain: switch
 #  mode: single
+
+# NOTE: The KS200M (switch.living_room_light) does not expose its PIR sensor to
+# HA, so there is no motion event. This uses the switch turning on (from the
+# switch's local motion sensing OR a manual press) as a motion proxy.
+- id: "1784426538275"
+  alias: living-room-motion-turn-on-entryway-and-kitchen
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: switch.living_room_light
+      from: "off"
+      to: "on"
+  condition:
+    - condition: sun
+      after: sunset
+      before: sunrise
+  action:
+    - service: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.entryway_light
+          - switch.kitchen_chandelier_light

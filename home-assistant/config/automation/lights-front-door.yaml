@@ -1,0 +1,26 @@
+# Front door (Ring doorbell via ring-mqtt) motion/ding -> entry lights, after dark.
+# binary_sensor.motion = "Front Door Motion", binary_sensor.ding = "Front Door Ding".
+- id: "1784427144251"
+  alias: front-door-motion-or-ding-turnon-entry-lights-after-sunset
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion
+      from: "off"
+      to: "on"
+      id: front_door_motion
+    - platform: state
+      entity_id: binary_sensor.ding
+      from: "off"
+      to: "on"
+      id: front_door_ding
+  condition:
+    - condition: sun
+      after: sunset
+      before: sunrise
+  action:
+    - service: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.front_porch_light
+          - switch.entryway_light
