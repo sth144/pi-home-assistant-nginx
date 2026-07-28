@@ -41,6 +41,7 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 scene: !include scenes.yaml
+template: !include templates.yaml
 input_number:
   midea_sala_de_estar_on_humidity:
     name: Midea Sala de estar on humidity

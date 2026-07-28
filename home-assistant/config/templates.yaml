@@ -1,0 +1,24 @@
+# Template entities.
+#
+# sensor.live_tracked_game is a dynamic roster of TeamTracker games: it reports
+# the entity_id of whichever tracked game is currently in progress, or "none".
+# It uses integration_entities('teamtracker'), which resolves at runtime, so any
+# team you add to the TeamTracker integration later is picked up automatically
+# with no edits to this file or to the auto-tune automation.
+
+- sensor:
+    - name: "Live tracked game"
+      unique_id: live_tracked_game
+      icon: mdi:scoreboard
+      state: >-
+        {{ integration_entities('teamtracker')
+           | select('is_state', 'IN') | list | sort | first | default('none', true) }}
+      attributes:
+        live_count: >-
+          {{ integration_entities('teamtracker')
+             | select('is_state', 'IN') | list | count }}
+        live_games: >-
+          {{ integration_entities('teamtracker')
+             | select('is_state', 'IN') | list | sort | join(', ') }}
+        tracked_total: >-
+          {{ integration_entities('teamtracker') | list | count }}

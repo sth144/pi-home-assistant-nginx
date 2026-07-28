@@ -1,0 +1,158 @@
+# Auto-tune the TV when any tracked team's game goes live.
+#
+# Teams are NOT listed here. The trigger watches sensor.live_tracked_game
+# (see templates.yaml), which is derived from integration_entities('teamtracker'),
+# so any team added to the TeamTracker integration later is covered automatically.
+#
+# App package names and deep links below were read off the Shield itself via
+# `androidtv.adb_command` -> `pm list packages` / `cmd package dump`, not guessed.
+#
+# MANUAL TESTING: pass test_network (and optionally test_game) to exercise a
+# specific routing path without waiting for a real kickoff, e.g.
+#   action: automation.trigger
+#   target: { entity_id: automation.sports_auto_tune_tv_at_kickoff }
+#   data:
+#     variables:
+#       test_network: "NBC"
+
+- id: sports_auto_tune
+  alias: "Sports: auto-tune TV at kickoff"
+  description: >-
+    When a tracked team's game goes live, wake the TV + Shield and launch the app
+    carrying it. Only fires if the TV is already off, between 08:00 and 23:00.
+  mode: single
+  max_exceeded: silent
+
+  triggers:
+    - trigger: state
+      entity_id: sensor.live_tracked_game
+      not_to:
+        - "none"
+        - "unknown"
+        - "unavailable"
+
+  conditions:
+    - alias: "Waking hours only"
+      condition: time
+      after: "08:00:00"
+      before: "23:00:00"
+    # Never hijack something already being watched. Three independent checks,
+    # because no single one is trustworthy on its own:
+    #
+    #  1. The TV must be POSITIVELY known to be off. 'unavailable'/'unknown' are
+    #     deliberately NOT accepted - they mean "HA has lost track of the TV",
+    #     which is exactly when a hijack would be most likely. Fail safe: if we
+    #     don't know, we don't touch it.
+    #  2. No androidtv (ADB) media_player is playing or paused. This is the most
+    #     reliable "something is on screen" signal, since the ADB integration
+    #     reports real playback state that androidtv_remote cannot.
+    #  3. The Shield's Plex client isn't mid-playback.
+    #
+    # The androidtv entity is resolved via integration_entities() rather than
+    # hardcoded, so renaming it in the UI won't silently break this guard.
+    - alias: "Nothing is already being watched"
+      condition: template
+      value_template: >-
+        {% set tv = states('media_player.samsung_q60aa_65_tv') %}
+        {% set busy = ['playing', 'paused', 'buffering'] %}
+        {% set adb = integration_entities('androidtv')
+                     | select('search', '^media_player\\.') | list %}
+        {% set adb_busy = (adb | select('is_state', 'playing') | list | count > 0)
+                          or (adb | select('is_state', 'paused') | list | count > 0) %}
+        {% set plex_busy = states('media_player.plex_plex_for_android_tv_shield_android_tv')
+                           in busy %}
+        {{ tv in ['off', 'standby'] and not adb_busy and not plex_busy }}
+
+  actions:
+    # Resolve which game we're acting on. Falls back to the live-game sensor so a
+    # manual automation.trigger (where `trigger` is undefined) still works.
+    - variables:
+        game: >-
+          {{ test_game if test_game is defined
+             else (trigger.to_state.state
+                   if trigger is defined and trigger.to_state is defined
+                   else states('sensor.live_tracked_game')) }}
+    - variables:
+        team: "{{ state_attr(game, 'team_name') | default(game, true) }}"
+        opponent: "{{ state_attr(game, 'opponent_name') | default('TBD', true) }}"
+        network: >-
+          {{ test_network if test_network is defined
+             else (state_attr(game, 'tv_network') | default('', true)) }}
+    - variables:
+        # tv_network -> where to send it. The mapping itself lives in
+        # custom_templates/streaming_apps.jinja, which is deliberately NOT tracked
+        # in git: which networks are mapped reveals which streaming services this
+        # household subscribes to. See streaming_apps.jinja.example for structure
+        # and for how to discover package names / deep links over ADB.
+        #
+        # app_for() returns a package name, a deep link, or "unsupported"
+        # (-> the default branch below just notifies).
+        activity: >-
+          {% from 'streaming_apps.jinja' import app_for %}
+          {{ app_for(network) | trim }}
+
+    - choose:
+        # ------------------------------------------------------------------
+        # Everything the Shield can carry.
+        # ------------------------------------------------------------------
+        - alias: "An app on the Shield carries it"
+          conditions:
+            - condition: template
+              value_template: "{{ activity not in ['appletv_on_samsung', 'unsupported'] }}"
+          sequence:
+            # 1. TV on. samsungtv sends Wake-on-LAN to the MAC it discovered.
+            #    Verified working: off -> on in ~18s. Requires "Power On with
+            #    Mobile" enabled on the TV (General > Network > Expert Settings).
+            - action: media_player.turn_on
+              target:
+                entity_id: media_player.samsung_q60aa_65_tv
+              continue_on_error: true
+
+            # 2. Wake the Shield. HDMI-CEC makes the TV switch to its input,
+            #    which is why we don't need to drive Samsung input selection.
+            - action: remote.turn_on
+              target:
+                entity_id: remote.shield_android_tv
+            - wait_template: "{{ is_state('media_player.shield_android_tv', 'on') }}"
+              timeout: "00:00:45"
+              continue_on_timeout: true
+            - delay: "00:00:08" # let the launcher settle
+
+            # 3. Launch the carrying app.
+            - action: remote.turn_on
+              target:
+                entity_id: remote.shield_android_tv
+              data:
+                activity: "{{ activity }}"
+            - delay: "00:00:15" # cold start
+
+            # 4. Last mile. No public deep link exists to a specific live event
+            #    on these apps, so this bets on the game being the focused hero
+            #    tile. foxsports://live already lands on live content.
+            - action: remote.send_command
+              target:
+                entity_id: remote.shield_android_tv
+              data:
+                command: DPAD_CENTER
+
+            - action: notify.persistent_notification
+              data:
+                title: "Auto-tuned: {{ team }}"
+                message: >-
+                  vs {{ opponent }} on {{ network }} - launched {{ activity }}
+
+      # ----------------------------------------------------------------------
+      # Nothing we can drive (in practice: Apple TV / MLS Season Pass).
+      # To make this branch actionable you'd need the HACS integration
+      # ollo69/ha-samsungtv-smart, which adds app_list + SmartThings support and
+      # can launch Tizen apps by ID. Core samsungtv cannot.
+      # ----------------------------------------------------------------------
+      default:
+        - alias: "Nothing available for this network"
+          action: notify.persistent_notification
+          data:
+            title: "{{ team }} is live - tune it manually"
+            message: >-
+              vs {{ opponent }} on {{ network }}. No app on the Shield carries
+              it and this TV can't be app-switched from HA, so nothing was
+              launched.

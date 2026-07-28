@@ -1,0 +1,38 @@
+{# Network -> Android TV activity mapping. TEMPLATE / EXAMPLE ONLY.
+
+   Copy to streaming_apps.jinja (same directory) and fill in the services you
+   actually subscribe to. The real file is gitignored, because which networks are
+   mapped reveals a household's subscriptions.
+
+   app_for(network) takes a TeamTracker `tv_network` attribute value (e.g. "NBC",
+   "Prime Video", "FS1", "Apple TV") and returns one of:
+     - an Android TV package name        e.g. com.example.streamingapp
+     - a deep link URI                   e.g. examplesports://live
+     - the string "unsupported"          -> automation notifies instead of launching
+
+   Find real values on your own device rather than guessing:
+     action: androidtv.adb_command
+     data:
+       command: "pm list packages | grep -iE 'peacock|espn|fox'"
+     # then, for deep links:
+       command: "cmd package dump <package> | grep -oE 'Scheme: \"[^\"]+\"' | sort -u"
+
+   Read the result from the entity's `adb_response` attribute.
+
+   Matching is substring-based on the lowercased network name, so one branch can
+   cover several channels. Order matters: first match wins. Keep a catch-all
+   `else` so an unrecognized network still lands somewhere sensible - a live-TV
+   service carrying most linear channels is a good default.
+
+   After editing the real file:
+     action: homeassistant.reload_custom_templates
+#}
+
+{%- macro app_for(network) -%}
+  {%- set n = (network | default('', true)) | lower -%}
+  {%- if   'example-unavailable' in n %}unsupported
+  {%- elif 'example-network' in n %}com.example.streamingapp
+  {%- elif 'example-sports' in n %}examplesports://live
+  {%- else %}com.example.livetv
+  {%- endif -%}
+{%- endmacro -%}

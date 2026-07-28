@@ -37,3 +37,7 @@ zigbee2mqtt/config/database.db
 zigbee2mqtt/config/state.json
 zigbee2mqtt/config/*.log
 !zigbee2mqtt/config/configuration.yaml
+
+# Real network->streaming-app map reveals household subscriptions.
+# Only the .example scaffold is tracked.
+home-assistant/config/custom_templates/streaming_apps.jinja
