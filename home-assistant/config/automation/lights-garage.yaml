@@ -12,4 +12,26 @@
       entity_id: switch.smart_plug_5_socket_1
       domain: switch
   mode: single
+- id: "1784427695556"
+  alias: garage-light-on-turnon-workbench-light
+  description: >-
+    Turn on the workbench light (Tuya Smart Plug 5) whenever the garage light
+    comes on, then turn it back off 2 hours after the garage light was last
+    turned on. mode:restart resets the 2h timer if the garage light comes on
+    again before it expires.
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: light.garage_light
+      from: "off"
+      to: "on"
+  condition: []
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.smart_plug_5_socket_1
+    - delay: "02:00:00"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.smart_plug_5_socket_1
 

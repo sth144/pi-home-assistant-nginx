@@ -34,18 +34,22 @@
               after_offset: "-01:00:00"
               before: sunrise
           sequence:
-            - service: light.turn_on
+            - service: homeassistant.turn_on
               target:
-                entity_id: light.driveway_light
+                entity_id:
+                  - light.driveway_light
+                  - switch.front_porch_light
         - conditions:
             - condition: trigger
               id: motion_off
           sequence:
             - delay:
                 minutes: 2
-            - service: light.turn_off
+            - service: homeassistant.turn_off
               target:
-                entity_id: light.driveway_light
+                entity_id:
+                  - light.driveway_light
+                  - switch.front_porch_light
 # Retired physical driveway motion sensor off automation:
 # - id: "1677811291662"
 #   alias: turn-off-driveway-light-when-not-occupied
