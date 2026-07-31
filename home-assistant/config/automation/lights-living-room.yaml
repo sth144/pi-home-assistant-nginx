@@ -44,15 +44,15 @@
 #      domain: switch
 #  mode: single
 
-# NOTE: The KS200M (switch.living_room_light) does not expose its PIR sensor to
-# HA, so there is no motion event. This uses the switch turning on (from the
+# NOTE: The ES20M (light.living_room_light) does not expose its PIR sensor to
+# HA, so there is no motion event. This uses the light turning on (from the
 # switch's local motion sensing OR a manual press) as a motion proxy.
 - id: "1784426538275"
   alias: living-room-motion-turn-on-entryway-and-kitchen
   mode: single
   trigger:
     - platform: state
-      entity_id: switch.living_room_light
+      entity_id: light.living_room_light
       from: "off"
       to: "on"
   condition:

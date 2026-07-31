@@ -388,7 +388,7 @@ views:
                       #- entity: switch.smart_plug_9_switch_2
                       - entity: switch.smart_plug_5_socket_1
                         name: Garage Workbench Light
-                      - entity: light.driveway_light
+                      - entity: switch.driveway_light
                         name: Driveway Light
                       - entity: switch.smart_plug_9
                         name: Christmas Lights
@@ -596,7 +596,7 @@ views:
                 cards:
                   - type: history-graph
                     entities:
-                      - entity: light.driveway_light
+                      - entity: switch.driveway_light
                         name: Driveway Light
                       - entity: binary_sensor.driveway_motion_sensor_occupancy
                         name: Driveway Motion Sensor Occupancy
@@ -626,8 +626,8 @@ views:
                   - type: light
                     entity: light.office
                     name: Office
-                  - type: light
-                    entity: light.driveway_light
+                  - type: tile
+                    entity: switch.driveway_light
                     name: Driveway
                   - type: light
                     entity: light.garage_light
@@ -775,7 +775,7 @@ views:
                     name: Front Porch Light
                   - entity: switch.kitchen_chandelier_light
                     name: Kitchen Chandelier Light
-                  - entity: switch.living_room_light
+                  - entity: light.living_room_light
                     name: Living Room Light
                   - entity: switch.living_room_fan
                     name: Living Room Fan
@@ -789,7 +789,7 @@ views:
                     name: Front Porch Light
                   - entity: switch.kitchen_chandelier_light
                     name: Kitchen Chandelier Light
-                  - entity: switch.living_room_light
+                  - entity: light.living_room_light
                     name: Living Room Light
                   - entity: switch.living_room_fan
                     name: Living Room Fan

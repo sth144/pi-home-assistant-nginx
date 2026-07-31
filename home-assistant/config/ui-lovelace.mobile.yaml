@@ -25,7 +25,7 @@ views:
         square: false
         cards:
           - type: tile
-            entity: light.driveway_light
+            entity: switch.driveway_light
             name: Driveway
             features_position: bottom
             vertical: false
@@ -96,7 +96,7 @@ views:
             features_position: bottom
             vertical: false
           - type: tile
-            entity: switch.living_room_light
+            entity: light.living_room_light
             name: Living Room
             features_position: bottom
             vertical: false
@@ -116,7 +116,7 @@ views:
             name: Front Porch
           - entity: switch.kitchen_chandelier_light
             name: Kitchen Chandelier
-          - entity: switch.living_room_light
+          - entity: light.living_room_light
             name: Living Room
           - entity: switch.living_room_fan
             name: Living Room Fan

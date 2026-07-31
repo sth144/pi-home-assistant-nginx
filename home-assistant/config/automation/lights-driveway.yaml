@@ -37,7 +37,7 @@
             - service: homeassistant.turn_on
               target:
                 entity_id:
-                  - light.driveway_light
+                  - switch.driveway_light
                   - switch.front_porch_light
         - conditions:
             - condition: trigger
@@ -48,7 +48,7 @@
             - service: homeassistant.turn_off
               target:
                 entity_id:
-                  - light.driveway_light
+                  - switch.driveway_light
                   - switch.front_porch_light
 # Retired physical driveway motion sensor off automation:
 # - id: "1677811291662"
@@ -62,6 +62,6 @@
 #       for:
 #         minutes: 2
 #   action:
-#     - service: light.turn_off
+#     - service: homeassistant.turn_off
 #       target:
-#         entity_id: light.driveway_light
+#         entity_id: switch.driveway_light
