@@ -394,6 +394,16 @@ views:
                         name: Christmas Lights
                       - entity: light.garage_light
                         name: Garage Lights
+                      - entity: switch.entryway_light
+                        name: Entryway Light
+                      - entity: switch.front_porch_light
+                        name: Front Porch Light
+                      - entity: switch.kitchen_chandelier_light
+                        name: Kitchen Chandelier Light
+                      - entity: light.living_room_light
+                        name: Living Room Light
+                      - entity: switch.living_room_fan
+                        name: Living Room Fan
                   - type: history-graph
                     entities:
                       - entity: binary_sensor.backyard_front_gate_sensor_contact
@@ -624,6 +634,9 @@ views:
                     entity: light.living_room
                     name: Living Room
                   - type: light
+                    entity: light.living_room_light
+                    name: Living Room Dimmer
+                  - type: light
                     entity: light.office
                     name: Office
                   - type: tile
@@ -763,33 +776,17 @@ views:
                 tap_action:
                   action: call-service
                   service: script.test_iphone_notification
-          - type: horizontal-stack
-            cards:
-              - type: entities
-                title: Kasa Switches
-                show_header_toggle: false
-                entities:
-                  - entity: switch.entryway_light
-                    name: Entryway Light
-                  - entity: switch.front_porch_light
-                    name: Front Porch Light
-                  - entity: switch.kitchen_chandelier_light
-                    name: Kitchen Chandelier Light
-                  - entity: light.living_room_light
-                    name: Living Room Light
-                  - entity: switch.living_room_fan
-                    name: Living Room Fan
-              - type: history-graph
-                title: Kasa Switch History
-                hours_to_show: 168
-                entities:
-                  - entity: switch.entryway_light
-                    name: Entryway Light
-                  - entity: switch.front_porch_light
-                    name: Front Porch Light
-                  - entity: switch.kitchen_chandelier_light
-                    name: Kitchen Chandelier Light
-                  - entity: light.living_room_light
-                    name: Living Room Light
-                  - entity: switch.living_room_fan
-                    name: Living Room Fan
+          - type: history-graph
+            title: Kasa Switch History
+            hours_to_show: 168
+            entities:
+              - entity: switch.entryway_light
+                name: Entryway Light
+              - entity: switch.front_porch_light
+                name: Front Porch Light
+              - entity: switch.kitchen_chandelier_light
+                name: Kitchen Chandelier Light
+              - entity: light.living_room_light
+                name: Living Room Light
+              - entity: switch.living_room_fan
+                name: Living Room Fan

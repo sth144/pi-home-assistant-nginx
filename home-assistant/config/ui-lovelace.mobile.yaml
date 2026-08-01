@@ -74,12 +74,6 @@ views:
             name: Deborah
             features_position: bottom
             vertical: false
-
-      - type: grid
-        title: Kasa Switches
-        columns: 2
-        square: false
-        cards:
           - type: tile
             entity: switch.entryway_light
             name: Entryway
@@ -100,6 +94,8 @@ views:
             name: Living Room
             features_position: bottom
             vertical: false
+            features:
+              - type: light-brightness
           - type: tile
             entity: switch.living_room_fan
             name: Living Room Fan
