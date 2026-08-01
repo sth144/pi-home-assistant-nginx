@@ -1,0 +1,30 @@
+# Sweep every Kasa light switch off at midnight.
+#
+# Covers all six TP-Link light switches: four HS200/KS200M relays and the two
+# ES20M dimmers. switch.living_room_fan is the seventh Kasa device on the
+# network but is a fan, not a light, so it is deliberately excluded.
+#
+# NOTE: switch.driveway_light and switch.front_porch_light are also driven by
+# the wyzebridge motion automation in lights-driveway.yaml, which turns them on
+# for any motion between sunset-1h and sunrise. This sweep does not disable
+# that -- motion after midnight will still light them, and they will switch off
+# again two minutes later. That is intended: the sweep is a catch-all for lights
+# left on, not a curfew.
+- id: "1785548166420"
+  alias: midnight-turn-off-all-kasa-lights
+  mode: single
+  trigger:
+    - platform: time
+      at: "00:00:00"
+  condition: []
+  action:
+    # mixed domains (ES20M dimmers are light.*, the relays are switch.*)
+    - service: homeassistant.turn_off
+      target:
+        entity_id:
+          - switch.entryway_light
+          - switch.front_porch_light
+          - switch.kitchen_chandelier_light
+          - switch.driveway_light
+          - light.living_room_light
+          - light.garage_light

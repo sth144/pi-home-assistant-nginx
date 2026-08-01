@@ -1,0 +1,35 @@
+# Evening Living Room scene, on a sunset..sunset+3h window.
+#
+# Deliberately two automations driven off sun triggers rather than one
+# automation with `delay: 3:00:00`: a delay does not survive a Home Assistant
+# restart, so a restart during the window would leave the lights on all night.
+# Two sun-offset triggers are stateless and always fire.
+- id: "1785548012345"
+  alias: sunset-activate-evening-living-room-scene
+  mode: single
+  trigger:
+    - platform: sun
+      event: sunset
+  condition: []
+  action:
+    - service: scene.turn_on
+      target:
+        entity_id: scene.evening_living_room
+
+- id: "1785548098765"
+  alias: sunset-plus3hr-turnoff-evening-living-room
+  mode: single
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "03:00:00"
+  condition: []
+  action:
+    # mixed domains (the living room is an ES20M dimmer, the other two are
+    # HS200 switches), so use the domain-agnostic service
+    - service: homeassistant.turn_off
+      target:
+        entity_id:
+          - switch.entryway_light
+          - switch.kitchen_chandelier_light
+          - light.living_room_light

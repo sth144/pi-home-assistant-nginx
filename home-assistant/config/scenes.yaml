@@ -51,7 +51,7 @@
     switch.ewelink_sa_003_zigbee_837dce22_on_off:
       entity_only: true
 - id: "1785547823914"
-  name: Evening
+  name: Evening Living Room
   icon: mdi:weather-sunset
   entities:
     switch.entryway_light:
