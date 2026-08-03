@@ -41,3 +41,13 @@ zigbee2mqtt/config/*.log
 # Real network->streaming-app map reveals household subscriptions.
 # Only the .example scaffold is tracked.
 home-assistant/config/custom_templates/streaming_apps.jinja
+
+# Node-RED runtime state. flows.json and settings.js stay tracked so the
+# automations themselves are version controlled; credentials and installed
+# packages do not belong in git.
+home-assistant/nodered/flows_cred.json
+home-assistant/nodered/.config.*
+home-assistant/nodered/.sessions.json
+home-assistant/nodered/node_modules
+home-assistant/nodered/.npm
+home-assistant/nodered/lib

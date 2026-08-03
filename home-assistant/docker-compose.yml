@@ -46,3 +46,25 @@ services:
     command: ["ha-mcp-web"]
     ports:
       - "8086:8086"
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    environment:
+      - TZ=America/Chicago
+    volumes:
+      - /home/pi/Projects/home-assistant/nodered:/data
+      - /etc/localtime:/etc/localtime:ro
+    # The image's default user is node-red (1000:1000); stated explicitly because
+    # a data dir owned by anyone else leaves Node-RED unable to write its flows.
+    user: "1000:1000"
+    # home-assistant runs with network_mode: host, so it is not on this bridge
+    # network. Reach it at http://host.docker.internal:8123 from Node-RED nodes.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "1880:1880"
