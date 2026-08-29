@@ -29,6 +29,7 @@ domains=(
   freecad.sth144.duckdns.org
   calibre.sth144.duckdns.org
   kavita.sth144.duckdns.org
+  trello-groomer.sth144.duckdns.org
 )
 
 main_domain="${domains[0]}"
