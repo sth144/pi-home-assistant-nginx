@@ -219,3 +219,5 @@ device_tracker:
     password: !secret netgear_password
     accesspoints:
       - netgear
+
+hass_digital_twin:

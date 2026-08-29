@@ -65,3 +65,64 @@
 #     - service: homeassistant.turn_off
 #       target:
 #         entity_id: switch.driveway_light
+
+# Garage door opening -> driveway + porch lights, after dark.
+#
+# Same light pair, same sun window and same 2-minute-off delay as the wyzebridge
+# motion automation above, so the two deliberately interact: each is mode:restart
+# on its own trigger, and whichever fires last wins the off timer. A motion event
+# while the garage sits open will re-light the pair after this automation's
+# off-delay has already run. That is intended -- same rationale as the midnight
+# sweep note in lights-kasa-midnight-off.yaml.
+#
+# binary_sensor.garage_door is INFERRED from the garage-cam snapshot by
+# garage-door.service on the Pi (/home/pi/Projects/garage-door), which
+# correlates the lower door face against one stored closed-door template per
+# lighting condition. Anything matching no known closed template reads as OPEN,
+# so every lighting condition needs its own template. Until
+# templates/closed-night.json exists, the sensor will read open after dark and
+# this automation would hold the driveway lights on all evening -- keep it
+# disabled until then.
+- id: "1787273500000"
+  alias: garage-open-turnon-driveway-and-porch-lights
+  mode: restart
+  trigger:
+    # from/to are explicit so an unavailable -> on flap (service restart, snapshot
+    # timeout) cannot fire this.
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      from: "off"
+      to: "on"
+      id: garage_opened
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      from: "on"
+      to: "off"
+      id: garage_closed
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: garage_opened
+            - condition: sun
+              after: sunset
+              after_offset: "-01:00:00"
+              before: sunrise
+          sequence:
+            - service: homeassistant.turn_on
+              target:
+                entity_id:
+                  - switch.driveway_light
+                  - switch.front_porch_light
+        - conditions:
+            - condition: trigger
+              id: garage_closed
+          sequence:
+            - delay:
+                minutes: 2
+            - service: homeassistant.turn_off
+              target:
+                entity_id:
+                  - switch.driveway_light
+                  - switch.front_porch_light

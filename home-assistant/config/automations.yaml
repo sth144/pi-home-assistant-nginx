@@ -46,3 +46,54 @@
         target:
           entity_id: switch.sonoff_smart_plug_4
   mode: single
+- id: '1787451583329'
+  alias: Reboot Kasa switches nightly
+  description: Nightly reboot of the Garage and Driveway Kasa switches at midnight.
+    Added as a test to see whether a daily restart stops them dropping offline. If
+    it doesn't help after a week or so, delete this rather than leaving it running.
+  triggers:
+  - trigger: time
+    at: 00:00:00
+  actions:
+  - action: button.press
+    target:
+      entity_id:
+      - button.garage_light_restart
+      - button.driveway_light_restart
+  mode: single
+- id: '1787451835297'
+  alias: Reboot Kasa switches nightly
+  description: Nightly reboot of the Garage and Driveway Kasa switches, testing whether
+    a daily restart stops them dropping offline. Runs at 00:05 rather than 00:00 so
+    it does not race the midnight-turn-off-all-kasa-lights automation.
+  triggers:
+  - trigger: time
+    at: 00:05:00
+  actions:
+  - action: button.press
+    target:
+      entity_id:
+      - button.garage_light_restart
+      - button.driveway_light_restart
+  mode: single
+- id: '1787453769369'
+  alias: Reboot Kasa switches nightly
+  description: Nightly reboot of all seven TP-Link Kasa switches, testing whether
+    a daily restart stops them dropping offline. Runs at 00:05 rather than 00:00 so
+    it does not race the midnight-turn-off-all-kasa-lights automation. Delete this
+    if it does not help.
+  triggers:
+  - trigger: time
+    at: 00:05:00
+  actions:
+  - action: button.press
+    target:
+      entity_id:
+      - button.garage_light_restart
+      - button.driveway_light_restart
+      - button.living_room_light_restart
+      - button.entryway_light_restart
+      - button.front_porch_light_restart
+      - button.living_room_fan_restart
+      - button.kitchen_chandelier_light_restart
+  mode: single

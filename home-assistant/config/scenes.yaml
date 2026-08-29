@@ -65,3 +65,31 @@
       state: "on"
       # ES20M dimmer at 15% of the 0-255 scale
       brightness: 38
+- id: "1785547823915"
+  name: Kasa Lights Off
+  icon: mdi:lightbulb-group-off
+  # All six Kasa light switches plus switch.living_room_fan, the seventh Kasa
+  # device. Mirrors lights-kasa-midnight-off.yaml but adds the fan; mixed
+  # domains (ES20M dimmers are light.*, the relays are switch.*).
+  entities:
+    switch.entryway_light:
+      friendly_name: Entryway Light
+      state: "off"
+    switch.front_porch_light:
+      friendly_name: Front Porch Light
+      state: "off"
+    switch.kitchen_chandelier_light:
+      friendly_name: Kitchen Chandelier Light
+      state: "off"
+    switch.driveway_light:
+      friendly_name: Driveway Light
+      state: "off"
+    light.living_room_light:
+      friendly_name: Living Room Light
+      state: "off"
+    light.garage_light:
+      friendly_name: Garage Lights
+      state: "off"
+    switch.living_room_fan:
+      friendly_name: Living Room Fan
+      state: "off"
