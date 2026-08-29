@@ -51,3 +51,8 @@ home-assistant/nodered/.sessions.json
 home-assistant/nodered/node_modules
 home-assistant/nodered/.npm
 home-assistant/nodered/lib
+
+# Garage door classifier: captured stills of the garage and driveway, plus the
+# byte-compiled cache beside them. This repo is public, so the sample imagery
+# stays local regardless of size.
+garage-door/
