@@ -112,6 +112,10 @@ services:
         logo: "assets/tools/open-webui.png"
         tag: "app"
         url: "http://open-webui"
+      - name: "Trello Checklists"
+        logo: "assets/tools/trello.png"
+        tag: "app"
+        url: "http://trello-groomer"
   - name: "CI/CD & Automation"
     icon: "fas fa-robot"
     items:
