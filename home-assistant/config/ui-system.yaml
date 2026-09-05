@@ -313,6 +313,12 @@ views:
                     camera_view: auto
                     aspect_ratio: 16x9
                     show_state: false
+                  - type: picture-entity
+                    entity: camera.qz1095w
+                    name: Kiosk Tablet
+                    camera_view: auto
+                    aspect_ratio: 16x9
+                    show_state: false
               - type: custom:floorplan-card
                 config:
                   image: /local/floorplan/house-3d.svg

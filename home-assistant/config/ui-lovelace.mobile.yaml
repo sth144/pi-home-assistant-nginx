@@ -437,6 +437,11 @@ views:
             name: Driveway
             camera_view: auto
             aspect_ratio: 16x9
+          - type: picture-entity
+            entity: camera.qz1095w
+            name: Kiosk Tablet
+            camera_view: auto
+            aspect_ratio: 16x9
           - type: vertical-stack
             cards:
               - type: picture-entity
